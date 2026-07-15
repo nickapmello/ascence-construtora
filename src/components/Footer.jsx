@@ -20,9 +20,6 @@ export default function Footer({ setActivePage }) {
               className="logo-img-footer"
             />
           </div>
-          <p className="footer-description">
-            {COMPANY_INFO.aboutBrief}
-          </p>
           <div className="footer-socials">
             <a href={COMPANY_INFO.contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg className="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -40,6 +37,9 @@ export default function Footer({ setActivePage }) {
               </svg>
             </a>
           </div>
+          <p className="footer-description">
+            {COMPANY_INFO.aboutBrief}
+          </p>
         </div>
 
         {/* Links Column */}
@@ -119,9 +119,9 @@ export default function Footer({ setActivePage }) {
           gap: 1.5rem;
         }
         .logo-img-footer {
-          height: 130px; /* Aumentado em mais 15%+ para legibilidade ideal */
-          margin-top: -40px;
-          margin-bottom: -40px;
+          height: 143px; /* Aumentado em mais 10% conforme solicitado */
+          margin-top: -44px;
+          margin-bottom: -44px;
           margin-left: -12px;
           object-fit: contain;
           display: block;
@@ -137,7 +137,8 @@ export default function Footer({ setActivePage }) {
         .footer-socials {
           display: flex;
           gap: 1rem;
-          margin-top: 0.5rem;
+          margin-top: -1rem;
+          margin-bottom: 1rem;
         }
         .social-icon {
           width: 1.25rem;
@@ -255,14 +256,23 @@ export default function Footer({ setActivePage }) {
             gap: 3rem;
           }
           .footer-brand-col {
-            align-items: center;
-            text-align: center;
+            align-items: flex-start; /* Alinhamento à esquerda das informações */
+            text-align: left;
           }
-          .footer-socials {
-            justify-content: center;
+          .logo-area {
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Centraliza o contêiner da logo */
           }
           .logo-img-footer {
-            margin: -40px auto; /* Centraliza a logo no mobile */
+            margin: -44px auto; /* Centraliza a logo */
+          }
+          .footer-socials {
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Centraliza os ícones no mobile */
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
           }
           .footer-bottom-flex {
             flex-direction: column;
