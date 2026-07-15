@@ -968,6 +968,12 @@ export default function Home({ setActivePage, setSelectedPropertyId }) {
           padding-top: 7.5rem;
           padding-bottom: 7.5rem;
         }
+        .protocol-stacking-section .section-title {
+          color: var(--text-light);
+        }
+        .protocol-stacking-section .section-desc {
+          color: var(--text-muted);
+        }
         .protocol-cards-stack {
           position: relative;
           max-width: 1000px;
@@ -1009,12 +1015,13 @@ export default function Home({ setActivePage, setSelectedPropertyId }) {
           font-family: var(--font-serif);
           font-size: clamp(2rem, 3.5vw, 2.6rem);
           font-weight: 400;
+          color: var(--text-light);
         }
         .protocol-desc {
           font-family: var(--font-sans);
           font-size: 0.95rem;
           line-height: 1.6;
-          color: var(--text-muted);
+          color: rgba(255, 255, 255, 0.75);
         }
         .protocol-visual {
           width: 100%;
