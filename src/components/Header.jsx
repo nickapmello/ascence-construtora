@@ -122,7 +122,7 @@ export default function Header({ activePage, setActivePage }) {
           width: 92%;
           max-width: 1200px;
           z-index: 100;
-          background: rgba(255, 255, 255, 0.4);
+          background: #ffffff;
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           border: 1px solid rgba(197, 168, 128, 0.12);
@@ -134,7 +134,7 @@ export default function Header({ activePage, setActivePage }) {
         }
         .header-active {
           top: 1rem;
-          background: rgba(251, 251, 249, 0.75) !important;
+          background: #fbfbf9 !important;
           backdrop-filter: blur(20px) !important;
           -webkit-backdrop-filter: blur(20px) !important;
           border: 1px solid rgba(197, 168, 128, 0.25) !important;
