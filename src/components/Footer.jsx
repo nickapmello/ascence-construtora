@@ -119,8 +119,12 @@ export default function Footer({ setActivePage }) {
           gap: 1.5rem;
         }
         .logo-img-footer {
-          height: 2.4rem;
+          height: 110px;
+          margin-top: -34px;
+          margin-bottom: -34px;
+          margin-left: -12px;
           object-fit: contain;
+          display: block;
           cursor: pointer;
         }
         .footer-description {
