@@ -119,9 +119,9 @@ export default function Footer({ setActivePage }) {
           gap: 1.5rem;
         }
         .logo-img-footer {
-          height: 110px;
-          margin-top: -34px;
-          margin-bottom: -34px;
+          height: 130px; /* Aumentado em mais 15%+ para legibilidade ideal */
+          margin-top: -40px;
+          margin-bottom: -40px;
           margin-left: -12px;
           object-fit: contain;
           display: block;
@@ -253,6 +253,16 @@ export default function Footer({ setActivePage }) {
           .footer-grid {
             grid-template-columns: 1fr;
             gap: 3rem;
+          }
+          .footer-brand-col {
+            align-items: center;
+            text-align: center;
+          }
+          .footer-socials {
+            justify-content: center;
+          }
+          .logo-img-footer {
+            margin: -40px auto; /* Centraliza a logo no mobile */
           }
           .footer-bottom-flex {
             flex-direction: column;
