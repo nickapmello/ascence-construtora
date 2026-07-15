@@ -259,7 +259,7 @@ export default function Footer({ setActivePage }) {
             align-items: flex-start; /* Alinhamento à esquerda das informações */
             text-align: left;
           }
-          .logo-area {
+          .footer-brand-col .logo-area {
             width: 100%;
             display: flex;
             justify-content: center; /* Centraliza o contêiner da logo */
