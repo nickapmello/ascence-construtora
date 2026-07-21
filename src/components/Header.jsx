@@ -195,21 +195,24 @@ export default function Header() {
           display: flex;
           align-items: center;
           text-decoration: none;
-          height: 36px;
+          height: 40px;
+          background: transparent !important;
         }
         .logo-img-desktop {
           display: block;
-          width: clamp(130px, 11vw, 160px);
-          height: auto;
-          max-height: 36px;
+          height: 38px;
+          width: auto;
+          max-width: 220px;
           object-fit: contain;
+          background: transparent !important;
         }
         .logo-img-mobile {
           display: none;
-          width: clamp(105px, 30vw, 125px);
-          height: auto;
-          max-height: 32px;
+          height: 32px;
+          width: auto;
+          max-width: 160px;
           object-fit: contain;
+          background: transparent !important;
         }
         .desktop-menu {
           display: flex;

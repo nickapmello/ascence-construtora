@@ -1,47 +1,30 @@
-/* ASCENCE Construtora - Design System & Custom Tokens (Refined WCAG AA & Architectural Luxury) */
-
+/* RESET GLOBAL & VARIÁVEIS DE DESIGN SYSTEM INSTITUCIONAL */
 :root {
-  /* Color Palette - Terracota Minimalista */
-  --bg-primary: #F5EFEA;      /* Warm clay/sand off-white */
-  --bg-secondary: #ffffff;    /* Pure white */
-  --bg-dark: #1F2226;         /* Brand dark slate/graphite */
-  --bg-dark-gray: #2A2E35;    /* Deep slate/charcoal */
-  
-  --text-primary: #1F2226;    /* Dark graphite */
-  --text-secondary: #4A505A;  /* Medium graphite for body text - WCAG AA compliant */
-  --text-muted: #737A85;      /* Warm muted gray for details/lines */
-  --text-light: #F5EFEA;      /* Off-white text on dark backgrounds */
-  
-  --accent-gold: #a77765;     /* Rosê Cobre / Pantone 479 C */
-  --accent-gold-dark: #8b6051;/* Deep copper/rosê hover state */
-  --accent-gold-light: #FAF5F0;/* Soft rose-cream tint */
-  
-  --border-light: #DCD6D0;    /* Warm beige borders */
-  --border-dark: #373C44;     /* Dark charcoal border */
+  /* Core Color Palette (Bege, Cobre, Rosé e Grafite) */
+  --bg-primary: #fbfbf9;
+  --bg-secondary: #f4efe9;
+  --bg-dark: #1f2226;
+  --bg-dark-gray: #282c32;
+  --text-primary: #1f2226;
+  --text-secondary: #5c5854;
+  --text-muted: #8c8680;
+  --text-light: #fbfbf9;
+  --accent-gold: #c5a880;
+  --accent-gold-dark: #a77765;
+  --accent-gold-light: #eae3d9;
+  --border-light: rgba(167, 119, 101, 0.15);
+  --border-dark: rgba(251, 251, 249, 0.1);
 
-  /* Typography */
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  
-  /* Layout Spacing */
-  --container-max: 1240px;
-  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Typography System */
+  --font-serif: "Cinzel", "Playfair Display", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-  font-family: var(--font-sans);
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
-  box-sizing: border-box;
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.25s ease;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+/* Proteção global e navegação exclusivamente vertical sem overflow horizontal */
 html,
 body,
 #root,
@@ -50,20 +33,11 @@ body,
   max-width: 100%;
   overflow-x: clip;
   overscroll-behavior-x: none;
-}
-
-body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  touch-action: pan-y pinch-zoom;
 }
 
-@supports not (overflow: clip) {
+@supports not (overflow-x: clip) {
   html,
   body,
   #root,
@@ -72,94 +46,29 @@ body {
   }
 }
 
-#root {
-  min-height: 100dvh;
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  touch-action: pan-y pinch-zoom;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--accent-gold);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-gold-dark);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Typography Presets */
+/* Typography Base Classes */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  font-weight: 400;
-  line-height: 1.15;
   color: var(--text-primary);
-  word-break: break-word;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: var(--transition-fast);
-}
-
-/* Common Layout Utilities */
-.container {
-  width: 100%;
-  max-width: var(--container-max);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  box-sizing: border-box;
-  min-width: 0;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-  }
-}
-
-.section-padding {
-  padding-top: 6.5rem;
-  padding-bottom: 6.5rem;
-}
-.section-padding-top {
-  padding-top: 6.5rem;
-}
-
-@media (max-width: 768px) {
-  .section-padding {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-  .section-padding-top {
-    padding-top: 4rem;
-  }
-}
-
-.display-title {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5vw, 4.2rem);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1.08;
-}
-
-.section-title {
-  font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 3.2vw, 3rem);
-  font-weight: 300;
-  letter-spacing: -0.01em;
-  line-height: 1.18;
+  margin-top: 0;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .overline {
@@ -169,24 +78,64 @@ a {
   text-transform: uppercase;
   letter-spacing: 0.22em;
   color: var(--accent-gold-dark);
-  display: inline-block;
-  margin-bottom: 0.85rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.display-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  line-height: 1.15;
+  font-weight: 300;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  line-height: 1.2;
+  font-weight: 300;
 }
 
 .body-text {
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 0.98rem;
   color: var(--text-secondary);
-  max-width: 65ch;
+  line-height: 1.7;
 }
 
-/* High Contrast Button System (WCAG AA Compliant) */
+/* Container Responsivo */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.section-padding {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.section-padding-top {
+  padding-top: 8rem;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .section-padding-top {
+    padding-top: 6rem;
+  }
+}
+
+/* Sistema de Botões de Alto Contraste (WCAG AA) */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem 2rem;
+  padding: 0.85rem 2.2rem;
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
@@ -248,45 +197,23 @@ a {
 }
 
 .text-white-btn {
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
   color: #ffffff !important;
-  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.4) !important;
 }
 .text-white-btn:hover {
-  background-color: #ffffff !important;
-  color: var(--bg-dark) !important;
-  border-color: #ffffff !important;
+  border-color: var(--accent-gold) !important;
+  color: var(--accent-gold) !important;
 }
 
-/* Floating WhatsApp Button */
-.whatsapp-float {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 3.6rem;
-  height: 3.6rem;
-  background-color: #25d366;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
-  z-index: 1000;
-  color: white;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1) translateY(-3px);
-  background-color: #20ba5a;
-}
-
-@media (max-width: 480px) {
-  .whatsapp-float {
-    bottom: 1.25rem;
-    right: 1.25rem;
-    width: 3.2rem;
-    height: 3.2rem;
+/* Proteção Estrita Mobile */
+@media (max-width: 640px) {
+  html,
+  body,
+  #root,
+  .app-root-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: clip !important;
   }
   
   /* Mobile containers, cards, grids and form elements */
@@ -312,7 +239,18 @@ svg,
 picture {
   max-width: 100%;
   height: auto;
-  background-color: #e5dfd9;
+}
+
+/* Garantir fundo 100% transparente para todas as logos e símbolos */
+img.logo-img-desktop,
+img.logo-img-mobile,
+img.footer-symbol,
+img.quote-symbol,
+img.symbol-icon,
+.logo-area img,
+.footer-logo-link img {
+  background: transparent !important;
+  background-color: transparent !important;
 }
 
 .mx-auto {
