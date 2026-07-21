@@ -1,282 +1,201 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { COMPANY_INFO } from "../data/mockData";
-import logoDark from "../assets/logo_4_copper_charcoal.png";
+import symbolDark from "../assets/symbol_3_copper_charcoal.png";
 
-export default function Footer({ setActivePage }) {
-  const handleNavClick = (id) => {
-    setActivePage(id);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
+export default function Footer() {
   return (
-    <footer className="footer-area">
+    <footer className="institutional-footer">
       <div className="container footer-grid">
         {/* Brand Column */}
-        <div className="footer-brand-col">
-          <div className="logo-area" onClick={() => handleNavClick("inicio")}>
-            <img
-              src={logoDark}
-              alt="ASCENCE Incorporadora"
-              className="logo-img-footer"
-            />
-          </div>
-          <div className="footer-socials">
-            <a href={COMPANY_INFO.contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg className="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
-            {/* LinkedIn Icon */}
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <svg className="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </a>
-          </div>
-          <p className="footer-description">
+        <div className="footer-col brand-col">
+          <Link to="/" className="footer-logo-link">
+            <img src={symbolDark} alt="ASCENCE Construtora" className="footer-symbol" />
+            <span className="footer-brand-name">ASCENCE</span>
+          </Link>
+          <p className="footer-tagline">
+            "{COMPANY_INFO.tagline}"
+          </p>
+          <p className="footer-desc">
             {COMPANY_INFO.aboutBrief}
           </p>
         </div>
 
-        {/* Links Column */}
-        <div className="footer-links-col">
-          <h4 className="footer-title">Navegação</h4>
-          <ul className="footer-links-list">
-            <li><button onClick={() => handleNavClick("inicio")}>Início</button></li>
-            <li><button onClick={() => handleNavClick("empreendimentos")}>Empreendimentos</button></li>
-            <li><button onClick={() => handleNavClick("construtora")}>A Construtora</button></li>
-            <li><button onClick={() => handleNavClick("diferenciais")}>Diferenciais</button></li>
-            <li><button onClick={() => handleNavClick("contato")}>Fale Conosco</button></li>
+        {/* Navigation Links Column */}
+        <div className="footer-col links-col">
+          <h4 className="footer-col-title">Navegação</h4>
+          <ul className="footer-menu">
+            <li><Link to="/">Início</Link></li>
+            <li><Link to="/a-ascence">A Ascence</Link></li>
+            <li><Link to="/nossa-trajetoria">Nossa Trajetória</Link></li>
+            <li><Link to="/nosso-jeito-de-construir">Nosso Jeito de Construir</Link></li>
+            <li><Link to="/lancamento">Lançamento</Link></li>
+            <li><Link to="/contato">Contato</Link></li>
           </ul>
         </div>
 
-        {/* Contact Column */}
-        <div className="footer-contact-col">
-          <h4 className="footer-title">Contato</h4>
-          <ul className="footer-contact-list">
-            <li>
-              <span className="contact-label">Telefone:</span>
-              <a href={`tel:${COMPANY_INFO.contact.phone.replace(/\D/g, '')}`}>{COMPANY_INFO.contact.phone}</a>
-            </li>
-            <li>
-              <span className="contact-label">WhatsApp:</span>
-              <a href={COMPANY_INFO.contact.whatsappLink} target="_blank" rel="noopener noreferrer">
-                {COMPANY_INFO.contact.phone}
-              </a>
-            </li>
-            <li>
-              <span className="contact-label">E-mail:</span>
-              <a href={`mailto:${COMPANY_INFO.contact.email}`}>{COMPANY_INFO.contact.email}</a>
-            </li>
-            <li>
-              <span className="contact-label">Endereço:</span>
-              <address className="footer-address">{COMPANY_INFO.contact.address}</address>
-            </li>
-          </ul>
+        {/* Contact Info Column */}
+        <div className="footer-col contact-col">
+          <h4 className="footer-col-title">Contato & Endereço</h4>
+          <p className="footer-contact-item">{COMPANY_INFO.contact.address}</p>
+          <p className="footer-contact-item">Telefone: {COMPANY_INFO.contact.phone}</p>
+          <p className="footer-contact-item">E-mail: {COMPANY_INFO.contact.email}</p>
+          <p className="footer-contact-item">{COMPANY_INFO.contact.hours}</p>
+          
+          <div className="footer-social-row">
+            <a
+              href={COMPANY_INFO.contact.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-link"
+              aria-label="Siga a ASCENCE no Instagram"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="20" height="20">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              <span>{COMPANY_INFO.contact.instagramHandle}</span>
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className="footer-bottom">
-        <div className="container footer-bottom-flex">
-          <p className="copyright">
+      {/* Bottom Bar */}
+      <div className="footer-bottom-bar">
+        <div className="container bottom-bar-container">
+          <p className="copyright-text">
             &copy; {new Date().getFullYear()} ASCENCE Construtora. Todos os direitos reservados.
           </p>
-          <div className="footer-status-mono">
-            <span className="pulse-green-dot"></span>
-            <span>SISTEMA OPERACIONAL</span>
-          </div>
-          <div className="footer-legal">
-            <button className="legal-link" onClick={() => alert("Política de Privacidade: Seus dados estão seguros e protegidos de acordo com a LGPD.")}>
+          <div className="legal-links">
+            <Link to="/politica-de-privacidade" className="legal-link">
               Política de Privacidade
-            </button>
+            </Link>
           </div>
         </div>
       </div>
 
       <style>{`
-        .footer-area {
+        .institutional-footer {
           background-color: var(--bg-dark);
           color: var(--text-light);
-          padding-top: 6rem;
+          padding-top: 5rem;
           border-top: 1px solid var(--border-dark);
-          border-top-left-radius: 4rem;
-          border-top-right-radius: 4rem;
-          overflow: hidden;
         }
         .footer-grid {
           display: grid;
-          grid-template-columns: 2fr 1fr 1.5fr;
+          grid-template-columns: 1.5fr 1fr 1.2fr;
           gap: 4rem;
-          padding-bottom: 5rem;
+          padding-bottom: 4rem;
         }
-        .footer-brand-col {
+        .footer-logo-link {
           display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
+          align-items: center;
+          gap: 0.75rem;
+          text-decoration: none;
+          margin-bottom: 1.25rem;
         }
-        .logo-img-footer {
-          height: 143px; /* Aumentado em mais 10% conforme solicitado */
-          margin-top: -44px;
-          margin-bottom: -44px;
-          margin-left: -12px;
-          object-fit: contain;
-          display: block;
-          cursor: pointer;
+        .footer-symbol {
+          height: 36px;
+          width: auto;
         }
-        .footer-description {
-          font-family: var(--font-sans);
-          font-size: 0.95rem;
-          line-height: 1.6;
-          color: var(--text-muted);
-          max-width: 320px;
+        .footer-brand-name {
+          font-family: var(--font-serif);
+          font-size: 1.5rem;
+          color: var(--text-light);
+          letter-spacing: 0.15em;
         }
-        .footer-socials {
-          display: flex;
-          gap: 1rem;
-          margin-top: -1rem;
+        .footer-tagline {
+          font-family: var(--font-serif);
+          font-size: 1.1rem;
+          font-style: italic;
+          color: var(--accent-gold);
           margin-bottom: 1rem;
         }
-        .social-icon {
-          width: 1.25rem;
-          height: 1.25rem;
+        .footer-desc {
+          font-size: 0.88rem;
           color: var(--text-muted);
-          transition: var(--transition-fast);
+          line-height: 1.6;
+          max-width: 420px;
         }
-        .social-icon:hover {
-          color: var(--accent-gold);
-          transform: translateY(-2px);
-        }
-        .footer-title {
+        .footer-col-title {
           font-family: var(--font-sans);
           font-size: 0.75rem;
           font-weight: 600;
           text-transform: uppercase;
-          letter-spacing: 0.2em;
+          letter-spacing: 0.18em;
           color: var(--accent-gold);
-          margin-bottom: 1.8rem;
+          margin-bottom: 1.5rem;
         }
-        .footer-links-list, .footer-contact-list {
+        .footer-menu {
           list-style: none;
+          padding: 0;
+          margin: 0;
           display: flex;
           flex-direction: column;
           gap: 0.8rem;
         }
-        .footer-links-list button {
-          background: none;
-          border: none;
+        .footer-menu a {
           color: var(--text-muted);
-          font-family: var(--font-sans);
+          text-decoration: none;
           font-size: 0.9rem;
-          text-align: left;
-          cursor: pointer;
-          padding: 0;
-          transition: var(--transition-fast);
+          transition: color 0.2s ease;
         }
-        .footer-links-list button:hover {
-          color: var(--accent-gold);
-          padding-left: 4px;
-        }
-        .footer-contact-list {
-          font-family: var(--font-sans);
-          font-size: 0.9rem;
-          color: var(--text-muted);
-        }
-        .contact-label {
-          display: block;
-          font-size: 0.75rem;
-          font-weight: 500;
+        .footer-menu a:hover {
           color: var(--text-light);
-          margin-bottom: 0.15rem;
         }
-        .footer-contact-list a {
+        .footer-contact-item {
+          font-size: 0.88rem;
           color: var(--text-muted);
-          transition: var(--transition-fast);
+          margin-bottom: 0.6rem;
+          line-height: 1.5;
         }
-        .footer-contact-list a:hover {
+        .footer-social-row {
+          margin-top: 1.5rem;
+        }
+        .social-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.6rem;
+          color: var(--text-light);
+          text-decoration: none;
+          font-size: 0.85rem;
+          transition: color 0.2s ease;
+        }
+        .social-link:hover {
           color: var(--accent-gold);
         }
-        .footer-address {
-          font-style: normal;
-          line-height: 1.4;
+        .footer-bottom-bar {
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          padding: 1.75rem 0;
         }
-        .footer-bottom {
-          border-top: 1px solid var(--border-dark);
-          padding: 2rem 0;
-          font-family: var(--font-sans);
-          font-size: 0.8rem;
-          color: var(--text-muted);
-        }
-        .footer-bottom-flex {
+        .bottom-bar-container {
           display: flex;
           justify-content: space-between;
           align-items: center;
           flex-wrap: wrap;
-          gap: 1.5rem;
+          gap: 1rem;
         }
-        .footer-status-mono {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-family: "JetBrains Mono", monospace;
-          font-size: 0.7rem;
-          letter-spacing: 0.1em;
-          color: rgba(255, 255, 255, 0.45);
-        }
-        .pulse-green-dot {
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          background-color: #25d366;
-          box-shadow: 0 0 8px rgba(37, 211, 102, 0.8);
-          animation: pulse-dot-green 2s infinite ease-in-out;
-        }
-        @keyframes pulse-dot-green {
-          0% { opacity: 0.4; transform: scale(0.9); }
-          50% { opacity: 1; transform: scale(1.1); }
-          100% { opacity: 0.4; transform: scale(0.9); }
+        .copyright-text {
+          font-size: 0.8rem;
+          color: var(--text-muted);
         }
         .legal-link {
-          background: none;
-          border: none;
-          color: var(--text-muted);
           font-size: 0.8rem;
-          cursor: pointer;
-          transition: var(--transition-fast);
+          color: var(--text-muted);
+          text-decoration: none;
+          transition: color 0.2s ease;
         }
         .legal-link:hover {
-          color: var(--accent-gold);
+          color: var(--text-light);
         }
         @media (max-width: 900px) {
           .footer-grid {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 2.5rem;
           }
-          .footer-brand-col {
-            align-items: flex-start; /* Alinhamento à esquerda das informações */
-            text-align: left;
-          }
-          .footer-brand-col .logo-area {
-            width: 100%;
-            display: flex;
-            justify-content: center; /* Centraliza o contêiner da logo */
-          }
-          .logo-img-footer {
-            margin: -44px auto; /* Centraliza a logo */
-          }
-          .footer-socials {
-            width: 100%;
-            display: flex;
-            justify-content: center; /* Centraliza os ícones no mobile */
-            margin-top: -1rem;
-            margin-bottom: 1.5rem;
-          }
-          .footer-bottom-flex {
+          .bottom-bar-container {
             flex-direction: column;
-            gap: 1.2rem;
             text-align: center;
           }
         }

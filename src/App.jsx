@@ -1,100 +1,95 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
-import Properties from "./pages/Properties";
-import PropertyDetail from "./pages/PropertyDetail";
-import About from "./pages/About";
-import Differentials from "./pages/Differentials";
-import Contact from "./pages/Contact";
+import AboutAscence from "./pages/AboutAscence";
+import Trajectory from "./pages/Trajectory";
+import WayOfBuilding from "./pages/WayOfBuilding";
+import SingleLaunch from "./pages/SingleLaunch";
+import ContactPage from "./pages/ContactPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { COMPANY_INFO } from "./data/mockData";
 
 export default function App() {
-  const [activePage, setActivePage] = useState("inicio");
-  const [selectedPropertyId, setSelectedPropertyId] = useState("");
+  const location = useLocation();
 
-  // Handle Hash Routing for deep linking and back/forward browser support
+  // Dynamic SEO Page Titles & Descriptions
   useEffect(() => {
-    const parseHash = () => {
-      const hash = window.location.hash;
-      if (hash.startsWith("#empreendimento/")) {
-        const id = hash.replace("#empreendimento/", "");
-        setSelectedPropertyId(id);
-        setActivePage("empreendimento-detalhe");
-      } else if (hash === "#empreendimentos") {
-        setActivePage("empreendimentos");
-      } else if (hash === "#construtora") {
-        setActivePage("construtora");
-      } else if (hash === "#diferenciais") {
-        setActivePage("diferenciais");
-      } else if (hash === "#contato") {
-        setActivePage("contato");
-      } else {
-        setActivePage("inicio");
-      }
-    };
+    let title = "ASCENCE Construtora | Arquitetura, Bem-Estar e Confiança em Arapongas";
+    let desc = "Construtora e incorporadora em Arapongas - PR. Da experiência de construir lares, nasce uma nova forma de viver.";
 
-    window.addEventListener("hashchange", parseHash);
-    parseHash(); // Initial check on mount
-
-    return () => {
-      window.removeEventListener("hashchange", parseHash);
-    };
-  }, []);
-
-  const handlePageChange = (pageId, propertyId = "") => {
-    if (pageId === "empreendimento-detalhe") {
-      window.location.hash = `#empreendimento/${propertyId}`;
-    } else if (pageId === "inicio") {
-      // Clear hash
-      window.history.pushState("", document.title, window.location.pathname + window.location.search);
-      setActivePage("inicio");
-    } else {
-      window.location.hash = `#${pageId}`;
-    }
-  };
-
-  const renderActivePage = () => {
-    switch (activePage) {
-      case "inicio":
-        return (
-          <Home
-            setActivePage={(page, propId) => handlePageChange(page, propId)}
-            setSelectedPropertyId={setSelectedPropertyId}
-          />
-        );
-      case "empreendimentos":
-        return (
-          <Properties
-            setActivePage={(page, propId) => handlePageChange(page, propId)}
-            setSelectedPropertyId={setSelectedPropertyId}
-          />
-        );
-      case "empreendimento-detalhe":
-        return (
-          <PropertyDetail
-            propertyId={selectedPropertyId}
-            setActivePage={(page, propId) => handlePageChange(page, propId)}
-          />
-        );
-      case "construtora":
-        return <About />;
-      case "diferenciais":
-        return <Differentials />;
-      case "contato":
-        return <Contact />;
+    switch (location.pathname) {
+      case "/a-ascence":
+        title = "A Ascence | Construtora e Incorporadora em Arapongas";
+        desc = "Conheça a história, filosofia e o compromisso da ASCENCE Construtora com a arquitetura contemporânea e a vida das famílias.";
+        break;
+      case "/nossa-trajetoria":
+        title = "Nossa Trajetória | Da Experiência em Casas ao Primeiro Lançamento";
+        desc = "Acompanhe a evolução da ASCENCE: da fundação em Curitiba e anos de experiência construindo casas até o primeiro empreendimento em Arapongas.";
+        break;
+      case "/nosso-jeito-de-construir":
+        title = "Nosso Jeito de Construir | Qualidade, Acústica e Transparência";
+        desc = "Conheça os quatro pilares construtivos da ASCENCE: rigor na estrutura, arquitetura funcional, cuidado com os detalhes e relacionamento ético.";
+        break;
+      case "/lancamento":
+        title = "Breve Lançamento em Arapongas | ASCENCE Construtora";
+        desc = "O próximo capítulo da ASCENCE Construtora: um empreendimento exclusivo pensado para quem valoriza arquitetura e bem-estar.";
+        break;
+      case "/contato":
+        title = "Contato | ASCENCE Construtora em Arapongas";
+        desc = "Fale com a equipe da ASCENCE Construtora. Atendimento transparente via WhatsApp, telefone ou formulário direto.";
+        break;
+      case "/politica-de-privacidade":
+        title = "Política de Privacidade | ASCENCE Construtora";
+        desc = "Transparência e compromisso com a proteção de seus dados pessoais nos termos da LGPD.";
+        break;
       default:
-        return (
-          <Home
-            setActivePage={(page, propId) => handlePageChange(page, propId)}
-            setSelectedPropertyId={setSelectedPropertyId}
-          />
-        );
+        break;
     }
-  };
+
+    document.title = title;
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta");
+      metaDesc.name = "description";
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.content = desc;
+  }, [location]);
 
   return (
     <div className="app-root-layout">
+      {/* Scroll restoration to top on route change */}
+      <ScrollToTop />
+
+      {/* Schema.org LocalBusiness JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "ASCENCE Construtora",
+            "description": COMPANY_INFO.aboutBrief,
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "R. Tucanos, 273 - Sl 02 - Centro",
+              "addressLocality": "Arapongas",
+              "addressRegion": "PR",
+              "postalCode": "86700-070",
+              "addressCountry": "BR"
+            },
+            "telephone": COMPANY_INFO.contact.phone,
+            "email": COMPANY_INFO.contact.email,
+            "url": "https://ascence-construtora.vercel.app/",
+            "sameAs": [COMPANY_INFO.contact.instagram]
+          })
+        }}
+      />
+
       {/* Inline Noise Filter SVG */}
       <svg style={{ display: "none" }} aria-hidden="true">
         <filter id="noise-filter">
@@ -105,12 +100,21 @@ export default function App() {
       {/* Global Noise Overlay */}
       <div className="noise-overlay"></div>
 
-      {/* Premium Floating Header */}
-      <Header activePage={activePage} setActivePage={(page) => handlePageChange(page)} />
+      {/* Floating Header */}
+      <Header />
 
-      {/* Main View Area */}
+      {/* Main View Routes */}
       <main className="main-content-layout">
-        {renderActivePage()}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/a-ascence" element={<AboutAscence />} />
+          <Route path="/nossa-trajetoria" element={<Trajectory />} />
+          <Route path="/nosso-jeito-de-construir" element={<WayOfBuilding />} />
+          <Route path="/lancamento" element={<SingleLaunch />} />
+          <Route path="/contato" element={<ContactPage />} />
+          <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
       </main>
 
       {/* Floating WhatsApp Button */}
@@ -126,8 +130,8 @@ export default function App() {
         </svg>
       </a>
 
-      {/* Structured Footer */}
-      <Footer setActivePage={(page) => handlePageChange(page)} />
+      {/* Footer */}
+      <Footer />
 
       <style>{`
         .app-root-layout {

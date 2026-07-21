@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { NavLink, Link } from "react-router-dom";
 import { COMPANY_INFO } from "../data/mockData";
 import logoLight from "../assets/logo_1_copper_light.png";
 import symbolLight from "../assets/symbol_1_copper_light.png";
 
-export default function Header({ activePage, setActivePage }) {
+export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 40) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -20,51 +21,47 @@ export default function Header({ activePage, setActivePage }) {
   }, []);
 
   const navItems = [
-    { id: "inicio", label: "Início" },
-    { id: "empreendimentos", label: "Empreendimentos" },
-    { id: "construtora", label: "A Construtora" },
-    { id: "diferenciais", label: "Diferenciais" },
-    { id: "contato", label: "Fale Conosco" }
+    { to: "/", label: "Início" },
+    { to: "/a-ascence", label: "A Ascence" },
+    { to: "/nossa-trajetoria", label: "Nossa Trajetória" },
+    { to: "/nosso-jeito-de-construir", label: "Nosso Jeito de Construir" },
+    { to: "/lancamento", label: "Lançamento" },
+    { to: "/contato", label: "Contato" }
   ];
-
-  const handleNavClick = (id) => {
-    setActivePage(id);
-    setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <header className={`header-nav ${isScrolled ? "header-active" : ""}`}>
       <div className="header-container">
-        {/* Elegant Logo Images */}
-        <div className="logo-area" onClick={() => handleNavClick("inicio")}>
+        {/* Logo Link */}
+        <Link to="/" className="logo-area" onClick={() => setMobileMenuOpen(false)}>
           <img 
             src={logoLight} 
-            alt="ASCENCE Incorporadora" 
+            alt="ASCENCE Construtora" 
             className="logo-img-desktop" 
           />
           <img 
             src={symbolLight} 
-            alt="ASCENCE" 
+            alt="ASCENCE Construtora" 
             className="logo-img-mobile" 
           />
-        </div>
+        </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="desktop-menu">
+        {/* Desktop Navigation Links */}
+        <nav className="desktop-menu" aria-label="Navegação Principal">
           {navItems.map((item) => (
-            <button
-              key={item.id}
-              className={`nav-link ${activePage === item.id ? "active" : ""}`}
-              onClick={() => handleNavClick(item.id)}
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === "/"}
+              className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
             >
               {item.label}
               <span className="nav-line"></span>
-            </button>
+            </NavLink>
           ))}
         </nav>
 
-        {/* CTA Button */}
+        {/* Header CTA Button */}
         <div className="cta-area">
           <a
             href={COMPANY_INFO.contact.whatsappLink}
@@ -72,7 +69,7 @@ export default function Header({ activePage, setActivePage }) {
             rel="noopener noreferrer"
             className="btn btn-primary cta-header-btn"
           >
-            <span>Fale com um consultor</span>
+            <span>Falar no WhatsApp</span>
           </a>
         </div>
 
@@ -80,7 +77,8 @@ export default function Header({ activePage, setActivePage }) {
         <button
           className={`hamburger ${mobileMenuOpen ? "open" : ""}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Menu principal"
+          aria-label="Abrir Menu de Navegação"
+          aria-expanded={mobileMenuOpen}
         >
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
@@ -88,17 +86,19 @@ export default function Header({ activePage, setActivePage }) {
         </button>
       </div>
 
-      {/* Mobile Drawer (Curtain Reveal Menu) */}
+      {/* Mobile Curtain Drawer */}
       <div className={`mobile-menu-drawer ${mobileMenuOpen ? "open" : ""}`}>
         <nav className="mobile-nav">
           {navItems.map((item) => (
-            <button
-              key={item.id}
-              className={`mobile-nav-link ${activePage === item.id ? "active" : ""}`}
-              onClick={() => handleNavClick(item.id)}
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === "/"}
+              className={({ isActive }) => `mobile-nav-link ${isActive ? "active" : ""}`}
+              onClick={() => setMobileMenuOpen(false)}
             >
               {item.label}
-            </button>
+            </NavLink>
           ))}
           <a
             href={COMPANY_INFO.contact.whatsappLink}
@@ -107,63 +107,60 @@ export default function Header({ activePage, setActivePage }) {
             className="btn btn-gold mobile-cta-btn"
             onClick={() => setMobileMenuOpen(false)}
           >
-            Fale com um consultor
+            Falar no WhatsApp
           </a>
         </nav>
       </div>
 
-      {/* Header Specific Custom CSS (Scoped Styles inside central file or component style helper) */}
       <style>{`
         .header-nav {
           position: fixed;
-          top: 1.5rem;
+          top: 1.25rem;
           left: 50%;
           transform: translateX(-50%);
           width: 92%;
-          max-width: 1200px;
+          max-width: 1240px;
           z-index: 100;
           background: #ffffff;
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(197, 168, 128, 0.12);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(197, 168, 128, 0.15);
           border-radius: 4rem;
-          transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-          height: 4.8rem;
+          transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          height: 4.6rem;
           display: flex;
           align-items: center;
         }
         .header-active {
-          top: 1rem;
+          top: 0.75rem;
           background: #fbfbf9 !important;
           backdrop-filter: blur(20px) !important;
-          -webkit-backdrop-filter: blur(20px) !important;
-          border: 1px solid rgba(197, 168, 128, 0.25) !important;
-          box-shadow: 0 12px 35px rgba(28, 28, 26, 0.04) !important;
+          border: 1px solid rgba(197, 168, 128, 0.3) !important;
+          box-shadow: 0 12px 35px rgba(28, 28, 26, 0.05) !important;
         }
         .header-container {
           display: flex;
           align-items: center;
           justify-content: space-between;
           width: 100%;
-          padding: 0 2.5rem;
+          padding: 0 2rem;
         }
         .logo-area {
           display: flex;
           align-items: center;
-          cursor: pointer;
-          user-select: none;
+          text-decoration: none;
         }
         .logo-img-desktop {
-          height: 140px;
-          margin-top: -46px;
-          margin-bottom: -46px;
+          height: 130px;
+          margin-top: -42px;
+          margin-bottom: -42px;
           width: auto;
-          max-width: 300px;
+          max-width: 280px;
           object-fit: contain;
           display: block;
         }
         .logo-img-mobile {
-          height: 30px;
+          height: 28px;
           width: auto;
           max-width: 80px;
           object-fit: contain;
@@ -171,7 +168,7 @@ export default function Header({ activePage, setActivePage }) {
         }
         .desktop-menu {
           display: flex;
-          gap: 2.2rem;
+          gap: 1.8rem;
         }
         .nav-link {
           background: none;
@@ -181,9 +178,9 @@ export default function Header({ activePage, setActivePage }) {
           font-size: 0.75rem;
           font-weight: 600;
           text-transform: uppercase;
-          letter-spacing: 0.16em;
-          cursor: pointer;
-          padding: 0.5rem 0;
+          letter-spacing: 0.14em;
+          text-decoration: none;
+          padding: 0.4rem 0;
           position: relative;
           transition: var(--transition-fast);
         }
@@ -204,7 +201,7 @@ export default function Header({ activePage, setActivePage }) {
         }
         .cta-header-btn {
           font-size: 0.7rem;
-          padding: 0.65rem 1.4rem;
+          padding: 0.6rem 1.25rem;
         }
         .hamburger {
           display: none;
@@ -212,31 +209,31 @@ export default function Header({ activePage, setActivePage }) {
           border: none;
           cursor: pointer;
           flex-direction: column;
-          gap: 6px;
+          gap: 5px;
           z-index: 110;
           padding: 5px;
         }
         .hamburger-line {
           display: block;
-          width: 24px;
-          height: 1px;
+          width: 22px;
+          height: 1.5px;
           background-color: var(--text-primary);
           transition: var(--transition-smooth);
         }
         .hamburger.open .hamburger-line:nth-child(1) {
-          transform: translateY(7px) rotate(45deg);
+          transform: translateY(6.5px) rotate(45deg);
         }
         .hamburger.open .hamburger-line:nth-child(2) {
           opacity: 0;
         }
         .hamburger.open .hamburger-line:nth-child(3) {
-          transform: translateY(-7px) rotate(-45deg);
+          transform: translateY(-6.5px) rotate(-45deg);
         }
         .mobile-menu-drawer {
           position: fixed;
           top: 0;
           right: 0;
-          width: 100%;
+          width: 100vw;
           height: 100vh;
           background-color: var(--bg-primary);
           z-index: 105;
@@ -249,7 +246,7 @@ export default function Header({ activePage, setActivePage }) {
         .mobile-menu-drawer.open {
           transform: translateX(0);
         }
-        @media (min-width: 1025px) {
+        @media (min-width: 1081px) {
           .mobile-menu-drawer {
             display: none !important;
           }
@@ -258,31 +255,29 @@ export default function Header({ activePage, setActivePage }) {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 2rem;
-          width: 80%;
+          gap: 1.75rem;
+          width: 85%;
         }
         .mobile-nav-link {
-          background: none;
-          border: none;
+          text-decoration: none;
           font-family: var(--font-sans);
-          font-size: 1.4rem;
-          font-weight: 400;
+          font-size: 1.2rem;
+          font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 0.15em;
           color: var(--text-secondary);
-          cursor: pointer;
-          padding: 0.5rem;
+          padding: 0.4rem;
           transition: var(--transition-fast);
         }
-        .mobile-nav-link:hover, .mobile-nav-link.active {
-          color: var(--accent-gold);
-          transform: scale(1.05);
+        .mobile-nav-link.active, .mobile-nav-link:hover {
+          color: var(--accent-gold-dark);
         }
         .mobile-cta-btn {
           margin-top: 1rem;
           width: 100%;
+          text-align: center;
         }
-        @media (max-width: 1024px) {
+        @media (max-width: 1080px) {
           .desktop-menu, .cta-area {
             display: none;
           }
@@ -296,12 +291,12 @@ export default function Header({ activePage, setActivePage }) {
             display: flex;
           }
           .header-nav {
-            height: 4.2rem;
-            top: 1rem;
+            height: 4rem;
+            top: 0.75rem;
             width: 94%;
           }
           .header-container {
-            padding: 0 1.5rem;
+            padding: 0 1.25rem;
           }
         }
       `}</style>
