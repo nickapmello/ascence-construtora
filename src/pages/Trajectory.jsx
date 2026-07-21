@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TRAJECTORY_CHAPTERS } from "../data/mockData";
+import { TRAJECTORY_CHAPTERS, IMAGES } from "../data/mockData";
+import ImageWithPlaceholder from "../components/ImageWithPlaceholder";
 
 export default function Trajectory() {
   return (
@@ -9,51 +10,55 @@ export default function Trajectory() {
         {/* Page Header */}
         <div className="page-header text-center mx-auto">
           <span className="overline">Nossa Evolução</span>
-          <h1 className="display-title">Nossa Trajetória</h1>
+          <h1 className="display-title">Uma trajetória pautada no cuidado</h1>
           <p className="body-text lead-text mx-auto mt-4">
-            Uma história construída com experiência, aprendizado contínuo e a paixão por criar lares que elevam a qualidade de vida.
+            A história da ASCENCE é marcada pelo aprendizado constante na construção residencial, pela busca contínua de qualidade e pela evolução natural rumo ao nosso primeiro lançamento imobiliário em Arapongas.
           </p>
         </div>
 
-        {/* Detailed Timeline Stream */}
+        {/* Chapters Detailed Timeline */}
         <div className="timeline-stream mt-8">
-          {TRAJECTORY_CHAPTERS.map((chap, idx) => (
-            <div key={chap.chapter} className={`timeline-block ${idx % 2 === 1 ? "reverse" : ""}`}>
+          {TRAJECTORY_CHAPTERS.map((item, index) => (
+            <div
+              key={item.chapter}
+              className={`timeline-block ${index % 2 !== 0 ? "reverse" : ""}`}
+            >
               <div className="timeline-content-card">
-                <span className="timeline-num">{chap.chapter}</span>
-                <span className="timeline-subtitle">{chap.subtitle}</span>
-                <h3 className="timeline-title">{chap.title}</h3>
-                <p className="timeline-desc">{chap.description}</p>
+                <span className="timeline-num">{item.chapter}</span>
+                <span className="timeline-subtitle">{item.subtitle}</span>
+                <h2 className="timeline-title">{item.title}</h2>
+                <p className="timeline-desc">{item.description}</p>
               </div>
               <div className="timeline-image-wrapper">
-                <img
+                <ImageWithPlaceholder
                   src={
-                    idx === 0
-                      ? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
-                      : idx === 1
-                      ? "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80"
-                      : idx === 2
-                      ? "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80"
-                      : "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
+                    index === 0
+                      ? IMAGES.aboutStory
+                      : index === 1
+                      ? IMAGES.manifesto
+                      : index === 2
+                      ? IMAGES.lifestyle
+                      : IMAGES.launchConcept
                   }
-                  alt={chap.title}
-                  className="timeline-img"
-                  loading="lazy"
+                  alt={item.title}
+                  className="timeline-img-wrapper"
+                  aspectRatio="16 / 11"
                 />
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="page-cta-box text-center mt-8">
-          <h2 className="cta-title">Quer entender como construímos?</h2>
-          <div className="cta-btns-row mt-4">
-            <Link to="/nosso-jeito-de-construir" className="btn btn-gold">
-              <span>Conheça Nosso Jeito de Construir</span>
-            </Link>
-            <Link to="/lancamento" className="btn btn-secondary text-white-btn">
-              <span>Ver Nosso Lançamento</span>
+        {/* Page Bottom CTA */}
+        <div className="trajectory-cta-box text-center mt-8">
+          <span className="overline gold-overline">Próximo Passo</span>
+          <h2 className="cta-title">Conheça o nosso breve lançamento.</h2>
+          <p className="cta-desc mt-2">
+            Saiba mais sobre a proposta residencial da ASCENCE em Arapongas.
+          </p>
+          <div className="mt-6">
+            <Link to="/lancamento" className="btn btn-gold">
+              <span>Ver detalhes do lançamento</span>
             </Link>
           </div>
         </div>
@@ -103,7 +108,7 @@ export default function Trajectory() {
         .timeline-num {
           font-family: var(--font-serif);
           font-size: 3rem;
-          color: var(--accent-gold);
+          color: var(--accent-gold-dark);
           display: block;
           line-height: 1;
           margin-bottom: 0.5rem;
@@ -118,40 +123,37 @@ export default function Trajectory() {
         }
         .timeline-title {
           font-family: var(--font-serif);
-          font-size: 2rem;
+          font-size: 1.8rem;
           font-weight: 300;
-          margin-bottom: 1.25rem;
+          margin-bottom: 1rem;
         }
         .timeline-desc {
-          font-size: 1rem;
+          font-size: 0.98rem;
           color: var(--text-secondary);
           line-height: 1.65;
         }
-        .timeline-img {
+        .timeline-img-wrapper {
           width: 100%;
-          height: 420px;
-          object-fit: cover;
           border-radius: 2px;
         }
-        .page-cta-box {
+        .trajectory-cta-box {
           background-color: var(--bg-dark);
           color: var(--text-light);
-          padding: 4rem 2rem;
+          padding: 5rem 2rem;
           border-radius: 4px;
         }
         .cta-title {
           font-family: var(--font-serif);
-          font-size: 2.2rem;
+          font-size: 2.4rem;
           font-weight: 300;
         }
-        .cta-btns-row {
-          display: flex;
-          justify-content: center;
-          gap: 1.25rem;
-          flex-wrap: wrap;
+        .cta-desc {
+          font-size: 1.05rem;
+          color: var(--text-muted);
         }
         @media (max-width: 900px) {
-          .timeline-block, .timeline-block.reverse {
+          .timeline-block,
+          .timeline-block.reverse {
             grid-template-columns: 1fr;
             gap: 2rem;
           }
@@ -161,11 +163,11 @@ export default function Trajectory() {
           .timeline-block.reverse .timeline-image-wrapper {
             order: 2;
           }
-          .timeline-content-card {
-            padding: 2rem 1.5rem;
-          }
           .trajectory-page {
             padding-top: 7rem;
+          }
+          .timeline-content-card {
+            padding: 2rem 1.5rem;
           }
         }
       `}</style>

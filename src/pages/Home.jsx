@@ -296,7 +296,7 @@ export default function Home() {
           max-width: 900px;
         }
         .hero-badge {
-          color: var(--accent-gold);
+          color: var(--accent-gold-dark);
           margin-bottom: 0.75rem;
         }
         .hero-title {
@@ -309,7 +309,7 @@ export default function Home() {
         }
         .serif-italic-gold {
           font-style: italic;
-          color: var(--accent-gold);
+          color: var(--accent-gold-dark);
         }
         .hero-subtitle {
           font-size: clamp(1rem, 1.2vw, 1.2rem);
@@ -364,7 +364,7 @@ export default function Home() {
           color: var(--text-light);
         }
         .gold-overline {
-          color: var(--accent-gold);
+          color: var(--accent-gold-dark);
         }
         .text-light {
           color: var(--text-light);
@@ -388,7 +388,7 @@ export default function Home() {
         .chapter-num {
           font-family: var(--font-serif);
           font-size: 2.4rem;
-          color: var(--accent-gold);
+          color: var(--accent-gold-dark);
           line-height: 1;
           margin-bottom: 0.4rem;
         }
@@ -462,7 +462,7 @@ export default function Home() {
         .pilar-badge {
           font-family: var(--font-serif);
           font-size: 1.8rem;
-          color: var(--accent-gold);
+          color: var(--accent-gold-dark);
           display: block;
           margin-bottom: 0.75rem;
         }
@@ -510,7 +510,7 @@ export default function Home() {
           padding: 0.5rem 1rem;
           background: rgba(167, 119, 101, 0.15);
           border: 1px solid var(--accent-gold);
-          color: var(--accent-gold);
+          color: var(--accent-gold-dark);
           font-size: 0.7rem;
           letter-spacing: 0.12em;
           text-transform: uppercase;
@@ -519,7 +519,7 @@ export default function Home() {
         .notice-dot {
           width: 6px;
           height: 6px;
-          background-color: var(--accent-gold);
+          background-color: var(--accent-gold-dark);
           border-radius: 50%;
         }
         .launch-home-actions {

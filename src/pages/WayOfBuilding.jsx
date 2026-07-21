@@ -8,36 +8,37 @@ export default function WayOfBuilding() {
       <div className="container">
         {/* Page Header */}
         <div className="page-header text-center mx-auto">
-          <span className="overline">Compromisso Institucional</span>
+          <span className="overline">Compromisso com a Qualidade</span>
           <h1 className="display-title">Nosso Jeito de Construir</h1>
           <p className="body-text lead-text mx-auto mt-4">
-            Quatro princípios que orientam o trabalho da ASCENCE com organização, cuidado e respeito às pessoas.
+            Estruturamos nosso trabalho com base em quatro pilares fundamentais, orientados pelo respeito ao cliente, pela organização de etapas e pela busca de soluções duradouras.
           </p>
         </div>
 
-        {/* Pillars Deep Dive */}
+        {/* Pillars Stream */}
         <div className="pillars-stream mt-8">
-          {CONSTRUCTION_PILLARS.map((pilar) => (
-            <div key={pilar.id} className="pillar-detail-card">
+          {CONSTRUCTION_PILLARS.map((pillar) => (
+            <div key={pillar.id} className="pillar-detail-card">
               <div className="pillar-card-header">
-                <span className="pillar-number">{pilar.number}</span>
-                <h3 className="pillar-title">{pilar.title}</h3>
+                <span className="pillar-number">{pillar.number}</span>
+                <h2 className="pillar-title">{pillar.title}</h2>
               </div>
-              <p className="pillar-desc">{pilar.description}</p>
+              <p className="pillar-desc">{pillar.description}</p>
             </div>
           ))}
         </div>
 
-        {/* Banner Lifestyle */}
-        <div className="lifestyle-banner-callout mt-8">
-          <div className="callout-content text-center mx-auto">
-            <h2 className="callout-title">Construir com cuidado é respeitar a vida de quem vai morar.</h2>
+        {/* Institutional Callout */}
+        <div className="lifestyle-banner-callout text-center mx-auto">
+          <div className="callout-content mx-auto">
+            <span className="overline gold-overline">Filosofia de Trabalho</span>
+            <h2 className="callout-title">Construir com proximidade e responsabilidade.</h2>
             <p className="callout-desc mt-4">
-              Cada ambiente é idealizado pensando na tranquilidade, na funcionalidade e no conforto da sua família.
+              Cada projeto reflete a dedicação contínua da equipe da ASCENCE, combinando rigor técnico, clareza no relacionamento e o cuidado de quem entende o valor do lar.
             </p>
             <div className="mt-6">
               <Link to="/lancamento" className="btn btn-gold">
-                <span>Conheça Nosso Lançamento</span>
+                <span>Conheça nosso lançamento</span>
               </Link>
             </div>
           </div>
@@ -86,7 +87,7 @@ export default function WayOfBuilding() {
         .pillar-number {
           font-family: var(--font-serif);
           font-size: 2.2rem;
-          color: var(--accent-gold);
+          color: var(--accent-gold-dark);
         }
         .pillar-title {
           font-family: var(--font-serif);

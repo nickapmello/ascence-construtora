@@ -119,7 +119,7 @@ export default function SingleLaunch() {
           top: 1.5rem;
           left: 1.5rem;
           background-color: var(--bg-dark);
-          color: var(--accent-gold);
+          color: var(--accent-gold-dark);
           border: 1px solid var(--accent-gold);
           padding: 0.5rem 1.25rem;
           font-size: 0.75rem;
@@ -155,7 +155,7 @@ export default function SingleLaunch() {
         .notice-icon-dot {
           width: 8px;
           height: 8px;
-          background-color: var(--accent-gold);
+          background-color: var(--accent-gold-dark);
           border-radius: 50%;
         }
         .notice-text {

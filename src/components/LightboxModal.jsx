@@ -69,23 +69,17 @@ export default function LightboxModal({ item, onClose }) {
           cursor: pointer;
           z-index: 10;
           line-height: 1;
-          transition: color 0.2s ease;
-        }
-        .lightbox-close:hover {
-          color: var(--accent-gold);
         }
         .lightbox-image-wrapper {
           width: 100%;
-          max-height: 65vh;
+          max-height: 60vh;
           overflow: hidden;
           background-color: #000;
         }
         .lightbox-image {
           width: 100%;
           height: 100%;
-          max-height: 65vh;
           object-fit: cover;
-          display: block;
         }
         .lightbox-info {
           padding: 2rem 2.5rem;
@@ -95,7 +89,7 @@ export default function LightboxModal({ item, onClose }) {
           font-size: 0.75rem;
           text-transform: uppercase;
           letter-spacing: 0.15em;
-          color: var(--accent-gold);
+          color: var(--accent-gold-dark);
           display: block;
           margin-bottom: 0.4rem;
         }
