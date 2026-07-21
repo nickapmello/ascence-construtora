@@ -11,11 +11,13 @@ export default function Home() {
       {/* 1. HERO PRINCIPAL */}
       <section className="hero-section">
         <div className="hero-bg-wrapper">
-          {/* IMAGEM LIFESTYLE / HERO PRINCIPAL (Eager - Primeira tela) */}
+          {/* IMAGEM LIFESTYLE / HERO PRINCIPAL (Eager + High Fetchpriority - Primeira tela) */}
           <img
             src={IMAGES.heroBg}
             alt="Arquitetura contemporânea e espaços acolhedores"
             className="hero-bg-img"
+            loading="eager"
+            fetchpriority="high"
           />
           <div className="hero-overlay"></div>
         </div>

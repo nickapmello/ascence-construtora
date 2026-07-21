@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { COMPANY_INFO } from "../data/mockData";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -13,8 +12,9 @@ export default function ContactForm() {
   });
 
   const [errorMsg, setErrorMsg] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Máscara de telefone automática: (XX) XXXXX-XXXX
+  // Máscara de telefone automática: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
   const handlePhoneChange = (e) => {
     let val = e.target.value.replace(/\D/g, "");
     if (val.length > 11) val = val.slice(0, 11);
@@ -38,40 +38,73 @@ export default function ContactForm() {
     }));
   };
 
+  // Validação estrita de formato de e-mail
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone || !formData.email || !formData.message) {
-      setErrorMsg("Por favor, preencha os campos obrigatórios (Nome, Telefone, E-mail e Mensagem).");
+    if (isSubmitting) return;
+
+    const name = formData.name.trim();
+    const phone = formData.phone.trim();
+    const email = formData.email.trim();
+    const subject = formData.subject.trim();
+    const messageText = formData.message.trim();
+
+    if (!name) {
+      setErrorMsg("Por favor, preencha o seu nome completo.");
       return;
     }
+
+    const digitsOnly = phone.replace(/\D/g, "");
+    if (!phone || digitsOnly.length < 10) {
+      setErrorMsg("Por favor, informe um telefone/WhatsApp válido com DDD.");
+      return;
+    }
+
+    if (!email || !isValidEmail(email)) {
+      setErrorMsg("Por favor, informe um endereço de e-mail válido.");
+      return;
+    }
+
+    if (!messageText) {
+      setErrorMsg("Por favor, escreva a sua mensagem.");
+      return;
+    }
+
     if (!formData.privacyAccepted) {
       setErrorMsg("Por favor, aceite os termos da Política de Privacidade para continuar.");
       return;
     }
 
     setErrorMsg("");
+    setIsSubmitting(true);
 
-    // Formata a mensagem para envio direto e real via WhatsApp oficial
-    const textMsg = `*Contato via Site ASCENCE Construtora*\n\n` +
-      `*Nome:* ${formData.name}\n` +
-      `*Telefone:* ${formData.phone}\n` +
-      `*E-mail:* ${formData.email}\n` +
-      `*Assunto:* ${formData.subject || "Informações Gerais / Lançamento"}\n\n` +
-      `*Mensagem:*\n${formData.message}`;
+    // Formata a mensagem com encodeURIComponent para o WhatsApp oficial
+    const message = `\nOlá, gostaria de entrar em contato com a ASCENCE.\n\nNome: ${name}\nTelefone: ${phone}\nE-mail: ${email}\nAssunto: ${subject || "Contato pelo site"}\nMensagem: ${messageText}\n`;
 
-    const whatsappUrl = `https://wa.me/5543999323043?text=${encodeURIComponent(textMsg)}`;
+    const whatsappUrl = `https://wa.me/5543999323043?text=${encodeURIComponent(message)}`;
+    
+    // Abre o WhatsApp sem resetar os dados em caso de retorno do usuário
     window.open(whatsappUrl, "_blank");
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2000);
   };
 
   return (
     <div className="institutional-contact-card">
-      <form onSubmit={handleSubmit} className="institutional-form">
+      <form onSubmit={handleSubmit} className="institutional-form" noValidate>
         <h3 className="form-heading">Fale com a ASCENCE</h3>
         <p className="form-subheading">
-          Preencha os dados para iniciar o atendimento direto via WhatsApp com a nossa equipe.
+          Preencha os dados abaixo para abrir o atendimento direto via WhatsApp com nossa equipe.
         </p>
 
-        {errorMsg && <div className="form-error-alert">{errorMsg}</div>}
+        {errorMsg && <div className="form-error-alert" role="alert">{errorMsg}</div>}
 
         <div className="form-field">
           <label htmlFor="name" className="field-label">Nome Completo *</label>
@@ -83,6 +116,7 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder="Seu nome completo"
             className="field-input"
+            disabled={isSubmitting}
             required
           />
         </div>
@@ -98,6 +132,7 @@ export default function ContactForm() {
               onChange={handlePhoneChange}
               placeholder="(43) 99999-9999"
               className="field-input"
+              disabled={isSubmitting}
               required
             />
           </div>
@@ -112,6 +147,7 @@ export default function ContactForm() {
               onChange={handleChange}
               placeholder="seu.email@exemplo.com"
               className="field-input"
+              disabled={isSubmitting}
               required
             />
           </div>
@@ -127,6 +163,7 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder="Ex: Informações sobre o lançamento"
             className="field-input"
+            disabled={isSubmitting}
           />
         </div>
 
@@ -140,6 +177,7 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder="Como podemos ajudar você?"
             className="field-textarea"
+            disabled={isSubmitting}
             required
           ></textarea>
         </div>
@@ -151,6 +189,7 @@ export default function ContactForm() {
               name="privacyAccepted"
               checked={formData.privacyAccepted}
               onChange={handleChange}
+              disabled={isSubmitting}
               required
             />
             <span className="checkbox-text">
@@ -159,8 +198,12 @@ export default function ContactForm() {
           </label>
         </div>
 
-        <button type="submit" className="btn btn-gold w-full mt-4">
-          <span>Enviar via WhatsApp</span>
+        <button 
+          type="submit" 
+          className="btn btn-gold w-full mt-4"
+          disabled={isSubmitting}
+        >
+          <span>{isSubmitting ? "Abrindo WhatsApp..." : "Enviar via WhatsApp"}</span>
         </button>
       </form>
 
