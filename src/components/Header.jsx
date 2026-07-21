@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { NavLink, Link } from "react-router-dom";
 import { COMPANY_INFO } from "../data/mockData";
 import logoDark from "../assets/logo_4_copper_charcoal.png";
@@ -115,9 +116,16 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay & Drawer */}
-      {mobileMenuOpen && (
+      {/* Mobile Menu Overlay & Drawer (Portaled directly to document.body) */}
+      {mobileMenuOpen && createPortal(
         <div className="mobile-menu-overlay">
+          <button
+            className="mobile-menu-close-btn"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Fechar Menu"
+          >
+            &times;
+          </button>
           <div className="mobile-menu-drawer">
             <nav className="mobile-nav">
               {navItems.map((item) => (
@@ -142,7 +150,8 @@ export default function Header() {
               </a>
             </nav>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       <style>{`
@@ -242,7 +251,7 @@ export default function Header() {
           cursor: pointer;
           flex-direction: column;
           gap: 5px;
-          z-index: 10000;
+          z-index: 110;
           padding: 5px;
         }
         .hamburger-line {
@@ -276,6 +285,23 @@ export default function Header() {
           justify-content: center;
           padding: 4rem 1.5rem 2rem 1.5rem;
           animation: mobileMenuFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu-close-btn {
+          position: absolute;
+          top: 1.25rem;
+          right: 1.5rem;
+          background: none;
+          border: none;
+          color: var(--text-primary);
+          font-size: 2.5rem;
+          cursor: pointer;
+          z-index: 10001;
+          line-height: 1;
+          padding: 0.5rem;
+          transition: color 0.2s ease;
+        }
+        .mobile-menu-close-btn:hover {
+          color: var(--accent-gold-dark);
         }
         .mobile-menu-drawer {
           min-height: 100%;
