@@ -44,7 +44,7 @@ export const TRAJECTORY_CHAPTERS = [
     chapter: "02",
     title: "Experiência Construída",
     subtitle: "Construção de Casas",
-    description: "Consolidamos nosso aprendizado prático na execução de residências, dominando o planejamento de espaços, o bom uso da luz natural e a atenção aos detalhes."
+    description: "Consolidamos nosso aprendizado prático na execução de residências, dominando o planejamento de espaços e a atenção aos detalhes."
   },
   {
     chapter: "03",
@@ -107,22 +107,11 @@ export const CONSTRUCTION_PILLARS = [
 
 export const EXPECTATION_LAUNCH = {
   eyebrow: "BREVE LANÇAMENTO EM ARAPONGAS",
-  title: "Um novo capítulo está chegando a Arapongas.",
-  text: "A experiência da ASCENCE na construção de lares agora dá origem a um novo projeto residencial, pensado para valorizar o bem-estar, a arquitetura e a qualidade de vida.",
-  notice: "Mais informações serão apresentadas em breve.",
+  title: "Um novo projeto está sendo preparado.",
+  text: "A ASCENCE está desenvolvendo seu primeiro empreendimento residencial em Arapongas. As informações oficiais serão apresentadas após a conclusão dos estudos e definições do projeto.",
+  notice: "Cadastre-se para receber as novidades em primeira mão.",
   conceptImage: IMAGES.launchConcept
 };
 
 /* ESTRUTURA PARA FUTURAS OBRAS REAIS (Quando fornecidas pelo cliente) */
-export const REAL_PROJECTS_GALLERY = [
-  /* 
-    Inserir projetos reais futuramente no seguinte formato:
-    {
-      id: "obra-1",
-      title: "Nome Real da Obra",
-      location: "Arapongas - PR",
-      description: "Descrição real da residência",
-      image: "caminho-ou-url-da-foto-real"
-    }
-  */
-];
+export const REAL_PROJECTS_GALLERY = [];

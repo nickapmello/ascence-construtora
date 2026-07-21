@@ -13,7 +13,7 @@ export default function Home() {
           {/* IMAGEM LIFESTYLE / HERO PRINCIPAL */}
           <img
             src={IMAGES.heroBg}
-            alt="Arquitetura contemporânea e bom aproveitamento da luz natural"
+            alt="Arquitetura contemporânea e espaços acolhedores"
             className="hero-bg-img"
           />
           <div className="hero-overlay"></div>
@@ -26,7 +26,7 @@ export default function Home() {
             <span className="serif-italic-gold">a forma de viver.</span>
           </h1>
           <p className="hero-subtitle">
-            A experiência de construir lares encontra um novo propósito: criar empreendimentos pensados para o bem-estar, a arquitetura e a vida em Arapongas.
+            A experiência de construir lares encontra um novo propósito: criar empreendimentos pensados para a vida e a arquitetura em Arapongas.
           </p>
           <div className="hero-actions">
             <Link to="/a-ascence" className="btn btn-gold">
@@ -116,22 +116,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
-          {/* 
-            PREPARAÇÃO PARA FUTURA GALERIA DE OBRAS REAIS (Grid 2x2 Desktop, 1 Col Mobile):
-            Quando forem fornecidas fotografias reais de obras da ASCENCE, descomentar o bloco abaixo.
-          */}
-          {/*
-          <div className="real-projects-grid-2x2 mt-8">
-            {REAL_PROJECTS_GALLERY.map((project) => (
-              <div key={project.id} className="real-project-card">
-                <img src={project.image} alt={project.title} />
-                <h4>{project.title}</h4>
-                <p>{project.description}</p>
-              </div>
-            ))}
-          </div>
-          */}
         </div>
       </section>
 
@@ -171,7 +155,7 @@ export default function Home() {
             {/* IMAGEM LIFESTYLE - QUALIDADE DE VIDA */}
             <img
               src={IMAGES.lifestyle}
-              alt="Qualidade de vida, bom aproveitamento da luz natural e convivência"
+              alt="Espaços de convivência e qualidade de vida"
               className="lifestyle-img"
               loading="lazy"
             />
@@ -180,22 +164,8 @@ export default function Home() {
             <span className="overline">Viver com Propósito</span>
             <h2 className="section-title">Projetamos espaços para tudo aquilo que realmente importa.</h2>
             <p className="body-text mt-4">
-              Acreditamos que uma boa edificação transcende as paredes físicas. Ela deve proporcionar conforto térmico, privacidade nos momentos de descanso e ambientes acolhedores onde a rotina da família acontece de forma leve.
+              Acreditamos que uma boa edificação transcende as paredes físicas. Ela deve proporcionar acolhimento, bem-estar e ambientes inspiradores onde a rotina da família acontece com harmonia e tranquilidade.
             </p>
-            <ul className="lifestyle-bullets-list mt-6">
-              <li>
-                <span className="bullet-dot"></span>
-                <span>Bom aproveitamento da luz natural e ventilação cruzada</span>
-              </li>
-              <li>
-                <span className="bullet-dot"></span>
-                <span>Privacidade e conforto para o descanso pleno</span>
-              </li>
-              <li>
-                <span className="bullet-dot"></span>
-                <span>Integração harmoniosa entre os ambientes de convivência</span>
-              </li>
-            </ul>
           </div>
         </div>
       </section>
@@ -232,10 +202,10 @@ export default function Home() {
             </div>
             
             <div className="launch-home-image-wrapper">
-              {/* IMAGEM CONCEITUAL - BREVE LANÇAMENTO */}
+              {/* IMAGEM CONCEITUAL - BREVE LANÇAMENTO (Meramente ilustrativa) */}
               <img
                 src={EXPECTATION_LAUNCH.conceptImage}
-                alt="Imagem conceitual do breve lançamento residencial da ASCENCE"
+                alt="Imagem conceitual ilustrativa do futuro lançamento residencial da ASCENCE"
                 className="launch-home-img"
                 loading="lazy"
               />
@@ -518,28 +488,6 @@ export default function Home() {
           height: 460px;
           object-fit: cover;
           border-radius: 2px;
-        }
-        .lifestyle-bullets-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-        .lifestyle-bullets-list li {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          font-size: 0.95rem;
-          color: var(--text-primary);
-        }
-        .bullet-dot {
-          width: 6px;
-          height: 6px;
-          background-color: var(--accent-gold);
-          border-radius: 50%;
-          flex-shrink: 0;
         }
 
         /* SINGLE LAUNCH HOME SECTION */

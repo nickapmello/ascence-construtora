@@ -18,14 +18,17 @@ export default function SingleLaunch() {
         {/* Expectation Teaser Banner */}
         <div className="launch-expectation-card mt-6">
           <div className="launch-hero-image-wrapper">
-            {/* IMAGEM CONCEITUAL - BREVE LANÇAMENTO */}
+            {/* IMAGEM CONCEITUAL - BREVE LANÇAMENTO (Visualização meramente ilustrativa) */}
             <img
               src={EXPECTATION_LAUNCH.conceptImage}
-              alt="Imagem conceitual do breve lançamento residencial da ASCENCE"
+              alt="Imagem conceitual ilustrativa do futuro lançamento residencial da ASCENCE"
               className="launch-hero-img"
             />
             <div className="launch-status-badge">
               <span>BREVE LANÇAMENTO</span>
+            </div>
+            <div className="launch-conceptual-disclaimer">
+              <span>Imagem conceitual &middot; Ilustração meramente inspiracional</span>
             </div>
           </div>
 
@@ -40,51 +43,31 @@ export default function SingleLaunch() {
         {/* Institutional Teaser Content */}
         <div className="launch-content-grid mt-8">
           <div className="launch-narrative-col">
-            <span className="overline">Conceito e Filosofia</span>
-            <h2 className="section-title">Arquitetura e cuidado dedicados ao seu bem-estar.</h2>
+            <span className="overline">Institucional</span>
+            <h2 className="section-title">O próximo capítulo da nossa história em Arapongas.</h2>
             <p className="body-text mt-4">
-              A ASCENCE Construtora está preparando um projeto residencial que traz a experiência adquirida em obras de lares para um novo patamar em Arapongas.
+              A ASCENCE Construtora está trabalhando no planejamento do seu primeiro projeto residencial em Arapongas, unindo o aprendizado de nossa trajetória na construção residencial com um olhar atento à qualidade e à organização.
             </p>
             <p className="body-text mt-4">
-              O projeto valorizará o bom aproveitamento da iluminação natural, ambientes integrados para convivência familiar e o respeito à privacidade dos moradores.
+              Todas as especificações técnicas, metragens, diferenciais e plantas serão apresentadas de forma transparente assim que o projeto for oficialmente lançado.
             </p>
+          </div>
 
-            <div className="whatsapp-launch-cta-box mt-6">
-              <h3 className="cta-box-title">Deseja ser informado em primeira mão?</h3>
-              <p className="cta-box-desc">
-                Converse com nossa equipe para tirar dúvidas ou se cadastrar na lista de interesse.
-              </p>
+          <div className="whatsapp-launch-cta-box">
+            <h3 className="cta-box-title">Deseja receber novidades em primeira mão?</h3>
+            <p className="cta-box-desc mt-2">
+              Cadastre-se no formulário abaixo ou fale diretamente com a equipe da ASCENCE para ser notificado assim que as informações forem disponibilizadas.
+            </p>
+            <div className="mt-6">
               <a
                 href={COMPANY_INFO.contact.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-gold mt-4 inline-flex"
+                className="btn btn-gold inline-flex w-full"
               >
                 <span>Falar com a ASCENCE no WhatsApp</span>
               </a>
             </div>
-          </div>
-
-          <div className="launch-pillars-col">
-            <h3 className="features-col-title">O que esperar do projeto</h3>
-            <ul className="features-list">
-              <li className="feature-item">
-                <span className="feature-bullet"></span>
-                <span className="feature-text">Projeto pensado para o conforto e funcionalidade da rotina residencial</span>
-              </li>
-              <li className="feature-item">
-                <span className="feature-bullet"></span>
-                <span className="feature-text">Valorização da iluminação solar e ventilação natural</span>
-              </li>
-              <li className="feature-item">
-                <span className="feature-bullet"></span>
-                <span className="feature-text">Localização estratégica em Arapongas</span>
-              </li>
-              <li className="feature-item">
-                <span className="feature-bullet"></span>
-                <span className="feature-text">Acompanhamento próximo e transparente em todas as etapas</span>
-              </li>
-            </ul>
           </div>
         </div>
 
@@ -92,9 +75,9 @@ export default function SingleLaunch() {
         <div className="launch-contact-section mt-8" id="lista-de-interesse">
           <div className="section-header text-center mx-auto mb-6">
             <span className="overline">Lista de Interesse</span>
-            <h2 className="section-title">Cadastre-se para receber atualizações</h2>
+            <h2 className="section-title">Quero receber novidades</h2>
             <p className="section-desc">
-              Preencha seus dados para receber o atendimento prioritário assim que as informações forem apresentadas.
+              Preencha seus dados abaixo para receber atualizações oficiais assim que o lançamento for anunciado.
             </p>
           </div>
           <div className="contact-form-container mx-auto" style={{ maxWidth: "720px" }}>
@@ -148,6 +131,18 @@ export default function SingleLaunch() {
           letter-spacing: 0.15em;
           text-transform: uppercase;
         }
+        .launch-conceptual-disclaimer {
+          position: absolute;
+          bottom: 1rem;
+          right: 1.5rem;
+          background: rgba(31, 34, 38, 0.75);
+          backdrop-filter: blur(8px);
+          color: #ffffff;
+          padding: 0.4rem 0.85rem;
+          font-size: 0.7rem;
+          border-radius: 2px;
+          letter-spacing: 0.05em;
+        }
         .launch-notice-bar {
           padding: 1.25rem 2rem;
           background-color: var(--bg-dark);
@@ -177,56 +172,21 @@ export default function SingleLaunch() {
           align-items: start;
         }
         .whatsapp-launch-cta-box {
-          background-color: var(--accent-gold-light);
+          background-color: var(--bg-secondary);
           border: 1px solid var(--border-light);
-          padding: 2rem;
+          padding: 2.5rem 2rem;
           border-radius: 4px;
         }
         .cta-box-title {
           font-family: var(--font-serif);
-          font-size: 1.4rem;
+          font-size: 1.5rem;
           margin-bottom: 0.5rem;
-          color: var(--accent-gold-dark);
+          color: var(--text-primary);
         }
         .cta-box-desc {
           font-size: 0.9rem;
           color: var(--text-secondary);
-          line-height: 1.5;
-        }
-        .features-col-title {
-          font-family: var(--font-serif);
-          font-size: 1.8rem;
-          margin-bottom: 1.5rem;
-        }
-        .features-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-        .feature-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.8rem;
-          background-color: var(--bg-secondary);
-          border: 1px solid var(--border-light);
-          padding: 1.25rem 1.5rem;
-          border-radius: 4px;
-        }
-        .feature-bullet {
-          width: 6px;
-          height: 6px;
-          background-color: var(--accent-gold);
-          border-radius: 50%;
-          margin-top: 0.5rem;
-          flex-shrink: 0;
-        }
-        .feature-text {
-          font-size: 0.95rem;
-          color: var(--text-primary);
-          line-height: 1.5;
+          line-height: 1.6;
         }
         .launch-contact-section {
           padding-top: 5rem;

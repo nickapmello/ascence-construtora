@@ -70,7 +70,7 @@ export default function Header() {
             className="logo-img-desktop" 
           />
           <img 
-            src={symbolDark} 
+            src={logoDark} 
             alt="ASCENCE Construtora" 
             className="logo-img-mobile" 
           />
@@ -198,18 +198,18 @@ export default function Header() {
           height: 36px;
         }
         .logo-img-desktop {
-          height: 32px;
-          width: auto;
-          max-width: 220px;
-          object-fit: contain;
           display: block;
+          width: clamp(130px, 11vw, 160px);
+          height: auto;
+          max-height: 36px;
+          object-fit: contain;
         }
         .logo-img-mobile {
-          height: 28px;
-          width: auto;
-          max-width: 60px;
-          object-fit: contain;
           display: none;
+          width: clamp(105px, 30vw, 125px);
+          height: auto;
+          max-height: 32px;
+          object-fit: contain;
         }
         .desktop-menu {
           display: flex;
@@ -402,7 +402,6 @@ export default function Header() {
           }
           .logo-img-mobile {
             display: block;
-            height: 28px;
           }
           .hamburger {
             display: flex;
