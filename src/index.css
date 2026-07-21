@@ -40,7 +40,9 @@
   padding: 0;
 }
 
-body {
+html, body {
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -53,9 +55,11 @@ body {
 
 #root {
   width: 100%;
+  max-width: 100%;
   min-height: 100dvh;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 /* Scrollbar styling */
@@ -79,6 +83,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   line-height: 1.15;
   color: var(--text-primary);
+  word-break: break-word;
 }
 
 a {
@@ -95,6 +100,7 @@ a {
   margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
@@ -176,6 +182,8 @@ a {
   border: 1px solid transparent;
   z-index: 1;
   text-decoration: none;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .btn:focus-visible {
@@ -254,8 +262,18 @@ a {
   background-color: #20ba5a;
 }
 
+@media (max-width: 480px) {
+  .whatsapp-float {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+}
+
 /* Image loading skeleton / placeholder styling */
-img {
+img, video, iframe, svg {
+  max-width: 100%;
   background-color: #e5dfd9;
 }
 

@@ -158,8 +158,10 @@ export default function Header() {
         .header-nav {
           position: fixed;
           top: 1.25rem;
-          left: 50%;
-          transform: translateX(-50%);
+          left: 0;
+          right: 0;
+          margin-left: auto;
+          margin-right: auto;
           width: 92%;
           max-width: 1240px;
           z-index: 100;
@@ -186,6 +188,7 @@ export default function Header() {
           justify-content: space-between;
           width: 100%;
           padding: 0 2rem;
+          box-sizing: border-box;
         }
         .logo-area {
           display: flex;
@@ -275,6 +278,8 @@ export default function Header() {
         .mobile-menu-overlay {
           position: fixed;
           inset: 0;
+          width: 100%;
+          max-width: 100%;
           z-index: 9999;
           overflow-y: auto;
           overscroll-behavior: contain;
@@ -285,6 +290,7 @@ export default function Header() {
           justify-content: center;
           padding: 4rem 1.5rem 2rem 1.5rem;
           animation: mobileMenuFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          box-sizing: border-box;
         }
         .mobile-menu-close-btn {
           position: absolute;
@@ -306,10 +312,12 @@ export default function Header() {
         .mobile-menu-drawer {
           min-height: 100%;
           width: 100%;
+          max-width: 100%;
           overscroll-behavior: contain;
           display: flex;
           align-items: center;
           justify-content: center;
+          box-sizing: border-box;
         }
 
         @keyframes mobileMenuFadeIn {
@@ -334,6 +342,7 @@ export default function Header() {
 
           gap: 1.5rem;
           text-align: center;
+          box-sizing: border-box;
         }
         .mobile-nav-link {
           width: 100%;
@@ -369,6 +378,7 @@ export default function Header() {
           width: 100%;
           max-width: 340px;
           text-align: center;
+          box-sizing: border-box;
         }
         @media (max-width: 1080px) {
           .desktop-menu, .cta-area {
@@ -387,6 +397,10 @@ export default function Header() {
           .header-nav {
             height: 4rem;
             top: 0.75rem;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
             width: 94%;
           }
           .header-container {
