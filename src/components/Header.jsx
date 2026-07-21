@@ -3,25 +3,68 @@ import { createPortal } from "react-dom";
 import { NavLink, Link } from "react-router-dom";
 import { COMPANY_INFO } from "../data/mockData";
 import logoDark from "../assets/logo_4_copper_charcoal.png";
-import symbolDark from "../assets/symbol_3_copper_charcoal.png";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const scrollPosition = useRef(0);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
-  // Scroll detection for floating navbar styling
+  // Auto-hide and auto-show mobile header on scroll + active background styling
   useEffect(() => {
+    const threshold = 10; // 10px threshold to prevent jittering
+
     const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+          // iOS Safari rubber band bounce protection (negative scroll or past max height)
+          if (currentScrollY < 0 || currentScrollY > maxScroll) {
+            ticking.current = false;
+            return;
+          }
+
+          // Active background state check (> 40px)
+          setIsScrolled(currentScrollY > 40);
+
+          // Header visibility logic
+          if (mobileMenuOpen) {
+            setHeaderVisible(true);
+          } else if (currentScrollY <= 40) {
+            // Always visible near top
+            setHeaderVisible(true);
+          } else {
+            const diff = currentScrollY - lastScrollY.current;
+            if (Math.abs(diff) >= threshold) {
+              if (diff > 0) {
+                // Rolar para baixo (avançar no conteúdo) -> Ocultar header
+                setHeaderVisible(false);
+              } else {
+                // Rolar para cima -> Exibir header
+                setHeaderVisible(true);
+              }
+              lastScrollY.current = currentScrollY;
+            }
+          }
+
+          ticking.current = false;
+        });
+        ticking.current = true;
       }
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [mobileMenuOpen]);
+
+  // Reset header as visible whenever mobile menu state changes
+  useEffect(() => {
+    setHeaderVisible(true);
+  }, [mobileMenuOpen]);
 
   // Robust cross-browser (iOS Safari & Android) body scroll lock when mobile menu is open
   useEffect(() => {
@@ -60,7 +103,9 @@ export default function Header() {
   ];
 
   return (
-    <header className={`header-nav ${isScrolled ? "header-active" : ""}`}>
+    <header 
+      className={`header-nav ${isScrolled ? "header-active" : ""} ${!headerVisible && !mobileMenuOpen ? "header-hidden" : ""}`}
+    >
       <div className="header-container">
         {/* Logo Link */}
         <Link to="/" className="logo-area" onClick={() => setMobileMenuOpen(false)}>
@@ -408,6 +453,17 @@ export default function Header() {
             margin-left: auto;
             margin-right: auto;
             width: 94%;
+            transform: translateY(0);
+            transition:
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              top 0.35s ease,
+              box-shadow 0.35s ease,
+              background 0.35s ease;
+            will-change: transform;
+          }
+          .header-nav.header-hidden {
+            transform: translateY(calc(-100% - 1.5rem));
+            pointer-events: none;
           }
           .header-container {
             display: grid;
@@ -434,6 +490,12 @@ export default function Header() {
             grid-column: 3;
             justify-self: end;
             margin: 0;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .header-nav {
+            transition: none !important;
           }
         }
       `}</style>
