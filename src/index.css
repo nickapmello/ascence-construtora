@@ -205,6 +205,61 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent-gold) !important;
 }
 
+/* BOTÃO FLUTUANTE DO WHATSAPP */
+.whatsapp-float {
+  position: fixed;
+  right: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #25D366 !important;
+  color: #ffffff !important;
+  text-decoration: none;
+  line-height: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  z-index: 9998;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.whatsapp-float svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+  color: #ffffff !important;
+  fill: currentColor !important;
+  background: transparent !important;
+  border: 0;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+.whatsapp-float:focus-visible {
+  outline: 3px solid rgba(37, 211, 102, 0.4);
+  outline-offset: 4px;
+}
+
+@media (max-width: 768px) {
+  .whatsapp-float {
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-float svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
 /* Proteção Estrita Mobile */
 @media (max-width: 640px) {
   html,
@@ -216,7 +271,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow-x: clip !important;
   }
   
-  /* Mobile containers, cards, grids and form elements */
+  /* Mobile containers, cards, grids and form elements (excluindo botões flutuantes) */
   .container,
   .card,
   .form,
@@ -232,16 +287,15 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Image & Media global max-width containment */
+/* Image & Media global max-width containment (sem alterar SVG fixos ou dimensões de ícones) */
 img,
 video,
-svg,
 picture {
   max-width: 100%;
   height: auto;
 }
 
-/* Garantir fundo 100% transparente para todas as logos e símbolos */
+/* Garantir fundo 100% transparente para todas as logos e símbolos da ASCENCE */
 img.logo-img-desktop,
 img.logo-img-mobile,
 img.footer-symbol,
