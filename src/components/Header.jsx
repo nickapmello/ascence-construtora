@@ -400,15 +400,6 @@ export default function Header() {
           .desktop-menu, .cta-area {
             display: none;
           }
-          .logo-img-desktop {
-            display: none;
-          }
-          .logo-img-mobile {
-            display: block;
-          }
-          .hamburger {
-            display: flex;
-          }
           .header-nav {
             height: 4rem;
             top: 0.75rem;
@@ -419,7 +410,30 @@ export default function Header() {
             width: 94%;
           }
           .header-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            width: 100%;
             padding: 0 1.25rem;
+            box-sizing: border-box;
+          }
+          .logo-area {
+            grid-column: 2;
+            justify-self: center;
+            margin: 0;
+          }
+          .logo-img-desktop {
+            display: none;
+          }
+          .logo-img-mobile {
+            display: block;
+            margin: 0 auto;
+          }
+          .hamburger {
+            display: flex;
+            grid-column: 3;
+            justify-self: end;
+            margin: 0;
           }
         }
       `}</style>
