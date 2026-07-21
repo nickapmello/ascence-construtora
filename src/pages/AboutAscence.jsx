@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { COMPANY_INFO, IMAGES } from "../data/mockData";
+import ImageWithPlaceholder from "../components/ImageWithPlaceholder";
 import symbolDark from "../assets/symbol_3_copper_charcoal.png";
 
 export default function AboutAscence() {
@@ -29,12 +30,12 @@ export default function AboutAscence() {
             </p>
           </div>
           <div className="narrative-image-col">
-            {/* IMAGEM INSTITUCIONAL - SOBRE A EMPRESA */}
-            <img
+            {/* IMAGEM INSTITUCIONAL - SOBRE A EMPRESA (Com Skeleton Placeholder) */}
+            <ImageWithPlaceholder
               src={IMAGES.aboutStory}
               alt="Arquitetura contemporânea e cuidado construtivo ASCENCE"
-              className="narrative-img"
-              loading="lazy"
+              className="narrative-img-wrapper"
+              aspectRatio="16 / 11"
             />
           </div>
         </div>
@@ -114,10 +115,8 @@ export default function AboutAscence() {
           gap: 4rem;
           align-items: center;
         }
-        .narrative-img {
+        .narrative-img-wrapper {
           width: 100%;
-          height: 460px;
-          object-fit: cover;
           border-radius: 2px;
         }
         .values-section {

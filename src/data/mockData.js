@@ -19,7 +19,7 @@ export const COMPANY_INFO = {
   tagline: "Da experiência de construir lares, nasce uma nova forma de viver.",
   manifestoTitle: "Construir vai além da estrutura.",
   manifestoText: "Para a ASCENCE, cada projeto começa pela forma como as pessoas desejam viver. Arquitetura, funcionalidade e cuidado se encontram para criar espaços que acolhem histórias, momentos e novos começos.",
-  aboutBrief: "Nascida da paixão pela construção residencial de alto padrão em Curitiba, a ASCENCE evoluiu para Arapongas trazendo a experiência de erguer casas exclusivas e o compromisso com a qualidade e o bem-estar.",
+  aboutBrief: "Nascida da experiência na construção residencial em Curitiba, a ASCENCE chegou a Arapongas levando consigo o cuidado, a proximidade e o compromisso com a qualidade.",
   aboutFull: "A trajetória da ASCENCE começou em Curitiba com o propósito de transformar visões arquitetônicas em residências sólidas e acolhedoras. A experiência acumulada na construção de casas nos permitiu aperfeiçoar nossos processos construtivos e valorizar cada detalhe da engenharia. Ao chegar a Arapongas, trouxemos esse aprendizado para o desenvolvimento de um novo capítulo: nosso primeiro empreendimento imobiliário pensado para quem busca viver bem.",
   contact: {
     address: "R. Tucanos, 273 - Sl 02 - Centro, Arapongas - PR, 86700-070",
@@ -110,7 +110,8 @@ export const EXPECTATION_LAUNCH = {
   title: "Um novo projeto está sendo preparado.",
   text: "A ASCENCE está desenvolvendo seu primeiro empreendimento residencial em Arapongas. As informações oficiais serão apresentadas após a conclusão dos estudos e definições do projeto.",
   notice: "Cadastre-se para receber as novidades em primeira mão.",
-  conceptImage: IMAGES.launchConcept
+  conceptImage: IMAGES.launchConcept,
+  conceptAlt: "Imagem conceitual sobre o próximo lançamento da ASCENCE"
 };
 
 /* ESTRUTURA PARA FUTURAS OBRAS REAIS (Quando fornecidas pelo cliente) */

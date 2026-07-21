@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { COMPANY_INFO, TRAJECTORY_CHAPTERS, CONSTRUCTION_PILLARS, CARE_EXPERIENCE_PRINCIPLES, EXPECTATION_LAUNCH, IMAGES } from "../data/mockData";
 import ContactForm from "../components/ContactForm";
+import ImageWithPlaceholder from "../components/ImageWithPlaceholder";
 import symbolDark from "../assets/symbol_3_copper_charcoal.png";
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
       {/* 1. HERO PRINCIPAL */}
       <section className="hero-section">
         <div className="hero-bg-wrapper">
-          {/* IMAGEM LIFESTYLE / HERO PRINCIPAL */}
+          {/* IMAGEM LIFESTYLE / HERO PRINCIPAL (Eager - Primeira tela) */}
           <img
             src={IMAGES.heroBg}
             alt="Arquitetura contemporânea e espaços acolhedores"
@@ -56,12 +57,12 @@ export default function Home() {
             </div>
           </div>
           <div className="manifesto-image-col">
-            {/* IMAGEM INSTITUCIONAL - MANIFESTO */}
-            <img
+            {/* IMAGEM INSTITUCIONAL - MANIFESTO (Com Skeleton Placeholder) */}
+            <ImageWithPlaceholder
               src={IMAGES.manifesto}
               alt="Cuidado com a arquitetura e espaços de convivência"
-              className="manifesto-img"
-              loading="lazy"
+              className="manifesto-img-wrapper"
+              aspectRatio="16 / 11"
             />
           </div>
         </div>
@@ -152,12 +153,12 @@ export default function Home() {
       <section className="lifestyle-section section-padding">
         <div className="container lifestyle-grid">
           <div className="lifestyle-image-wrapper">
-            {/* IMAGEM LIFESTYLE - QUALIDADE DE VIDA */}
-            <img
+            {/* IMAGEM LIFESTYLE - QUALIDADE DE VIDA (Com Skeleton Placeholder) */}
+            <ImageWithPlaceholder
               src={IMAGES.lifestyle}
               alt="Espaços de convivência e qualidade de vida"
-              className="lifestyle-img"
-              loading="lazy"
+              className="lifestyle-img-wrapper"
+              aspectRatio="16 / 11"
             />
           </div>
           <div className="lifestyle-content">
@@ -202,12 +203,12 @@ export default function Home() {
             </div>
             
             <div className="launch-home-image-wrapper">
-              {/* IMAGEM CONCEITUAL - BREVE LANÇAMENTO (Meramente ilustrativa) */}
-              <img
+              {/* IMAGEM CONCEITUAL - BREVE LANÇAMENTO (Com Skeleton Placeholder) */}
+              <ImageWithPlaceholder
                 src={EXPECTATION_LAUNCH.conceptImage}
-                alt="Imagem conceitual ilustrativa do futuro lançamento residencial da ASCENCE"
-                className="launch-home-img"
-                loading="lazy"
+                alt={EXPECTATION_LAUNCH.conceptAlt}
+                className="launch-home-img-wrapper"
+                aspectRatio="16 / 11"
               />
             </div>
           </div>
@@ -350,10 +351,8 @@ export default function Home() {
           font-style: italic;
           color: var(--accent-gold-dark);
         }
-        .manifesto-img {
+        .manifesto-img-wrapper {
           width: 100%;
-          height: 460px;
-          object-fit: cover;
           border-radius: 2px;
         }
 
@@ -483,10 +482,8 @@ export default function Home() {
           gap: 4rem;
           align-items: center;
         }
-        .lifestyle-img {
+        .lifestyle-img-wrapper {
           width: 100%;
-          height: 460px;
-          object-fit: cover;
           border-radius: 2px;
         }
 
@@ -531,11 +528,6 @@ export default function Home() {
         .launch-home-image-wrapper {
           width: 100%;
           min-height: 360px;
-        }
-        .launch-home-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
         }
 
         /* CONTACT SECTION */

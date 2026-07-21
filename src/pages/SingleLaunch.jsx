@@ -1,6 +1,7 @@
 import React from "react";
 import { COMPANY_INFO, EXPECTATION_LAUNCH } from "../data/mockData";
 import ContactForm from "../components/ContactForm";
+import ImageWithPlaceholder from "../components/ImageWithPlaceholder";
 
 export default function SingleLaunch() {
   return (
@@ -18,11 +19,12 @@ export default function SingleLaunch() {
         {/* Expectation Teaser Banner */}
         <div className="launch-expectation-card mt-6">
           <div className="launch-hero-image-wrapper">
-            {/* IMAGEM CONCEITUAL - BREVE LANÇAMENTO (Visualização meramente ilustrativa) */}
-            <img
+            {/* IMAGEM CONCEITUAL - BREVE LANÇAMENTO (Com Skeleton Placeholder) */}
+            <ImageWithPlaceholder
               src={EXPECTATION_LAUNCH.conceptImage}
-              alt="Imagem conceitual ilustrativa do futuro lançamento residencial da ASCENCE"
-              className="launch-hero-img"
+              alt="Imagem conceitual sobre o próximo lançamento da ASCENCE"
+              className="launch-hero-img-wrapper"
+              aspectRatio="16 / 9"
             />
             <div className="launch-status-badge">
               <span>BREVE LANÇAMENTO</span>
@@ -49,7 +51,7 @@ export default function SingleLaunch() {
               A ASCENCE Construtora está trabalhando no planejamento do seu primeiro projeto residencial em Arapongas, unindo o aprendizado de nossa trajetória na construção residencial com um olhar atento à qualidade e à organização.
             </p>
             <p className="body-text mt-4">
-              Todas as especificações técnicas, metragens, diferenciais e plantas serão apresentadas de forma transparente assim que o projeto for oficialmente lançado.
+              Todas as especificações técnicas, metragens e plantas serão apresentadas de forma transparente assim que o projeto for oficialmente lançado.
             </p>
           </div>
 
@@ -110,13 +112,7 @@ export default function SingleLaunch() {
         .launch-hero-image-wrapper {
           position: relative;
           width: 100%;
-          height: 460px;
           background-color: var(--bg-dark);
-        }
-        .launch-hero-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
         }
         .launch-status-badge {
           position: absolute;
@@ -130,6 +126,7 @@ export default function SingleLaunch() {
           font-weight: 600;
           letter-spacing: 0.15em;
           text-transform: uppercase;
+          z-index: 2;
         }
         .launch-conceptual-disclaimer {
           position: absolute;
@@ -142,6 +139,7 @@ export default function SingleLaunch() {
           font-size: 0.7rem;
           border-radius: 2px;
           letter-spacing: 0.05em;
+          z-index: 2;
         }
         .launch-notice-bar {
           padding: 1.25rem 2rem;
@@ -199,9 +197,6 @@ export default function SingleLaunch() {
           }
           .single-launch-page {
             padding-top: 7rem;
-          }
-          .launch-hero-image-wrapper {
-            height: 300px;
           }
         }
       `}</style>
