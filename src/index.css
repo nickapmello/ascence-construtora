@@ -34,32 +34,46 @@
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
-  box-sizing: inherit;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
+html,
+body,
+#root,
+.app-root-layout {
   width: 100%;
   max-width: 100%;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+}
+
+body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  touch-action: pan-y pinch-zoom;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body,
+  #root,
+  .app-root-layout {
+    overflow-x: hidden;
+  }
 }
 
 #root {
-  width: 100%;
-  max-width: 100%;
   min-height: 100dvh;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
 }
 
 /* Scrollbar styling */
@@ -101,12 +115,16 @@ a {
   padding-left: 2rem;
   padding-right: 2rem;
   box-sizing: border-box;
+  min-width: 0;
 }
 
 @media (max-width: 768px) {
   .container {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 }
 
@@ -182,6 +200,7 @@ a {
   border: 1px solid transparent;
   z-index: 1;
   text-decoration: none;
+  width: auto;
   max-width: 100%;
   box-sizing: border-box;
 }
@@ -269,11 +288,30 @@ a {
     width: 3.2rem;
     height: 3.2rem;
   }
+  
+  /* Mobile containers, cards, grids and form elements */
+  .container,
+  .card,
+  .form,
+  .grid,
+  .pilar-card,
+  .care-card,
+  .trajectory-card,
+  .institutional-contact-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
 }
 
-/* Image loading skeleton / placeholder styling */
-img, video, iframe, svg {
+/* Image & Media global max-width containment */
+img,
+video,
+svg,
+picture {
   max-width: 100%;
+  height: auto;
   background-color: #e5dfd9;
 }
 

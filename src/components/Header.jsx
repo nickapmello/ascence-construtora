@@ -189,6 +189,7 @@ export default function Header() {
           width: 100%;
           padding: 0 2rem;
           box-sizing: border-box;
+          min-width: 0;
         }
         .logo-area {
           display: flex;
@@ -278,9 +279,11 @@ export default function Header() {
         .mobile-menu-overlay {
           position: fixed;
           inset: 0;
-          width: 100%;
+          width: auto;
           max-width: 100%;
-          z-index: 9999;
+          height: 100vh;
+          height: 100dvh;
+          overflow-x: clip;
           overflow-y: auto;
           overscroll-behavior: contain;
           -webkit-overflow-scrolling: touch;
@@ -291,6 +294,12 @@ export default function Header() {
           padding: 4rem 1.5rem 2rem 1.5rem;
           animation: mobileMenuFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
           box-sizing: border-box;
+          z-index: 9999;
+        }
+        @supports not (overflow-x: clip) {
+          .mobile-menu-overlay {
+            overflow-x: hidden;
+          }
         }
         .mobile-menu-close-btn {
           position: absolute;
@@ -313,6 +322,7 @@ export default function Header() {
           min-height: 100%;
           width: 100%;
           max-width: 100%;
+          min-width: 0;
           overscroll-behavior: contain;
           display: flex;
           align-items: center;
@@ -333,6 +343,7 @@ export default function Header() {
         .mobile-nav {
           width: 100%;
           max-width: 420px;
+          min-width: 0;
           margin: 0 auto;
 
           display: flex;
@@ -347,6 +358,7 @@ export default function Header() {
         .mobile-nav-link {
           width: 100%;
           max-width: 340px;
+          min-width: 0;
           margin: 0 auto;
           padding: 0.5rem 1rem;
 
@@ -377,6 +389,7 @@ export default function Header() {
           margin-top: 1rem;
           width: 100%;
           max-width: 340px;
+          min-width: 0;
           text-align: center;
           box-sizing: border-box;
         }
