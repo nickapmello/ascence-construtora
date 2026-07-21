@@ -323,29 +323,51 @@ export default function Header() {
           }
         }
         .mobile-nav {
+          width: 100%;
+          max-width: 420px;
+          margin: 0 auto;
+
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 1.75rem;
-          width: 85%;
+          justify-content: center;
+
+          gap: 1.5rem;
+          text-align: center;
         }
         .mobile-nav-link {
+          width: 100%;
+          max-width: 340px;
+          margin: 0 auto;
+          padding: 0.5rem 1rem;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          text-align: center;
+          line-height: 1.35;
+          white-space: normal;
+          text-wrap: balance;
+          box-sizing: border-box;
+
           text-decoration: none;
           font-family: var(--font-sans);
-          font-size: 1.2rem;
+          font-size: 1.15rem;
           font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 0.15em;
           color: var(--text-primary);
-          padding: 0.4rem;
           transition: var(--transition-fast);
         }
         .mobile-nav-link.active, .mobile-nav-link:hover {
           color: var(--accent-gold-dark);
+          text-align: center;
         }
         .mobile-cta-btn {
           margin-top: 1rem;
           width: 100%;
+          max-width: 340px;
           text-align: center;
         }
         @media (max-width: 1080px) {
