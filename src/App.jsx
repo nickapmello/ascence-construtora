@@ -10,36 +10,45 @@ import WayOfBuilding from "./pages/WayOfBuilding";
 import SingleLaunch from "./pages/SingleLaunch";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import { COMPANY_INFO } from "./data/mockData";
+import { COMPANY_INFO, IMAGES } from "./data/mockData";
 
 export default function App() {
   const location = useLocation();
 
-  // Dynamic SEO Page Titles & Descriptions
+  // Dynamic SEO Page Titles, Canonical & Open Graph Metatags
   useEffect(() => {
+    const baseUrl = "https://ascence-construtora.vercel.app";
+    const currentUrl = `${baseUrl}${location.pathname}`;
+
     let title = "ASCENCE Construtora | Arquitetura, Bem-Estar e Confiança em Arapongas";
     let desc = "Construtora e incorporadora em Arapongas - PR. Da experiência de construir lares, nasce uma nova forma de viver.";
+    let ogImage = IMAGES.heroBg;
 
     switch (location.pathname) {
       case "/a-ascence":
         title = "A Ascence | Construtora e Incorporadora em Arapongas";
-        desc = "Conheça a história, filosofia e o compromisso da ASCENCE Construtora com a arquitetura contemporânea e a vida das famílias.";
+        desc = "Conheça a história, filosofia e o compromisso da ASCENCE Construtora com a arquitetura e a vida das famílias.";
+        ogImage = IMAGES.aboutStory;
         break;
       case "/nossa-trajetoria":
         title = "Nossa Trajetória | Da Experiência em Casas ao Primeiro Lançamento";
-        desc = "Acompanhe a evolução da ASCENCE: da fundação em Curitiba e anos de experiência construindo casas até o primeiro empreendimento em Arapongas.";
+        desc = "Acompanhe a evolução da ASCENCE: da fundação em Curitiba e experiência construindo lares até o primeiro empreendimento em Arapongas.";
+        ogImage = IMAGES.manifesto;
         break;
       case "/nosso-jeito-de-construir":
-        title = "Nosso Jeito de Construir | Qualidade, Acústica e Transparência";
-        desc = "Conheça os quatro pilares construtivos da ASCENCE: rigor na estrutura, arquitetura funcional, cuidado com os detalhes e relacionamento ético.";
+        title = "Nosso Jeito de Construir | Qualidade e Transparência";
+        desc = "Conheça os quatro pilares construtivos da ASCENCE: qualidade construtiva, arquitetura funcional, cuidado com os detalhes e relacionamento ético.";
+        ogImage = IMAGES.lifestyle;
         break;
       case "/lancamento":
         title = "Breve Lançamento em Arapongas | ASCENCE Construtora";
-        desc = "O próximo capítulo da ASCENCE Construtora: um empreendimento exclusivo pensado para quem valoriza arquitetura e bem-estar.";
+        desc = "Um novo capítulo está chegando a Arapongas. Conheça a proposta do nosso próximo projeto residencial.";
+        ogImage = IMAGES.launchConcept;
         break;
       case "/contato":
         title = "Contato | ASCENCE Construtora em Arapongas";
         desc = "Fale com a equipe da ASCENCE Construtora. Atendimento transparente via WhatsApp, telefone ou formulário direto.";
+        ogImage = IMAGES.heroBg;
         break;
       case "/politica-de-privacidade":
         title = "Política de Privacidade | ASCENCE Construtora";
@@ -51,13 +60,41 @@ export default function App() {
 
     document.title = title;
 
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement("meta");
-      metaDesc.name = "description";
-      document.head.appendChild(metaDesc);
+    // Helper para atualizar ou criar meta tags
+    const updateMetaTag = (selector, attribute, attrValue, content) => {
+      let element = document.querySelector(selector);
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, attrValue);
+        document.head.appendChild(element);
+      }
+      element.setAttribute("content", content);
+    };
+
+    // Meta Description
+    updateMetaTag('meta[name="description"]', 'name', 'description', desc);
+
+    // Open Graph
+    updateMetaTag('meta[property="og:title"]', 'property', 'og:title', title);
+    updateMetaTag('meta[property="og:description"]', 'property', 'og:description', desc);
+    updateMetaTag('meta[property="og:image"]', 'property', 'og:image', ogImage);
+    updateMetaTag('meta[property="og:url"]', 'property', 'og:url', currentUrl);
+    updateMetaTag('meta[property="og:type"]', 'property', 'og:type', 'website');
+
+    // Twitter Card
+    updateMetaTag('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
+    updateMetaTag('meta[name="twitter:title"]', 'name', 'twitter:title', title);
+    updateMetaTag('meta[name="twitter:description"]', 'name', 'twitter:description', desc);
+    updateMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', ogImage);
+
+    // Canonical Tag
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
     }
-    metaDesc.content = desc;
+    canonical.setAttribute("href", currentUrl);
   }, [location]);
 
   return (
@@ -71,7 +108,7 @@ export default function App() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "LocalBusiness",
+            "@type": "GeneralContractor",
             "name": "ASCENCE Construtora",
             "description": COMPANY_INFO.aboutBrief,
             "address": {

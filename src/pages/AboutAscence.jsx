@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { COMPANY_INFO } from "../data/mockData";
+import { COMPANY_INFO, IMAGES } from "../data/mockData";
 import symbolDark from "../assets/symbol_3_copper_charcoal.png";
 
 export default function AboutAscence() {
@@ -12,7 +12,7 @@ export default function AboutAscence() {
           <span className="overline">Institucional</span>
           <h1 className="display-title">A ASCENCE Construtora</h1>
           <p className="body-text lead-text mx-auto mt-4">
-            Uma empresa pautada na paixão pela boa arquitetura, no respeito à vida das famílias e na busca contínua pela excelência construtiva em Arapongas.
+            Uma empresa pautada na paixão pela boa arquitetura, no respeito à vida das famílias e na busca contínua pela qualidade construtiva em Arapongas.
           </p>
         </div>
 
@@ -25,14 +25,16 @@ export default function AboutAscence() {
               {COMPANY_INFO.aboutFull}
             </p>
             <p className="body-text mt-4">
-              Não buscamos a produção em massa nem a padronização simplista. Acreditamos que cada edificação deve ser tratada como um compromisso de vida, unindo estética atemporal, funcionalidade inteligente e acolhimento humano.
+              Não buscamos a produção em massa nem a padronização simplista. Acreditamos que cada edificação deve ser tratada como um compromisso de vida, unindo estética, funcionalidade e acolhimento humano.
             </p>
           </div>
           <div className="narrative-image-col">
+            {/* IMAGEM INSTITUCIONAL - SOBRE A EMPRESA */}
             <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
-              alt="Arquitetura de luxo contemporânea ASCENCE"
+              src={IMAGES.aboutStory}
+              alt="Arquitetura contemporânea e cuidado construtivo ASCENCE"
               className="narrative-img"
+              loading="lazy"
             />
           </div>
         </div>
@@ -59,9 +61,9 @@ export default function AboutAscence() {
               <div className="value-icon-symbol">
                 <img src={symbolDark} alt="Símbolo ASCENCE" className="symbol-icon" />
               </div>
-              <h3 className="value-title">Excelência Técnica</h3>
+              <h3 className="value-title">Organização Técnica</h3>
               <p className="value-desc">
-                Cálculo estrutural rigoroso, isolamento termoacústico e materiais comprovados para garantir longevidade.
+                Acompanhamento próximo em cada etapa da obra, garantindo planejamento e coerência entre os materiais escolhidos.
               </p>
             </div>
 
@@ -79,13 +81,13 @@ export default function AboutAscence() {
 
         {/* CTA */}
         <div className="page-cta-box text-center mt-8">
-          <h2 className="cta-title">Quer saber mais sobre nossa trajetória?</h2>
+          <h2 className="cta-title">Quer entender mais sobre a nossa evolução?</h2>
           <div className="cta-btns-row mt-4">
             <Link to="/nossa-trajetoria" className="btn btn-gold">
-              <span>Conheça Nossa Trajetória</span>
+              <span>Conheça nossa trajetória</span>
             </Link>
-            <Link to="/contato" className="btn btn-secondary">
-              <span>Fale Conosco</span>
+            <Link to="/contato" className="btn btn-secondary text-white-btn">
+              <span>Fale conosco</span>
             </Link>
           </div>
         </div>
@@ -136,11 +138,11 @@ export default function AboutAscence() {
         }
         .value-card:hover {
           border-color: var(--accent-gold);
-          transform: translateY(-4px);
+          transform: translateY(-3px);
         }
         .symbol-icon {
           height: 28px;
-          opacity: 0.8;
+          opacity: 0.85;
           margin-bottom: 1.25rem;
         }
         .value-title {

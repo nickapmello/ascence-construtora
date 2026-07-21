@@ -1,5 +1,5 @@
 import React from "react";
-import { COMPANY_INFO, SINGLE_LAUNCH } from "../data/mockData";
+import { COMPANY_INFO, EXPECTATION_LAUNCH } from "../data/mockData";
 import ContactForm from "../components/ContactForm";
 
 export default function SingleLaunch() {
@@ -8,62 +8,51 @@ export default function SingleLaunch() {
       <div className="container">
         {/* Page Header */}
         <div className="page-header text-center mx-auto">
-          <span className="overline gold-overline">Próximo Capítulo em Arapongas</span>
-          <h1 className="display-title">{SINGLE_LAUNCH.namePlaceholder}</h1>
+          <span className="overline gold-overline">{EXPECTATION_LAUNCH.eyebrow}</span>
+          <h1 className="display-title">{EXPECTATION_LAUNCH.title}</h1>
           <p className="body-text lead-text mx-auto mt-4 text-center">
-            {SINGLE_LAUNCH.concept}
+            {EXPECTATION_LAUNCH.text}
           </p>
         </div>
 
-        {/* Hero Banner for Launch */}
-        <div className="launch-hero-card mt-6">
+        {/* Expectation Teaser Banner */}
+        <div className="launch-expectation-card mt-6">
           <div className="launch-hero-image-wrapper">
+            {/* IMAGEM CONCEITUAL - BREVE LANÇAMENTO */}
             <img
-              src={SINGLE_LAUNCH.imagePlaceholder}
-              alt="Imagens conceituais do empreendimento"
+              src={EXPECTATION_LAUNCH.conceptImage}
+              alt="Imagem conceitual do breve lançamento residencial da ASCENCE"
               className="launch-hero-img"
             />
             <div className="launch-status-badge">
-              <span>{SINGLE_LAUNCH.stagePlaceholder}</span>
+              <span>BREVE LANÇAMENTO</span>
             </div>
           </div>
 
-          <div className="launch-hero-details-bar">
-            <div className="detail-item">
-              <span className="detail-label">Empreendimento</span>
-              <span className="detail-val">{SINGLE_LAUNCH.namePlaceholder}</span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">Localização</span>
-              <span className="detail-val">{SINGLE_LAUNCH.locationPlaceholder}</span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">Estágio Construtivo</span>
-              <span className="detail-val">{SINGLE_LAUNCH.stagePlaceholder}</span>
-            </div>
-            <div className="detail-item">
-              <span className="detail-label">Realização</span>
-              <span className="detail-val">ASCENCE Construtora</span>
+          <div className="launch-notice-bar">
+            <div className="notice-bar-content">
+              <span className="notice-icon-dot"></span>
+              <span className="notice-text">{EXPECTATION_LAUNCH.notice}</span>
             </div>
           </div>
         </div>
 
-        {/* Concept & Features Grid */}
+        {/* Institutional Teaser Content */}
         <div className="launch-content-grid mt-8">
           <div className="launch-narrative-col">
-            <span className="overline">Conceito do Projeto</span>
-            <h2 className="section-title">Engenharia e arquitetura voltadas ao bem-estar.</h2>
+            <span className="overline">Conceito e Filosofia</span>
+            <h2 className="section-title">Arquitetura e cuidado dedicados ao seu bem-estar.</h2>
             <p className="body-text mt-4">
-              Cada detalhe do nosso primeiro empreendimento em Arapongas foi planejado a partir da experiência acumulada em nossas obras residenciais. O projeto reúne a privacidade e o acabamento cuidadoso das casas de alto padrão à segurança e conveniência do morar contemporâneo.
+              A ASCENCE Construtora está preparando um projeto residencial que traz a experiência adquirida em obras de lares para um novo patamar em Arapongas.
             </p>
             <p className="body-text mt-4">
-              Priorizamos a abundância de luz solar, a circulação de ar natural e soluções construtivas que oferecem proteção acústica entre os ambientes.
+              O projeto valorizará o bom aproveitamento da iluminação natural, ambientes integrados para convivência familiar e o respeito à privacidade dos moradores.
             </p>
-            
+
             <div className="whatsapp-launch-cta-box mt-6">
-              <h3 className="cta-box-title">Deseja receber informações exclusivas em primeira mão?</h3>
+              <h3 className="cta-box-title">Deseja ser informado em primeira mão?</h3>
               <p className="cta-box-desc">
-                Converse com nossa equipe para se cadastrar na lista de interesse do lançamento.
+                Converse com nossa equipe para tirar dúvidas ou se cadastrar na lista de interesse.
               </p>
               <a
                 href={COMPANY_INFO.contact.whatsappLink}
@@ -76,26 +65,36 @@ export default function SingleLaunch() {
             </div>
           </div>
 
-          <div className="launch-features-col">
-            <h3 className="features-col-title">Diferenciais do Projeto</h3>
+          <div className="launch-pillars-col">
+            <h3 className="features-col-title">O que esperar do projeto</h3>
             <ul className="features-list">
-              {SINGLE_LAUNCH.features.map((feat, idx) => (
-                <li key={idx} className="feature-item">
-                  <span className="feature-bullet"></span>
-                  <span className="feature-text">{feat}</span>
-                </li>
-              ))}
+              <li className="feature-item">
+                <span className="feature-bullet"></span>
+                <span className="feature-text">Projeto pensado para o conforto e funcionalidade da rotina residencial</span>
+              </li>
+              <li className="feature-item">
+                <span className="feature-bullet"></span>
+                <span className="feature-text">Valorização da iluminação solar e ventilação natural</span>
+              </li>
+              <li className="feature-item">
+                <span className="feature-bullet"></span>
+                <span className="feature-text">Localização estratégica em Arapongas</span>
+              </li>
+              <li className="feature-item">
+                <span className="feature-bullet"></span>
+                <span className="feature-text">Acompanhamento próximo e transparente em todas as etapas</span>
+              </li>
             </ul>
           </div>
         </div>
 
-        {/* Interest Contact Form Section */}
+        {/* Form Section */}
         <div className="launch-contact-section mt-8" id="lista-de-interesse">
           <div className="section-header text-center mx-auto mb-6">
             <span className="overline">Lista de Interesse</span>
             <h2 className="section-title">Cadastre-se para receber atualizações</h2>
             <p className="section-desc">
-              Preencha seus dados para ter atendimento prioritário assim que as informações oficiais do lançamento forem apresentadas.
+              Preencha seus dados para receber o atendimento prioritário assim que as informações forem apresentadas.
             </p>
           </div>
           <div className="contact-form-container mx-auto" style={{ maxWidth: "720px" }}>
@@ -119,7 +118,7 @@ export default function SingleLaunch() {
           line-height: 1.7;
           color: var(--text-secondary);
         }
-        .launch-hero-card {
+        .launch-expectation-card {
           background-color: var(--bg-secondary);
           border: 1px solid var(--border-light);
           border-radius: 4px;
@@ -128,7 +127,7 @@ export default function SingleLaunch() {
         .launch-hero-image-wrapper {
           position: relative;
           width: 100%;
-          height: 480px;
+          height: 460px;
           background-color: var(--bg-dark);
         }
         .launch-hero-img {
@@ -149,30 +148,27 @@ export default function SingleLaunch() {
           letter-spacing: 0.15em;
           text-transform: uppercase;
         }
-        .launch-hero-details-bar {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 1.5rem;
-          padding: 2rem 2.5rem;
+        .launch-notice-bar {
+          padding: 1.25rem 2rem;
           background-color: var(--bg-dark);
           color: var(--text-light);
           border-top: 1px solid var(--border-dark);
         }
-        .detail-item {
+        .notice-bar-content {
           display: flex;
-          flex-direction: column;
-          gap: 0.35rem;
+          align-items: center;
+          gap: 0.75rem;
         }
-        .detail-label {
-          font-size: 0.68rem;
-          text-transform: uppercase;
-          letter-spacing: 0.15em;
-          color: var(--accent-gold);
+        .notice-icon-dot {
+          width: 8px;
+          height: 8px;
+          background-color: var(--accent-gold);
+          border-radius: 50%;
         }
-        .detail-val {
-          font-size: 0.95rem;
-          font-weight: 500;
+        .notice-text {
+          font-size: 0.9rem;
           color: var(--text-light);
+          letter-spacing: 0.05em;
         }
         .launch-content-grid {
           display: grid;
@@ -208,7 +204,7 @@ export default function SingleLaunch() {
           margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 1.2rem;
+          gap: 1rem;
         }
         .feature-item {
           display: flex;
@@ -220,11 +216,11 @@ export default function SingleLaunch() {
           border-radius: 4px;
         }
         .feature-bullet {
-          width: 8px;
-          height: 8px;
+          width: 6px;
+          height: 6px;
           background-color: var(--accent-gold);
           border-radius: 50%;
-          margin-top: 0.4rem;
+          margin-top: 0.5rem;
           flex-shrink: 0;
         }
         .feature-text {
@@ -245,10 +241,7 @@ export default function SingleLaunch() {
             padding-top: 7rem;
           }
           .launch-hero-image-wrapper {
-            height: 320px;
-          }
-          .launch-hero-details-bar {
-            padding: 1.5rem;
+            height: 300px;
           }
         }
       `}</style>

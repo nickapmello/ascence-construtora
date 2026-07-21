@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { COMPANY_INFO } from "../data/mockData";
-import logoLight from "../assets/logo_1_copper_light.png";
-import symbolLight from "../assets/symbol_1_copper_light.png";
+import logoDark from "../assets/logo_4_copper_charcoal.png";
+import symbolDark from "../assets/symbol_3_copper_charcoal.png";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,12 +35,12 @@ export default function Header() {
         {/* Logo Link */}
         <Link to="/" className="logo-area" onClick={() => setMobileMenuOpen(false)}>
           <img 
-            src={logoLight} 
+            src={logoDark} 
             alt="ASCENCE Construtora" 
             className="logo-img-desktop" 
           />
           <img 
-            src={symbolLight} 
+            src={symbolDark} 
             alt="ASCENCE Construtora" 
             className="logo-img-mobile" 
           />
@@ -124,19 +124,19 @@ export default function Header() {
           background: #ffffff;
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(197, 168, 128, 0.15);
+          border: 1px solid rgba(167, 119, 101, 0.2);
           border-radius: 4rem;
-          transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           height: 4.6rem;
           display: flex;
           align-items: center;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
         .header-active {
           top: 0.75rem;
-          background: #fbfbf9 !important;
-          backdrop-filter: blur(20px) !important;
-          border: 1px solid rgba(197, 168, 128, 0.3) !important;
-          box-shadow: 0 12px 35px rgba(28, 28, 26, 0.05) !important;
+          background: #ffffff !important;
+          border: 1px solid rgba(167, 119, 101, 0.35) !important;
+          box-shadow: 0 10px 30px rgba(28, 28, 26, 0.08) !important;
         }
         .header-container {
           display: flex;
@@ -149,20 +149,19 @@ export default function Header() {
           display: flex;
           align-items: center;
           text-decoration: none;
+          height: 36px;
         }
         .logo-img-desktop {
-          height: 130px;
-          margin-top: -42px;
-          margin-bottom: -42px;
+          height: 32px;
           width: auto;
-          max-width: 280px;
+          max-width: 220px;
           object-fit: contain;
           display: block;
         }
         .logo-img-mobile {
           height: 28px;
           width: auto;
-          max-width: 80px;
+          max-width: 60px;
           object-fit: contain;
           display: none;
         }
@@ -173,7 +172,7 @@ export default function Header() {
         .nav-link {
           background: none;
           border: none;
-          color: var(--text-secondary);
+          color: var(--text-primary);
           font-family: var(--font-sans);
           font-size: 0.75rem;
           font-weight: 600;
@@ -185,15 +184,15 @@ export default function Header() {
           transition: var(--transition-fast);
         }
         .nav-link:hover, .nav-link.active {
-          color: var(--text-primary);
+          color: var(--accent-gold-dark);
         }
         .nav-line {
           position: absolute;
           bottom: 0;
           left: 0;
           width: 0;
-          height: 1px;
-          background-color: var(--accent-gold);
+          height: 1.5px;
+          background-color: var(--accent-gold-dark);
           transition: var(--transition-smooth);
         }
         .nav-link:hover .nav-line, .nav-link.active .nav-line {
@@ -216,18 +215,18 @@ export default function Header() {
         .hamburger-line {
           display: block;
           width: 22px;
-          height: 1.5px;
+          height: 2px;
           background-color: var(--text-primary);
           transition: var(--transition-smooth);
         }
         .hamburger.open .hamburger-line:nth-child(1) {
-          transform: translateY(6.5px) rotate(45deg);
+          transform: translateY(7px) rotate(45deg);
         }
         .hamburger.open .hamburger-line:nth-child(2) {
           opacity: 0;
         }
         .hamburger.open .hamburger-line:nth-child(3) {
-          transform: translateY(-6.5px) rotate(-45deg);
+          transform: translateY(-7px) rotate(-45deg);
         }
         .mobile-menu-drawer {
           position: fixed;
@@ -265,7 +264,7 @@ export default function Header() {
           font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 0.15em;
-          color: var(--text-secondary);
+          color: var(--text-primary);
           padding: 0.4rem;
           transition: var(--transition-fast);
         }
@@ -286,6 +285,7 @@ export default function Header() {
           }
           .logo-img-mobile {
             display: block;
+            height: 28px;
           }
           .hamburger {
             display: flex;

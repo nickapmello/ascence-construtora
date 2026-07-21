@@ -1,22 +1,22 @@
-/* ASCENCE Construtora - Design System & Custom Tokens (Taste Skill Inspired) */
+/* ASCENCE Construtora - Design System & Custom Tokens (Refined WCAG AA & Architectural Luxury) */
 
 :root {
   /* Color Palette - Terracota Minimalista */
-  --bg-primary: #F5EFEA;      /* Elegant warm clay/sand off-white */
+  --bg-primary: #F5EFEA;      /* Warm clay/sand off-white */
   --bg-secondary: #ffffff;    /* Pure white */
   --bg-dark: #1F2226;         /* Brand dark slate/graphite */
   --bg-dark-gray: #2A2E35;    /* Deep slate/charcoal */
   
-  --text-primary: #2A2E35;    /* Dark graphite */
-  --text-secondary: #5C626C;  /* Medium graphite for body text */
-  --text-muted: #8A919C;      /* Warm muted gray for details/lines */
+  --text-primary: #1F2226;    /* Dark graphite */
+  --text-secondary: #4A505A;  /* Medium graphite for body text - WCAG AA compliant */
+  --text-muted: #737A85;      /* Warm muted gray for details/lines */
   --text-light: #F5EFEA;      /* Off-white text on dark backgrounds */
   
   --accent-gold: #a77765;     /* Rosê Cobre / Pantone 479 C */
   --accent-gold-dark: #8b6051;/* Deep copper/rosê hover state */
   --accent-gold-light: #FAF5F0;/* Soft rose-cream tint */
   
-  --border-light: #E4DFDA;    /* Warm beige borders */
+  --border-light: #DCD6D0;    /* Warm beige borders */
   --border-dark: #373C44;     /* Dark charcoal border */
 
   /* Typography */
@@ -24,7 +24,7 @@
   --font-sans: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   
   /* Layout Spacing */
-  --container-max: 1400px;
+  --container-max: 1240px;
   --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -76,8 +76,8 @@ body {
 /* Typography Presets */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  font-weight: 500;
-  line-height: 1.1;
+  font-weight: 400;
+  line-height: 1.15;
   color: var(--text-primary);
 }
 
@@ -104,247 +104,171 @@ a {
   }
 }
 
-/* Layout Spacers (editorial feel) */
 .section-padding {
-  padding-top: 7.5rem;
-  padding-bottom: 7.5rem;
+  padding-top: 6.5rem;
+  padding-bottom: 6.5rem;
+}
+.section-padding-top {
+  padding-top: 6.5rem;
 }
 
 @media (max-width: 768px) {
   .section-padding {
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .section-padding-top {
+    padding-top: 4rem;
   }
 }
 
-/* Premium Typography Helper Classes */
 .display-title {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5vw, 4.8rem);
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
 }
 
 .section-title {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
-  font-weight: 400;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 300;
   letter-spacing: -0.01em;
-  line-height: 1.15;
+  line-height: 1.18;
 }
 
 .overline {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  color: var(--accent-gold);
+  letter-spacing: 0.22em;
+  color: var(--accent-gold-dark);
   display: inline-block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .body-text {
   font-family: var(--font-sans);
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.65;
   color: var(--text-secondary);
-  max-width: 65ch; /* Optimum line length for reading */
+  max-width: 65ch;
 }
 
-/* Premium Button Styles */
+/* High Contrast Button System (WCAG AA Compliant) */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.95rem 2.2rem;
+  padding: 0.9rem 2rem;
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  border-radius: 3rem; /* Rounded-pill shape for premium instrument feel */
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  letter-spacing: 0.16em;
+  border-radius: 3rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   position: relative;
   overflow: hidden;
   border: 1px solid transparent;
   z-index: 1;
+  text-decoration: none;
 }
 
-.btn:hover {
-  transform: scale(1.03); /* Magnetic feel scale */
+.btn:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
 }
 
 .btn-primary {
   background-color: var(--bg-dark);
-  color: var(--text-light);
+  color: #ffffff;
+  border: 1px solid var(--bg-dark);
 }
-
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.btn-primary:hover {
   background-color: var(--accent-gold-dark);
-  transform: translateY(100%);
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: -1; /* Place behind text but inside overflow hidden */
-}
-
-.btn-primary:hover::after {
-  transform: translateY(0);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  border-color: var(--border-light);
-  color: var(--text-primary);
-}
-
-.btn-secondary:hover {
-  border-color: var(--bg-dark);
-  background-color: var(--bg-dark);
-  color: var(--text-light);
+  border-color: var(--accent-gold-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
 .btn-gold {
   background-color: var(--accent-gold);
   color: var(--bg-dark);
+  border: 1px solid var(--accent-gold);
   font-weight: 700;
 }
-
-.btn-gold::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bg-dark);
-  transform: translateY(100%);
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: -1;
-}
-
 .btn-gold:hover {
-  color: var(--text-light);
+  background-color: var(--bg-dark);
+  color: #ffffff;
+  border-color: var(--bg-dark);
+  transform: translateY(-2px);
 }
 
-.btn-gold:hover::after {
-  transform: translateY(0);
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+}
+.btn-secondary:hover {
+  background-color: var(--bg-dark);
+  color: #ffffff;
+  border-color: var(--bg-dark);
+  transform: translateY(-2px);
 }
 
-/* Interactive Floating WhatsApp Button */
+.text-white-btn {
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+  background-color: transparent;
+}
+.text-white-btn:hover {
+  background-color: #ffffff !important;
+  color: var(--bg-dark) !important;
+  border-color: #ffffff !important;
+}
+
+/* Floating WhatsApp Button */
 .whatsapp-float {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 3.8rem;
-  height: 3.8rem;
+  width: 3.6rem;
+  height: 3.6rem;
   background-color: #25d366;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 35px rgba(37, 211, 102, 0.25);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
   z-index: 1000;
   color: white;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.1) translateY(-4px);
+  transform: scale(1.1) translateY(-3px);
   background-color: #20ba5a;
 }
 
-/* Card and grid animations */
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Image loading skeleton / placeholder styling */
+img {
+  background-color: #e5dfd9;
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
-
-/* Glassmorphism Panel */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.text-center {
+  text-align: center;
 }
-
-/* Sticky Header styling */
-.header-active {
-  background: rgba(251, 251, 249, 0.75) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(197, 168, 128, 0.15) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
-}
-
-/* Global Interactive Elements Lift (translateY(-1px)) */
-.desktop-menu .nav-link, 
-.footer-links-list button,
-.footer-socials a,
-.mini-info-list a {
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.3s ease;
-}
-
-.desktop-menu .nav-link:hover, 
-.footer-links-list button:hover,
-.footer-socials a:hover,
-.mini-info-list a:hover {
-  transform: translateY(-2px);
-}
-
-/* Noise overlay styles */
-.noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.035; /* Subtle noise density */
-  z-index: 9999;
-  pointer-events: none;
-  filter: url(#noise-filter);
-}
-
-/* Rounded Border System (rounded-[2rem] to rounded-[3rem]) */
-.property-card,
-.bento-card,
-.value-card,
-.plan-card,
-.detailed-diff-card,
-.contact-form-container,
-.construction-panel,
-.neighborhood-panel {
-  border-radius: 2rem !important; /* Premium rounded shapes */
-  overflow: hidden;
-}
-
-.about-teaser-image,
-.manifest-image-col,
-.craft-image,
-.detail-hero-image-wrapper {
-  border-radius: 2.5rem !important;
-  overflow: hidden;
-}
-
-.about-teaser-image img,
-.manifest-image-col img,
-.craft-image img,
-.detail-hero-image-wrapper img {
-  border-radius: 2.5rem !important;
-}
-
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2.5rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.w-full { width: 100%; }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { COMPANY_INFO } from "../data/mockData";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -11,8 +12,23 @@ export default function ContactForm() {
     privacyAccepted: false
   });
 
-  const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+
+  // Máscara de telefone automática: (XX) XXXXX-XXXX
+  const handlePhoneChange = (e) => {
+    let val = e.target.value.replace(/\D/g, "");
+    if (val.length > 11) val = val.slice(0, 11);
+
+    if (val.length > 6) {
+      val = `(${val.slice(0, 2)}) ${val.slice(2, 7)}-${val.slice(7)}`;
+    } else if (val.length > 2) {
+      val = `(${val.slice(0, 2)}) ${val.slice(2)}`;
+    } else if (val.length > 0) {
+      val = `(${val}`;
+    }
+
+    setFormData((prev) => ({ ...prev, phone: val }));
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -34,134 +50,119 @@ export default function ContactForm() {
     }
 
     setErrorMsg("");
-    setSubmitted(true);
+
+    // Formata a mensagem para envio direto e real via WhatsApp oficial
+    const textMsg = `*Contato via Site ASCENCE Construtora*\n\n` +
+      `*Nome:* ${formData.name}\n` +
+      `*Telefone:* ${formData.phone}\n` +
+      `*E-mail:* ${formData.email}\n` +
+      `*Assunto:* ${formData.subject || "Informações Gerais / Lançamento"}\n\n` +
+      `*Mensagem:*\n${formData.message}`;
+
+    const whatsappUrl = `https://wa.me/5543999323043?text=${encodeURIComponent(textMsg)}`;
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
     <div className="institutional-contact-card">
-      {submitted ? (
-        <div className="form-success-box text-center">
-          <div className="success-icon-circle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="32" height="32">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeLinecap="round" strokeLinejoin="round" />
-              <polyline points="22 4 12 14.01 9 11.01" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <h3 className="success-title">Mensagem Enviada</h3>
-          <p className="success-desc">
-            Obrigado pelo seu contato. Nossa equipe retornará seu atendimento com total atenção e discrição em breve.
-          </p>
-          <button
-            onClick={() => {
-              setSubmitted(false);
-              setFormData({ name: "", phone: "", email: "", subject: "", message: "", privacyAccepted: false });
-            }}
-            className="btn btn-secondary mt-6"
-          >
-            <span>Enviar nova mensagem</span>
-          </button>
+      <form onSubmit={handleSubmit} className="institutional-form">
+        <h3 className="form-heading">Fale com a ASCENCE</h3>
+        <p className="form-subheading">
+          Preencha os dados para iniciar o atendimento direto via WhatsApp com a nossa equipe.
+        </p>
+
+        {errorMsg && <div className="form-error-alert">{errorMsg}</div>}
+
+        <div className="form-field">
+          <label htmlFor="name" className="field-label">Nome Completo *</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Seu nome completo"
+            className="field-input"
+            required
+          />
         </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="institutional-form">
-          <h3 className="form-heading">Fale Conosco</h3>
-          <p className="form-subheading">
-            Tire dúvidas sobre nossa construtora ou solicite informações sobre nosso próximo lançamento em Arapongas.
-          </p>
 
-          {errorMsg && <div className="form-error-alert">{errorMsg}</div>}
-
+        <div className="form-row-two">
           <div className="form-field">
-            <label htmlFor="name" className="field-label">Nome Completo *</label>
+            <label htmlFor="phone" className="field-label">Telefone / WhatsApp *</label>
             <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Seu nome completo"
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handlePhoneChange}
+              placeholder="(43) 99999-9999"
               className="field-input"
               required
             />
           </div>
 
-          <div className="form-row-two">
-            <div className="form-field">
-              <label htmlFor="phone" className="field-label">Telefone / WhatsApp *</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="(43) 99999-9999"
-                className="field-input"
-                required
-              />
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="email" className="field-label">E-mail *</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="seu.email@exemplo.com"
-                className="field-input"
-                required
-              />
-            </div>
-          </div>
-
           <div className="form-field">
-            <label htmlFor="subject" className="field-label">Assunto</label>
+            <label htmlFor="email" className="field-label">E-mail *</label>
             <input
-              type="text"
-              id="subject"
-              name="subject"
-              value={formData.subject}
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
-              placeholder="Ex: Informações institucionais / Lançamento"
+              placeholder="seu.email@exemplo.com"
               className="field-input"
+              required
             />
           </div>
+        </div>
 
-          <div className="form-field">
-            <label htmlFor="message" className="field-label">Mensagem *</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              value={formData.message}
+        <div className="form-field">
+          <label htmlFor="subject" className="field-label">Assunto</label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            placeholder="Ex: Informações sobre o lançamento"
+            className="field-input"
+          />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="message" className="field-label">Mensagem *</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Como podemos ajudar você?"
+            className="field-textarea"
+            required
+          ></textarea>
+        </div>
+
+        <div className="form-privacy-check">
+          <label className="checkbox-container">
+            <input
+              type="checkbox"
+              name="privacyAccepted"
+              checked={formData.privacyAccepted}
               onChange={handleChange}
-              placeholder="Como podemos ajudar você?"
-              className="field-textarea"
               required
-            ></textarea>
-          </div>
+            />
+            <span className="checkbox-text">
+              Concordo com a <Link to="/politica-de-privacidade" target="_blank" className="privacy-link">Política de Privacidade</Link> da ASCENCE Construtora.
+            </span>
+          </label>
+        </div>
 
-          <div className="form-privacy-check">
-            <label className="checkbox-container">
-              <input
-                type="checkbox"
-                name="privacyAccepted"
-                checked={formData.privacyAccepted}
-                onChange={handleChange}
-                required
-              />
-              <span className="checkmark"></span>
-              <span className="checkbox-text">
-                Li e concordo com a <Link to="/politica-de-privacidade" target="_blank" className="privacy-link">Política de Privacidade</Link> da ASCENCE Construtora.
-              </span>
-            </label>
-          </div>
-
-          <button type="submit" className="btn btn-gold w-full mt-4">
-            <span>Enviar Mensagem</span>
-          </button>
-        </form>
-      )}
+        <button type="submit" className="btn btn-gold w-full mt-4">
+          <span>Enviar via WhatsApp</span>
+        </button>
+      </form>
 
       <style>{`
         .institutional-contact-card {
@@ -243,29 +244,6 @@ export default function ContactForm() {
         .privacy-link {
           color: var(--accent-gold-dark);
           text-decoration: underline;
-        }
-        .success-icon-circle {
-          width: 64px;
-          height: 64px;
-          background-color: var(--accent-gold-light);
-          color: var(--accent-gold-dark);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto 1.5rem auto;
-        }
-        .success-title {
-          font-family: var(--font-serif);
-          font-size: 2rem;
-          margin-bottom: 0.5rem;
-        }
-        .success-desc {
-          color: var(--text-secondary);
-          font-size: 0.95rem;
-          max-width: 420px;
-          margin: 0 auto;
-          line-height: 1.6;
         }
         @media (max-width: 640px) {
           .form-row-two {

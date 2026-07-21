@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { COMPANY_INFO, TRAJECTORY_CHAPTERS, CONSTRUCTION_PILLARS, HOUSES_GALLERY, SINGLE_LAUNCH } from "../data/mockData";
-import LightboxModal from "../components/LightboxModal";
+import { COMPANY_INFO, TRAJECTORY_CHAPTERS, CONSTRUCTION_PILLARS, CARE_EXPERIENCE_PRINCIPLES, EXPECTATION_LAUNCH, IMAGES } from "../data/mockData";
 import ContactForm from "../components/ContactForm";
 import symbolDark from "../assets/symbol_3_copper_charcoal.png";
 
 export default function Home() {
-  const [selectedLightboxItem, setSelectedLightboxItem] = useState(null);
-
   return (
     <div className="home-page-container">
       {/* 1. HERO PRINCIPAL */}
       <section className="hero-section">
         <div className="hero-bg-wrapper">
+          {/* IMAGEM LIFESTYLE / HERO PRINCIPAL */}
           <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80"
-            alt="Arquitetura contemporânea e iluminação natural"
+            src={IMAGES.heroBg}
+            alt="Arquitetura contemporânea e bom aproveitamento da luz natural"
             className="hero-bg-img"
           />
           <div className="hero-overlay"></div>
@@ -58,9 +56,10 @@ export default function Home() {
             </div>
           </div>
           <div className="manifesto-image-col">
+            {/* IMAGEM INSTITUCIONAL - MANIFESTO */}
             <img
-              src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80"
-              alt="Cuidado arquitetônico e integração com o bem-estar"
+              src={IMAGES.manifesto}
+              alt="Cuidado com a arquitetura e espaços de convivência"
               className="manifesto-img"
               loading="lazy"
             />
@@ -75,7 +74,7 @@ export default function Home() {
             <span className="overline gold-overline">Nossa Evolução</span>
             <h2 className="section-title text-light">Uma história construída com experiência e confiança.</h2>
             <p className="section-desc text-muted-light">
-              Da bagagem consolidada na construção de casas ao desenvolvimento de um novo capítulo em Arapongas.
+              Da bagagem adquirida na construção de casas ao desenvolvimento de um novo capítulo em Arapongas.
             </p>
           </div>
 
@@ -92,44 +91,47 @@ export default function Home() {
 
           <div className="text-center mt-6">
             <Link to="/nossa-trajetoria" className="btn btn-gold">
-              <span>Conheça toda a nossa trajetória</span>
+              <span>Conheça nossa trajetória</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 4. OBRAS E CASAS REALIZADAS */}
-      <section className="houses-gallery-section section-padding">
+      {/* 4. EXPERIÊNCIA CONSTRUÍDA COM CUIDADO (Substituição institucional) */}
+      <section className="care-experience-section section-padding">
         <div className="container">
           <div className="section-header text-center mx-auto mb-6">
-            <span className="overline">Prova de Capacidade Técnica</span>
-            <h2 className="section-title">Experiência que pode ser vista em cada detalhe.</h2>
+            <span className="overline">Compromisso com a Qualidade</span>
+            <h2 className="section-title">Experiência construída com cuidado.</h2>
             <p className="section-desc">
-              Uma seleção editorial de residências construídas que exemplificam o nosso cuidado construtivo e sensibilidade arquitetônica.
+              A trajetória da ASCENCE foi formada pela experiência prática na construção residencial e pelo compromisso de tratar cada projeto com atenção, responsabilidade e proximidade.
             </p>
           </div>
 
-          <div className="houses-grid">
-            {HOUSES_GALLERY.map((house) => (
-              <div
-                key={house.id}
-                className="house-editorial-card"
-                onClick={() => setSelectedLightboxItem(house)}
-              >
-                <div className="house-image-wrapper">
-                  <img src={house.image} alt={house.title} className="house-img" loading="lazy" />
-                  <div className="house-hover-overlay">
-                    <span className="zoom-text">Ampliar Imagem</span>
-                  </div>
-                </div>
-                <div className="house-card-body">
-                  <span className="house-location">{house.location} &middot; {house.yearPlaceholder}</span>
-                  <h3 className="house-title">{house.title}</h3>
-                  <p className="house-desc">{house.description}</p>
-                </div>
+          <div className="care-principles-grid mt-6">
+            {CARE_EXPERIENCE_PRINCIPLES.map((item) => (
+              <div key={item.id} className="care-card">
+                <h3 className="care-card-title">{item.title}</h3>
+                <p className="care-card-desc">{item.description}</p>
               </div>
             ))}
           </div>
+
+          {/* 
+            PREPARAÇÃO PARA FUTURA GALERIA DE OBRAS REAIS (Grid 2x2 Desktop, 1 Col Mobile):
+            Quando forem fornecidas fotografias reais de obras da ASCENCE, descomentar o bloco abaixo.
+          */}
+          {/*
+          <div className="real-projects-grid-2x2 mt-8">
+            {REAL_PROJECTS_GALLERY.map((project) => (
+              <div key={project.id} className="real-project-card">
+                <img src={project.image} alt={project.title} />
+                <h4>{project.title}</h4>
+                <p>{project.description}</p>
+              </div>
+            ))}
+          </div>
+          */}
         </div>
       </section>
 
@@ -166,9 +168,10 @@ export default function Home() {
       <section className="lifestyle-section section-padding">
         <div className="container lifestyle-grid">
           <div className="lifestyle-image-wrapper">
+            {/* IMAGEM LIFESTYLE - QUALIDADE DE VIDA */}
             <img
-              src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80"
-              alt="Qualidade de vida, luz natural e convivência em família"
+              src={IMAGES.lifestyle}
+              alt="Qualidade de vida, bom aproveitamento da luz natural e convivência"
               className="lifestyle-img"
               loading="lazy"
             />
@@ -177,61 +180,62 @@ export default function Home() {
             <span className="overline">Viver com Propósito</span>
             <h2 className="section-title">Projetamos espaços para tudo aquilo que realmente importa.</h2>
             <p className="body-text mt-4">
-              Acreditamos que uma boa edificação transcende as paredes físicas. Ela deve proporcionar conforto térmico natural, privacidade nos momentos de descanso e ambientes acolhedores onde a rotina da família acontece de forma leve.
+              Acreditamos que uma boa edificação transcende as paredes físicas. Ela deve proporcionar conforto térmico, privacidade nos momentos de descanso e ambientes acolhedores onde a rotina da família acontece de forma leve.
             </p>
             <ul className="lifestyle-bullets-list mt-6">
               <li>
                 <span className="bullet-dot"></span>
-                <span>Abundância de luz solar e ventilação cruzada natural</span>
+                <span>Bom aproveitamento da luz natural e ventilação cruzada</span>
               </li>
               <li>
                 <span className="bullet-dot"></span>
-                <span>Privacidade e conforto acústico para o descanso pleno</span>
+                <span>Privacidade e conforto para o descanso pleno</span>
               </li>
               <li>
                 <span className="bullet-dot"></span>
-                <span>Integração harmoniosa entre ambientes de convivência</span>
+                <span>Integração harmoniosa entre os ambientes de convivência</span>
               </li>
             </ul>
           </div>
         </div>
       </section>
 
-      {/* 7. ÚNICO LANÇAMENTO */}
+      {/* 7. ÚNICO LANÇAMENTO (Expectativa "Em Breve") */}
       <section className="single-launch-home-section section-padding bg-dark-section">
         <div className="container">
           <div className="single-launch-card-home">
             <div className="launch-home-content">
-              <span className="overline gold-overline">Breve Lançamento em Arapongas</span>
-              <h2 className="section-title text-light">{SINGLE_LAUNCH.tagline}</h2>
+              <span className="overline gold-overline">{EXPECTATION_LAUNCH.eyebrow}</span>
+              <h2 className="section-title text-light">{EXPECTATION_LAUNCH.title}</h2>
               <p className="body-text text-muted-light mt-4">
-                {SINGLE_LAUNCH.concept}
+                {EXPECTATION_LAUNCH.text}
               </p>
               
-              <div className="launch-placeholder-info-box mt-6">
-                <span className="placeholder-tag">EMPREENDIMENTO: {SINGLE_LAUNCH.namePlaceholder}</span>
-                <span className="placeholder-tag">LOCALIZAÇÃO: {SINGLE_LAUNCH.locationPlaceholder}</span>
+              <div className="launch-notice-badge mt-6">
+                <span className="notice-dot"></span>
+                <span>{EXPECTATION_LAUNCH.notice}</span>
               </div>
 
               <div className="launch-home-actions mt-6">
-                <Link to="/lancamento" className="btn btn-gold">
-                  <span>Conhecer detalhes do lançamento</span>
-                </Link>
+                <a href="#contato" className="btn btn-gold">
+                  <span>Quero receber novidades</span>
+                </a>
                 <a
                   href={COMPANY_INFO.contact.whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-secondary text-white-btn"
                 >
-                  <span>Falar pelo WhatsApp</span>
+                  <span>Falar com a ASCENCE</span>
                 </a>
               </div>
             </div>
             
             <div className="launch-home-image-wrapper">
+              {/* IMAGEM CONCEITUAL - BREVE LANÇAMENTO */}
               <img
-                src={SINGLE_LAUNCH.imagePlaceholder}
-                alt="Conceito do Lançamento ASCENCE"
+                src={EXPECTATION_LAUNCH.conceptImage}
+                alt="Imagem conceitual do breve lançamento residencial da ASCENCE"
                 className="launch-home-img"
                 loading="lazy"
               />
@@ -247,7 +251,7 @@ export default function Home() {
             <span className="overline">Relacionamento & Atendimento</span>
             <h2 className="section-title">Inicie uma conversa conosco.</h2>
             <p className="body-text mb-6">
-              Estamos prontos para atender você com transparência, clareza e discrição. Entre em contato para saber mais sobre a ASCENCE ou sobre nosso lançamento.
+              Estamos prontos para atender você com transparência, clareza e atenção. Entre em contato para saber mais sobre a ASCENCE ou receber novidades sobre nosso lançamento.
             </p>
             <div className="mini-info-list">
               <div className="mini-info-item">
@@ -270,14 +274,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* LIGHTBOX MODAL */}
-      {selectedLightboxItem && (
-        <LightboxModal
-          item={selectedLightboxItem}
-          onClose={() => setSelectedLightboxItem(null)}
-        />
-      )}
-
       <style>{`
         .home-page-container {
           background-color: var(--bg-primary);
@@ -286,11 +282,11 @@ export default function Home() {
         /* HERO STYLING */
         .hero-section {
           height: 100dvh;
-          min-height: 600px;
+          min-height: 580px;
           position: relative;
           display: flex;
           align-items: flex-end;
-          padding-bottom: 5.5rem;
+          padding-bottom: 5rem;
           background-color: var(--bg-dark);
           overflow: hidden;
         }
@@ -332,22 +328,22 @@ export default function Home() {
         }
         .hero-title {
           font-family: var(--font-serif);
-          font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+          font-size: clamp(2.6rem, 5vw, 4.4rem);
           font-weight: 300;
           color: var(--text-light);
           line-height: 1.1;
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.25rem;
         }
         .serif-italic-gold {
           font-style: italic;
           color: var(--accent-gold);
         }
         .hero-subtitle {
-          font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+          font-size: clamp(1rem, 1.2vw, 1.2rem);
           color: var(--text-muted);
           line-height: 1.65;
-          margin-bottom: 2.5rem;
-          max-width: 720px;
+          margin-bottom: 2.25rem;
+          max-width: 700px;
         }
         .hero-actions {
           display: flex;
@@ -363,7 +359,7 @@ export default function Home() {
           align-items: center;
         }
         .lead-text {
-          font-size: 1.15rem;
+          font-size: 1.1rem;
           line-height: 1.7;
           color: var(--text-secondary);
         }
@@ -376,7 +372,7 @@ export default function Home() {
         }
         .quote-symbol {
           height: 32px;
-          opacity: 0.8;
+          opacity: 0.85;
         }
         .quote-text {
           font-family: var(--font-serif);
@@ -386,7 +382,7 @@ export default function Home() {
         }
         .manifesto-img {
           width: 100%;
-          height: 480px;
+          height: 460px;
           object-fit: cover;
           border-radius: 2px;
         }
@@ -407,24 +403,23 @@ export default function Home() {
         }
         .trajectory-chapters-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
           gap: 2rem;
         }
         .trajectory-card {
           background-color: var(--bg-dark-gray);
           border: 1px solid var(--border-dark);
-          padding: 2.5rem 2rem;
+          padding: 2.25rem 1.75rem;
           border-radius: 4px;
           display: flex;
           flex-direction: column;
-          position: relative;
         }
         .chapter-num {
           font-family: var(--font-serif);
-          font-size: 2.5rem;
+          font-size: 2.4rem;
           color: var(--accent-gold);
           line-height: 1;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.4rem;
         }
         .chapter-subtitle {
           font-size: 0.7rem;
@@ -435,98 +430,43 @@ export default function Home() {
         }
         .chapter-title {
           font-family: var(--font-serif);
-          font-size: 1.4rem;
+          font-size: 1.35rem;
           font-weight: 400;
           color: var(--text-light);
-          margin-bottom: 1rem;
+          margin-bottom: 0.85rem;
         }
         .chapter-desc {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--text-muted);
           line-height: 1.6;
         }
 
-        /* HOUSES GALLERY */
-        .houses-grid {
+        /* CARE EXPERIENCE PRINCIPLES */
+        .care-principles-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-          gap: 2.5rem;
-          margin-top: 3.5rem;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
         }
-        .house-editorial-card {
+        .care-card {
           background-color: var(--bg-secondary);
           border: 1px solid var(--border-light);
-          overflow: hidden;
-          cursor: pointer;
-          transition: transform 0.4s ease, box-shadow 0.4s ease;
+          padding: 2.5rem 2rem;
+          border-radius: 4px;
+          transition: var(--transition-fast);
         }
-        .house-editorial-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+        .care-card:hover {
+          border-color: var(--accent-gold);
+          transform: translateY(-3px);
         }
-        .house-image-wrapper {
-          position: relative;
-          width: 100%;
-          padding-top: 66%;
-          overflow: hidden;
-          background-color: #eee;
-        }
-        .house-img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .house-editorial-card:hover .house-img {
-          transform: scale(1.06);
-        }
-        .house-hover-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(31, 34, 38, 0.4);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-        .house-editorial-card:hover .house-hover-overlay {
-          opacity: 1;
-        }
-        .zoom-text {
-          color: #ffffff;
-          font-size: 0.75rem;
-          text-transform: uppercase;
-          letter-spacing: 0.15em;
-          border: 1px solid #ffffff;
-          padding: 0.4rem 1rem;
-        }
-        .house-card-body {
-          padding: 1.75rem;
-        }
-        .house-location {
-          font-size: 0.7rem;
-          text-transform: uppercase;
-          letter-spacing: 0.15em;
-          color: var(--accent-gold-dark);
-          display: block;
-          margin-bottom: 0.4rem;
-        }
-        .house-title {
+        .care-card-title {
           font-family: var(--font-serif);
-          font-size: 1.4rem;
-          margin-bottom: 0.5rem;
+          font-size: 1.5rem;
+          margin-bottom: 0.75rem;
         }
-        .house-desc {
-          font-size: 0.88rem;
+        .care-card-desc {
+          font-size: 0.9rem;
           color: var(--text-secondary);
-          line-height: 1.5;
+          line-height: 1.6;
         }
 
         /* PILLARS / NOSSO JEITO DE CONSTRUIR */
@@ -535,33 +475,33 @@ export default function Home() {
         }
         .pillars-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
           gap: 2rem;
         }
         .pilar-card {
           background-color: var(--bg-primary);
           border: 1px solid var(--border-light);
-          padding: 2.5rem 2rem;
+          padding: 2.25rem 1.75rem;
           transition: var(--transition-fast);
         }
         .pilar-card:hover {
           border-color: var(--accent-gold);
-          transform: translateY(-4px);
+          transform: translateY(-3px);
         }
         .pilar-badge {
           font-family: var(--font-serif);
-          font-size: 2rem;
+          font-size: 1.8rem;
           color: var(--accent-gold);
           display: block;
-          margin-bottom: 1rem;
+          margin-bottom: 0.75rem;
         }
         .pilar-title {
           font-family: var(--font-serif);
-          font-size: 1.4rem;
+          font-size: 1.35rem;
           margin-bottom: 0.75rem;
         }
         .pilar-desc {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--text-secondary);
           line-height: 1.6;
         }
@@ -575,7 +515,7 @@ export default function Home() {
         }
         .lifestyle-img {
           width: 100%;
-          height: 480px;
+          height: 460px;
           object-fit: cover;
           border-radius: 2px;
         }
@@ -616,19 +556,24 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
         }
-        .launch-placeholder-info-box {
-          display: flex;
-          flex-direction: column;
+        .launch-notice-badge {
+          display: inline-flex;
+          align-items: center;
           gap: 0.5rem;
-          padding: 1rem 1.25rem;
-          background: rgba(0,0,0,0.3);
-          border-left: 2px solid var(--accent-gold);
-        }
-        .placeholder-tag {
-          font-size: 0.75rem;
-          letter-spacing: 0.1em;
+          padding: 0.5rem 1rem;
+          background: rgba(167, 119, 101, 0.15);
+          border: 1px solid var(--accent-gold);
           color: var(--accent-gold);
-          font-weight: 600;
+          font-size: 0.7rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          width: fit-content;
+        }
+        .notice-dot {
+          width: 6px;
+          height: 6px;
+          background-color: var(--accent-gold);
+          border-radius: 50%;
         }
         .launch-home-actions {
           display: flex;
@@ -637,7 +582,7 @@ export default function Home() {
         }
         .launch-home-image-wrapper {
           width: 100%;
-          min-height: 380px;
+          min-height: 360px;
         }
         .launch-home-img {
           width: 100%;
