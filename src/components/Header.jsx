@@ -115,31 +115,35 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Curtain Drawer */}
-      <div className={`mobile-menu-drawer ${mobileMenuOpen ? "open" : ""}`}>
-        <nav className="mobile-nav">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.to === "/"}
-              className={({ isActive }) => `mobile-nav-link ${isActive ? "active" : ""}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-          <a
-            href={COMPANY_INFO.contact.whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-gold mobile-cta-btn"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Falar no WhatsApp
-          </a>
-        </nav>
-      </div>
+      {/* Mobile Menu Overlay & Drawer */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu-overlay">
+          <div className="mobile-menu-drawer">
+            <nav className="mobile-nav">
+              {navItems.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  end={item.to === "/"}
+                  className={({ isActive }) => `mobile-nav-link ${isActive ? "active" : ""}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+              <a
+                href={COMPANY_INFO.contact.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-gold mobile-cta-btn"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Falar no WhatsApp
+              </a>
+            </nav>
+          </div>
+        </div>
+      )}
 
       <style>{`
         .header-nav {
@@ -238,7 +242,7 @@ export default function Header() {
           cursor: pointer;
           flex-direction: column;
           gap: 5px;
-          z-index: 110;
+          z-index: 10000;
           padding: 5px;
         }
         .hamburger-line {
@@ -257,30 +261,38 @@ export default function Header() {
         .hamburger.open .hamburger-line:nth-child(3) {
           transform: translateY(-7px) rotate(-45deg);
         }
-        .mobile-menu-drawer {
+
+        /* Mobile Menu Overlay & Drawer */
+        .mobile-menu-overlay {
           position: fixed;
-          top: 0;
-          right: 0;
-          width: 100vw;
-          height: 100vh;
-          height: 100dvh;
+          inset: 0;
+          z-index: 9999;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
           background-color: var(--bg-primary);
-          z-index: 105;
-          transform: translateX(100%);
-          transition: var(--transition-smooth);
           display: flex;
           align-items: center;
           justify-content: center;
-          overflow-y: auto;
-          -webkit-overflow-scrolling: touch;
-          overscroll-behavior: contain;
           padding: 4rem 1.5rem 2rem 1.5rem;
+          animation: mobileMenuFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .mobile-menu-drawer.open {
-          transform: translateX(0);
+        .mobile-menu-drawer {
+          min-height: 100%;
+          width: 100%;
+          overscroll-behavior: contain;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
+
+        @keyframes mobileMenuFadeIn {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
         @media (min-width: 1081px) {
-          .mobile-menu-drawer {
+          .mobile-menu-overlay {
             display: none !important;
           }
         }
