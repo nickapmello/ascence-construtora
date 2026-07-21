@@ -9,8 +9,8 @@
   --text-secondary: #5c5854;
   --text-muted: #8c8680;
   --text-light: #fbfbf9;
-  --accent-gold: #c5a880;       /* Cobre Dourado / Beige Bronze (#C5A880) - Preservado para botões e fundos */
-  --accent-gold-dark: #a77765;  /* Rosé / Cobre Terracota Sofisticado (#A77765) - Utilizado para TEXTOS e HOVERS */
+  --accent-gold: #c5a880;       /* Cobre Dourado / Beige Bronze (#C5A880) */
+  --accent-gold-dark: #a77765;  /* Rosé / Cobre Terracota Sofisticado (#A77765) - Utilizado para TEXTOS, HOVERS e BOTÕES ROSÉ */
   --accent-gold-light: #eae3d9;
   --border-light: rgba(167, 119, 101, 0.15);
   --border-dark: rgba(251, 251, 249, 0.1);
@@ -171,16 +171,17 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
+/* BOTÃO ROSÉ DA IDENTIDADE VISUAL (.btn-gold) */
 .btn-gold {
-  background-color: var(--accent-gold);
-  color: var(--bg-dark);
-  border: 1px solid var(--accent-gold);
+  background-color: #A77765;
+  border-color: #A77765;
+  color: #1F2226;
   font-weight: 700;
 }
 .btn-gold:hover {
-  background-color: var(--bg-dark);
-  color: #ffffff;
-  border-color: var(--bg-dark);
+  background-color: #1F2226;
+  border-color: #1F2226;
+  color: #FFFFFF;
   transform: translateY(-2px);
 }
 
