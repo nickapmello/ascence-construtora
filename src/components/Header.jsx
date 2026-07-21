@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { NavLink, Link } from "react-router-dom";
 import { COMPANY_INFO } from "../data/mockData";
-import logoDark from "../assets/logo-ascence-horizontal-trimmed.png";
+import logoDark from "../assets/logo_4_copper_charcoal.png";
 import symbolDark from "../assets/symbol_3_copper_charcoal.png";
 
 export default function Header() {
