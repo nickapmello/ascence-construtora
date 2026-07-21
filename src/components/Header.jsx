@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { COMPANY_INFO } from "../data/mockData";
 import logoDark from "../assets/logo_4_copper_charcoal.png";
@@ -7,7 +7,9 @@ import symbolDark from "../assets/symbol_3_copper_charcoal.png";
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const scrollPosition = useRef(0);
 
+  // Scroll detection for floating navbar styling
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 40) {
@@ -19,6 +21,33 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Robust cross-browser (iOS Safari & Android) body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    scrollPosition.current = window.scrollY;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPosition.current}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+
+      window.scrollTo(0, scrollPosition.current);
+    };
+  }, [mobileMenuOpen]);
 
   const navItems = [
     { to: "/", label: "Início" },
@@ -234,6 +263,7 @@ export default function Header() {
           right: 0;
           width: 100vw;
           height: 100vh;
+          height: 100dvh;
           background-color: var(--bg-primary);
           z-index: 105;
           transform: translateX(100%);
@@ -241,6 +271,10 @@ export default function Header() {
           display: flex;
           align-items: center;
           justify-content: center;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior: contain;
+          padding: 4rem 1.5rem 2rem 1.5rem;
         }
         .mobile-menu-drawer.open {
           transform: translateX(0);
