@@ -11,49 +11,19 @@ export default function WayOfBuilding() {
           <span className="overline">Compromisso Institucional</span>
           <h1 className="display-title">Nosso Jeito de Construir</h1>
           <p className="body-text lead-text mx-auto mt-4">
-            Metodologia pautada no rigor técnico, no conforto humano e na transparência ética em todas as fases da obra.
+            Quatro princípios que orientam o trabalho da ASCENCE com organização, cuidado e respeito às pessoas.
           </p>
         </div>
 
         {/* Pillars Deep Dive */}
         <div className="pillars-stream mt-8">
-          {CONSTRUCTION_PILLARS.map((pilar, idx) => (
+          {CONSTRUCTION_PILLARS.map((pilar) => (
             <div key={pilar.id} className="pillar-detail-card">
               <div className="pillar-card-header">
                 <span className="pillar-number">{pilar.number}</span>
                 <h3 className="pillar-title">{pilar.title}</h3>
               </div>
               <p className="pillar-desc">{pilar.description}</p>
-              <div className="pillar-subpoints mt-4">
-                {idx === 0 && (
-                  <ul>
-                    <li>Fundações testadas e auditadas por engenharia independente</li>
-                    <li>Cálculos estruturais projetados para solidez atemporal</li>
-                    <li>Seleção criteriosa de matérias-primas e fornecedores</li>
-                  </ul>
-                )}
-                {idx === 1 && (
-                  <ul>
-                    <li>Estudo detalhado de orientação solar e ventilação natural</li>
-                    <li>Integração orgânica de áreas internas com áreas externas</li>
-                    <li>Plantas pensadas para o aproveitamento inteligente de espaço</li>
-                  </ul>
-                )}
-                {idx === 2 && (
-                  <ul>
-                    <li>Atenuação acústica em lajes e tubulações sanitárias</li>
-                    <li>Esquadrias de alta performance com controle térmico e ruído</li>
-                    <li>Detalhamento de marcenaria e encontro de materiais nobres</li>
-                  </ul>
-                )}
-                {idx === 3 && (
-                  <ul>
-                    <li>Comunicação contínua e relatórios claros de evolução</li>
-                    <li>Cumprimento rigoroso de cronogramas e orçamentos acordados</li>
-                    <li>Atendimento pós-obra consultivo e dedicado</li>
-                  </ul>
-                )}
-              </div>
             </div>
           ))}
         </div>
@@ -63,7 +33,7 @@ export default function WayOfBuilding() {
           <div className="callout-content text-center mx-auto">
             <h2 className="callout-title">Construir com cuidado é respeitar a vida de quem vai morar.</h2>
             <p className="callout-desc mt-4">
-              Cada tijolo, laje e janela é instalado pensando na tranquilidade e no conforto dos próximos anos da sua família.
+              Cada ambiente é idealizado pensando na tranquilidade, na funcionalidade e no conforto da sua família.
             </p>
             <div className="mt-6">
               <Link to="/lancamento" className="btn btn-gold">
@@ -91,7 +61,7 @@ export default function WayOfBuilding() {
         }
         .pillars-stream {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 2.5rem;
         }
         .pillar-detail-card {
@@ -127,29 +97,6 @@ export default function WayOfBuilding() {
           font-size: 0.95rem;
           color: var(--text-secondary);
           line-height: 1.6;
-          margin-bottom: 1.5rem;
-        }
-        .pillar-subpoints ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 0.6rem;
-          border-top: 1px solid var(--border-light);
-          padding-top: 1.25rem;
-        }
-        .pillar-subpoints li {
-          font-size: 0.85rem;
-          color: var(--text-primary);
-          position: relative;
-          padding-left: 1.2rem;
-        }
-        .pillar-subpoints li::before {
-          content: "—";
-          position: absolute;
-          left: 0;
-          color: var(--accent-gold-dark);
         }
         .lifestyle-banner-callout {
           background-color: var(--bg-dark);
