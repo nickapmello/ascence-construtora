@@ -1,17 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { COMPANY_INFO } from "../data/mockData";
 import logoDark from "../assets/logo_4_copper_charcoal.png";
 import logoLight from "../assets/logo_1_copper_light.png";
 
 export default function Header() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const scrollPosition = useRef(0);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
+
+  // Define se o header deve operar no estado claro (páginas internas com fundo branco ou após scroll)
+  const isLightMode = !isHome || isScrolled;
 
   // Auto-hide e auto-show no scroll + detecção de página rolada (> 40px)
   useEffect(() => {
@@ -97,7 +103,7 @@ export default function Header() {
 
   return (
     <header 
-      className={`luxury-header ${isScrolled ? "luxury-scrolled" : ""} ${!headerVisible && !mobileMenuOpen ? "luxury-hidden" : ""}`}
+      className={`luxury-header ${isLightMode ? "luxury-theme-light" : "luxury-theme-dark"} ${isScrolled ? "luxury-scrolled" : ""} ${!headerVisible && !mobileMenuOpen ? "luxury-hidden" : ""}`}
     >
       <div className="luxury-header-wrapper">
         {/* ILHA 1: Logotipo Livre e Sofisticado */}
@@ -108,12 +114,12 @@ export default function Header() {
           aria-label="ASCENCE Construtora - Página Inicial"
         >
           <img 
-            src={isScrolled ? logoDark : logoLight} 
+            src={isLightMode ? logoDark : logoLight} 
             alt="ASCENCE Construtora" 
             className="luxury-logo-img desktop-logo" 
           />
           <img 
-            src={isScrolled ? logoDark : logoLight} 
+            src={isLightMode ? logoDark : logoLight} 
             alt="ASCENCE Construtora" 
             className="luxury-logo-img mobile-logo" 
           />
@@ -260,33 +266,32 @@ export default function Header() {
           transition: filter 0.3s ease, opacity 0.3s ease;
         }
 
-        .luxury-header:not(.luxury-scrolled) .luxury-logo-img {
+        .luxury-theme-dark:not(.luxury-scrolled) .luxury-logo-img {
           filter: brightness(1.2) drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4));
+        }
+
+        .luxury-theme-light .luxury-logo-img {
+          filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05));
         }
 
         .mobile-logo {
           display: none;
         }
 
-        /* --- ILHA 2: CÁPSULA FROSTED GLASS --- */
+        /* --- ILHA 2: CÁPSULA FROSTED GLASS (ESTRUTURA COMUM) --- */
         .luxury-nav-capsule {
           display: flex;
           align-items: center;
           gap: 1.8rem;
           padding: 0.65rem 2.2rem;
           border-radius: 9999px;
-          background: rgba(255, 255, 255, 0.12);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.28);
-          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12),
-                      inset 0 1px 0 rgba(255, 255, 255, 0.2);
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .luxury-nav-link {
           position: relative;
-          color: rgba(255, 255, 255, 0.88);
           font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
           font-size: 0.78rem;
           font-weight: 500;
@@ -300,15 +305,10 @@ export default function Header() {
           transition: color 0.25s ease, opacity 0.25s ease;
         }
 
-        .luxury-nav-link:hover {
-          color: #ffffff;
-        }
-
         .link-indicator {
           display: block;
           width: 0;
           height: 1.5px;
-          background: #ffffff;
           margin-top: 3px;
           border-radius: 2px;
           transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
@@ -320,11 +320,10 @@ export default function Header() {
         }
 
         .luxury-nav-link.active {
-          color: #ffffff;
           font-weight: 600;
         }
 
-        /* --- ILHA 3: BOTÃO CTA PÍLULA (ESTILO HVOYA) --- */
+        /* --- ILHA 3: BOTÃO CTA PÍLULA (ESTRUTURA COMUM) --- */
         .luxury-cta-island {
           display: flex;
           align-items: center;
@@ -334,8 +333,6 @@ export default function Header() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          background: #ffffff;
-          color: #1a1a1a;
           font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
           font-size: 0.76rem;
           font-weight: 600;
@@ -344,14 +341,10 @@ export default function Header() {
           text-decoration: none;
           padding: 0.72rem 1.65rem;
           border-radius: 9999px;
-          border: 1px solid rgba(255, 255, 255, 0.9);
-          box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .luxury-pill-btn:hover {
-          background: #f7f6f3;
-          color: #0d0e0f;
           transform: translateY(-2px);
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
         }
@@ -361,43 +354,78 @@ export default function Header() {
         }
 
         /* =========================================================
-           COMPORTAMENTO NO SCROLL (PÁGINA ROLADA)
-           Transição refinada para seções de fundo claro
+           CALIBRAÇÃO DE CORES: DARK (HOME SOBRE HERO) VS LIGHT (PÁGINAS INTERNAS E SCROLL)
            ========================================================= */
-        .luxury-scrolled {
-          top: 0.9rem;
+
+        /* 1. ESTADO DARK (Home sobre o hero escuro) */
+        .luxury-theme-dark .luxury-nav-capsule {
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.28);
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
-        .luxury-scrolled .luxury-nav-capsule {
+        .luxury-theme-dark .luxury-nav-link {
+          color: rgba(255, 255, 255, 0.88);
+        }
+
+        .luxury-theme-dark .luxury-nav-link:hover,
+        .luxury-theme-dark .luxury-nav-link.active {
+          color: #ffffff;
+        }
+
+        .luxury-theme-dark .link-indicator {
+          background: #ffffff;
+        }
+
+        .luxury-theme-dark .luxury-pill-btn {
+          background: #ffffff;
+          color: #1a1a1a;
+          border: 1px solid rgba(255, 255, 255, 0.9);
+          box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .luxury-theme-dark .luxury-pill-btn:hover {
+          background: #f7f6f3;
+          color: #0d0e0f;
+        }
+
+        /* 2. ESTADO LIGHT (Páginas internas com fundo claro ou rolagem) */
+        .luxury-theme-light .luxury-nav-capsule {
           background: rgba(255, 255, 255, 0.88);
           border: 1px solid rgba(167, 119, 101, 0.28);
           box-shadow: 0 10px 30px rgba(28, 28, 26, 0.08);
         }
 
-        .luxury-scrolled .luxury-nav-link {
-          color: #2c2f33;
+        .luxury-theme-light .luxury-nav-link {
+          color: #1F2328;
         }
 
-        .luxury-scrolled .luxury-nav-link:hover,
-        .luxury-scrolled .luxury-nav-link.active {
+        .luxury-theme-light .luxury-nav-link:hover,
+        .luxury-theme-light .luxury-nav-link.active {
           color: var(--accent-gold, #a77765);
         }
 
-        .luxury-scrolled .link-indicator {
+        .luxury-theme-light .link-indicator {
           background: var(--accent-gold, #a77765);
         }
 
-        .luxury-scrolled .luxury-pill-btn {
-          background: #1f2226;
+        .luxury-theme-light .luxury-pill-btn {
+          background: #1F2328;
           color: #ffffff;
-          border-color: #1f2226;
-          box-shadow: 0 4px 18px rgba(31, 34, 38, 0.2);
+          border: 1px solid #1F2328;
+          box-shadow: 0 4px 18px rgba(31, 35, 40, 0.2);
         }
 
-        .luxury-scrolled .luxury-pill-btn:hover {
+        .luxury-theme-light .luxury-pill-btn:hover {
           background: var(--accent-gold, #a77765);
           border-color: var(--accent-gold, #a77765);
           color: #ffffff;
+        }
+
+        /* 3. COMPORTAMENTO DE TRANSIÇÃO DE POSIÇÃO NO SCROLL */
+        .luxury-scrolled {
+          top: 0.9rem;
         }
 
         /* =========================================================
@@ -424,19 +452,43 @@ export default function Header() {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.22);
             border-radius: 9999px;
             padding: 0.55rem 1.25rem;
+            transition: all 0.3s ease;
+          }
+
+          /* Mobile Tema Dark */
+          .luxury-theme-dark .luxury-header-wrapper {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.22);
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
           }
 
-          .luxury-scrolled .luxury-header-wrapper {
+          .luxury-theme-dark .luxury-hamburger {
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+          }
+
+          .luxury-theme-dark .hamburger-bar {
+            background-color: #ffffff;
+          }
+
+          /* Mobile Tema Light (Páginas internas ou scroll) */
+          .luxury-theme-light .luxury-header-wrapper {
             background: rgba(255, 255, 255, 0.92);
-            border-color: rgba(167, 119, 101, 0.28);
+            border: 1px solid rgba(167, 119, 101, 0.28);
             box-shadow: 0 10px 30px rgba(28, 28, 26, 0.08);
+          }
+
+          .luxury-theme-light .luxury-hamburger {
+            background: rgba(31, 35, 40, 0.06);
+            border: 1px solid rgba(167, 119, 101, 0.25);
+          }
+
+          .luxury-theme-light .hamburger-bar {
+            background-color: #1F2328;
           }
 
           .luxury-hamburger {
@@ -448,29 +500,17 @@ export default function Header() {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.18);
-            border: 1px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
             padding: 0;
             transition: all 0.3s ease;
-          }
-
-          .luxury-scrolled .luxury-hamburger {
-            background: rgba(31, 34, 38, 0.06);
-            border-color: rgba(167, 119, 101, 0.25);
           }
 
           .hamburger-bar {
             display: block;
             width: 18px;
             height: 2px;
-            background-color: #ffffff;
             border-radius: 2px;
             transition: all 0.3s ease;
-          }
-
-          .luxury-scrolled .hamburger-bar {
-            background-color: #1f2226;
           }
 
           .luxury-hamburger.open .hamburger-bar:nth-child(1) {
