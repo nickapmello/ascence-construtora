@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { NavLink, Link } from "react-router-dom";
 import { COMPANY_INFO } from "../data/mockData";
 import logoDark from "../assets/logo_4_copper_charcoal.png";
+import logoLight from "../assets/logo_1_copper_light.png";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,9 +13,9 @@ export default function Header() {
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
 
-  // Auto-hide and auto-show mobile header on scroll + active background styling
+  // Auto-hide e auto-show no scroll + detecção de página rolada (> 40px)
   useEffect(() => {
-    const threshold = 10; // 10px threshold to prevent jittering
+    const threshold = 10;
 
     const handleScroll = () => {
       if (!ticking.current) {
@@ -22,30 +23,25 @@ export default function Header() {
           const currentScrollY = window.scrollY;
           const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
 
-          // iOS Safari rubber band bounce protection (negative scroll or past max height)
+          // Proteção iOS Safari rubber-band
           if (currentScrollY < 0 || currentScrollY > maxScroll) {
             ticking.current = false;
             return;
           }
 
-          // Active background state check (> 40px)
           setIsScrolled(currentScrollY > 40);
 
-          // Header visibility logic
           if (mobileMenuOpen) {
             setHeaderVisible(true);
           } else if (currentScrollY <= 40) {
-            // Always visible near top
             setHeaderVisible(true);
           } else {
             const diff = currentScrollY - lastScrollY.current;
             if (Math.abs(diff) >= threshold) {
               if (diff > 0) {
-                // Rolar para baixo (avançar no conteúdo) -> Ocultar header
-                setHeaderVisible(false);
+                setHeaderVisible(false); // Scroll para baixo -> esconde
               } else {
-                // Rolar para cima -> Exibir header
-                setHeaderVisible(true);
+                setHeaderVisible(true);  // Scroll para cima -> revela
               }
               lastScrollY.current = currentScrollY;
             }
@@ -61,17 +57,15 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [mobileMenuOpen]);
 
-  // Reset header as visible whenever mobile menu state changes
   useEffect(() => {
     setHeaderVisible(true);
   }, [mobileMenuOpen]);
 
-  // Robust cross-browser (iOS Safari & Android) body scroll lock when mobile menu is open
+  // Bloqueio seguro de scroll do body no mobile menu
   useEffect(() => {
     if (!mobileMenuOpen) return;
 
     scrollPosition.current = window.scrollY;
-
     document.documentElement.style.overflow = "hidden";
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollPosition.current}px`;
@@ -88,7 +82,6 @@ export default function Header() {
       document.body.style.right = "";
       document.body.style.width = "";
       document.body.style.overflow = "";
-
       window.scrollTo(0, scrollPosition.current);
     };
   }, [mobileMenuOpen]);
@@ -104,398 +97,515 @@ export default function Header() {
 
   return (
     <header 
-      className={`header-nav ${isScrolled ? "header-active" : ""} ${!headerVisible && !mobileMenuOpen ? "header-hidden" : ""}`}
+      className={`luxury-header ${isScrolled ? "luxury-scrolled" : ""} ${!headerVisible && !mobileMenuOpen ? "luxury-hidden" : ""}`}
     >
-      <div className="header-container">
-        {/* Logo Link */}
-        <Link to="/" className="logo-area" onClick={() => setMobileMenuOpen(false)}>
+      <div className="luxury-header-wrapper">
+        {/* ILHA 1: Logotipo Livre e Sofisticado */}
+        <Link 
+          to="/" 
+          className="luxury-logo-island" 
+          onClick={() => setMobileMenuOpen(false)}
+          aria-label="ASCENCE Construtora - Página Inicial"
+        >
           <img 
-            src={logoDark} 
+            src={isScrolled ? logoDark : logoLight} 
             alt="ASCENCE Construtora" 
-            className="logo-img-desktop" 
+            className="luxury-logo-img desktop-logo" 
           />
           <img 
-            src={logoDark} 
+            src={isScrolled ? logoDark : logoLight} 
             alt="ASCENCE Construtora" 
-            className="logo-img-mobile" 
+            className="luxury-logo-img mobile-logo" 
           />
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="desktop-menu" aria-label="Navegação Principal">
+        {/* ILHA 2: Cápsula Central Frosted Glass */}
+        <nav className="luxury-nav-capsule" aria-label="Navegação Principal">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
               end={item.to === "/"}
-              className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+              className={({ isActive }) => `luxury-nav-link ${isActive ? "active" : ""}`}
             >
-              {item.label}
-              <span className="nav-line"></span>
+              <span className="link-text">{item.label}</span>
+              <span className="link-indicator" />
             </NavLink>
           ))}
         </nav>
 
-        {/* Header CTA Button */}
-        <div className="cta-area">
+        {/* ILHA 3: Botão CTA Pílula */}
+        <div className="luxury-cta-island">
           <a
             href={COMPANY_INFO.contact.whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-primary cta-header-btn"
+            className="luxury-pill-btn"
           >
             <span>Falar no WhatsApp</span>
           </a>
         </div>
 
-        {/* Mobile Hamburger Trigger */}
+        {/* Gatilho Mobile (Hambúrguer de Vidro Fosco) */}
         <button
-          className={`hamburger ${mobileMenuOpen ? "open" : ""}`}
+          className={`luxury-hamburger ${mobileMenuOpen ? "open" : ""}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Abrir Menu de Navegação"
+          aria-label={mobileMenuOpen ? "Fechar Menu" : "Abrir Menu de Navegação"}
           aria-expanded={mobileMenuOpen}
         >
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
-          <span className="hamburger-line"></span>
+          <span className="hamburger-bar"></span>
+          <span className="hamburger-bar"></span>
         </button>
       </div>
 
-      {/* Mobile Menu Overlay & Drawer (Portaled directly to document.body) */}
+      {/* Menu Overlay Mobile Minimalista */}
       {mobileMenuOpen && createPortal(
-        <div className="mobile-menu-overlay">
-          <button
-            className="mobile-menu-close-btn"
-            onClick={() => setMobileMenuOpen(false)}
-            aria-label="Fechar Menu"
-          >
-            &times;
-          </button>
-          <div className="mobile-menu-drawer">
-            <nav className="mobile-nav">
+        <div className="luxury-mobile-overlay">
+          <div className="luxury-mobile-topbar">
+            <img 
+              src={logoLight} 
+              alt="ASCENCE Construtora" 
+              className="luxury-mobile-logo" 
+            />
+            <button
+              className="luxury-mobile-close"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-label="Fechar Menu"
+            >
+              &times;
+            </button>
+          </div>
+
+          <div className="luxury-mobile-content">
+            <nav className="luxury-mobile-links">
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
                   end={item.to === "/"}
-                  className={({ isActive }) => `mobile-nav-link ${isActive ? "active" : ""}`}
+                  className={({ isActive }) => `luxury-mobile-item ${isActive ? "active" : ""}`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
                 </NavLink>
               ))}
+            </nav>
+
+            <div className="luxury-mobile-footer">
               <a
                 href={COMPANY_INFO.contact.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-gold mobile-cta-btn"
+                className="luxury-mobile-whatsapp-btn"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Falar no WhatsApp
               </a>
-            </nav>
+              <p className="luxury-mobile-tagline">
+                Projetos pensados para a vida e a arquitetura
+              </p>
+            </div>
           </div>
         </div>,
         document.body
       )}
 
       <style>{`
-        .header-nav {
+        /* =========================================================
+           ESTILOS DO HEADER LUXURY (INSPIRADO NA REFERÊNCIA HVOYA)
+           ========================================================= */
+        
+        .luxury-header {
           position: fixed;
-          top: 1.25rem;
+          top: 1.6rem;
           left: 0;
           right: 0;
-          margin-left: auto;
-          margin-right: auto;
+          width: 100%;
+          z-index: 1000;
+          pointer-events: none; /* Deixa cliques passarem fora das ilhas */
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), top 0.4s ease;
+        }
+
+        .luxury-header-wrapper {
           width: 92%;
-          max-width: 1240px;
-          z-index: 100;
-          background: #ffffff;
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(167, 119, 101, 0.2);
-          border-radius: 4rem;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          height: 4.6rem;
-          display: flex;
-          align-items: center;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
-        .header-active {
-          top: 0.75rem;
-          background: #ffffff !important;
-          border: 1px solid rgba(167, 119, 101, 0.35) !important;
-          box-shadow: 0 10px 30px rgba(28, 28, 26, 0.08) !important;
-        }
-        .header-container {
+          max-width: 1440px;
+          margin: 0 auto;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          width: 100%;
-          padding: 0 2rem;
+          pointer-events: auto;
           box-sizing: border-box;
-          min-width: 0;
         }
-        .logo-area {
+
+        /* --- ILHA 1: LOGOTIPO LIVRE --- */
+        .luxury-logo-island {
           display: flex;
           align-items: center;
           text-decoration: none;
-          height: 40px;
+          padding: 0.35rem 0;
           background: transparent !important;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
         }
-        .logo-img-desktop {
+
+        .luxury-logo-island:hover {
+          transform: translateY(-1px);
+        }
+
+        .luxury-logo-img {
           display: block;
-          height: 38px;
+          height: 40px;
           width: auto;
           max-width: 220px;
           object-fit: contain;
-          background: transparent !important;
+          transition: filter 0.3s ease, opacity 0.3s ease;
         }
-        .logo-img-mobile {
+
+        .luxury-header:not(.luxury-scrolled) .luxury-logo-img {
+          filter: brightness(1.2) drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4));
+        }
+
+        .mobile-logo {
           display: none;
-          height: 32px;
-          width: auto;
-          max-width: 160px;
-          object-fit: contain;
-          background: transparent !important;
         }
-        .desktop-menu {
+
+        /* --- ILHA 2: CÁPSULA FROSTED GLASS --- */
+        .luxury-nav-capsule {
           display: flex;
+          align-items: center;
           gap: 1.8rem;
+          padding: 0.65rem 2.2rem;
+          border-radius: 9999px;
+          background: rgba(255, 255, 255, 0.12);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.28);
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12),
+                      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .nav-link {
-          background: none;
-          border: none;
-          color: var(--text-primary);
-          font-family: var(--font-sans);
-          font-size: 0.75rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.14em;
-          text-decoration: none;
-          padding: 0.4rem 0;
+
+        .luxury-nav-link {
           position: relative;
-          transition: var(--transition-fast);
+          color: rgba(255, 255, 255, 0.88);
+          font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+          font-size: 0.78rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          text-decoration: none;
+          padding: 0.3rem 0;
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+          transition: color 0.25s ease, opacity 0.25s ease;
         }
-        .nav-link:hover, .nav-link.active {
-          color: var(--accent-gold-dark);
+
+        .luxury-nav-link:hover {
+          color: #ffffff;
         }
-        .nav-line {
-          position: absolute;
-          bottom: 0;
-          left: 0;
+
+        .link-indicator {
+          display: block;
           width: 0;
           height: 1.5px;
-          background-color: var(--accent-gold-dark);
-          transition: var(--transition-smooth);
+          background: #ffffff;
+          margin-top: 3px;
+          border-radius: 2px;
+          transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
         }
-        .nav-link:hover .nav-line, .nav-link.active .nav-line {
+
+        .luxury-nav-link:hover .link-indicator,
+        .luxury-nav-link.active .link-indicator {
           width: 100%;
         }
-        .cta-header-btn {
-          font-size: 0.7rem;
-          padding: 0.6rem 1.25rem;
+
+        .luxury-nav-link.active {
+          color: #ffffff;
+          font-weight: 600;
         }
-        .hamburger {
+
+        /* --- ILHA 3: BOTÃO CTA PÍLULA (ESTILO HVOYA) --- */
+        .luxury-cta-island {
+          display: flex;
+          align-items: center;
+        }
+
+        .luxury-pill-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: #ffffff;
+          color: #1a1a1a;
+          font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+          font-size: 0.76rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          text-decoration: none;
+          padding: 0.72rem 1.65rem;
+          border-radius: 9999px;
+          border: 1px solid rgba(255, 255, 255, 0.9);
+          box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .luxury-pill-btn:hover {
+          background: #f7f6f3;
+          color: #0d0e0f;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+        }
+
+        .luxury-hamburger {
           display: none;
-          background: none;
-          border: none;
-          cursor: pointer;
-          flex-direction: column;
-          gap: 5px;
-          z-index: 110;
-          padding: 5px;
-        }
-        .hamburger-line {
-          display: block;
-          width: 22px;
-          height: 2px;
-          background-color: var(--text-primary);
-          transition: var(--transition-smooth);
-        }
-        .hamburger.open .hamburger-line:nth-child(1) {
-          transform: translateY(7px) rotate(45deg);
-        }
-        .hamburger.open .hamburger-line:nth-child(2) {
-          opacity: 0;
-        }
-        .hamburger.open .hamburger-line:nth-child(3) {
-          transform: translateY(-7px) rotate(-45deg);
         }
 
-        /* Mobile Menu Overlay & Drawer */
-        .mobile-menu-overlay {
-          position: fixed;
-          inset: 0;
-          width: auto;
-          max-width: 100%;
-          height: 100vh;
-          height: 100dvh;
-          overflow-x: clip;
-          overflow-y: auto;
-          overscroll-behavior: contain;
-          -webkit-overflow-scrolling: touch;
-          background-color: var(--bg-primary);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 4rem 1.5rem 2rem 1.5rem;
-          animation: mobileMenuFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-          box-sizing: border-box;
-          z-index: 9999;
+        /* =========================================================
+           COMPORTAMENTO NO SCROLL (PÁGINA ROLADA)
+           Transição refinada para seções de fundo claro
+           ========================================================= */
+        .luxury-scrolled {
+          top: 0.9rem;
         }
-        @supports not (overflow-x: clip) {
-          .mobile-menu-overlay {
-            overflow-x: hidden;
+
+        .luxury-scrolled .luxury-nav-capsule {
+          background: rgba(255, 255, 255, 0.88);
+          border: 1px solid rgba(167, 119, 101, 0.28);
+          box-shadow: 0 10px 30px rgba(28, 28, 26, 0.08);
+        }
+
+        .luxury-scrolled .luxury-nav-link {
+          color: #2c2f33;
+        }
+
+        .luxury-scrolled .luxury-nav-link:hover,
+        .luxury-scrolled .luxury-nav-link.active {
+          color: var(--accent-gold, #a77765);
+        }
+
+        .luxury-scrolled .link-indicator {
+          background: var(--accent-gold, #a77765);
+        }
+
+        .luxury-scrolled .luxury-pill-btn {
+          background: #1f2226;
+          color: #ffffff;
+          border-color: #1f2226;
+          box-shadow: 0 4px 18px rgba(31, 34, 38, 0.2);
+        }
+
+        .luxury-scrolled .luxury-pill-btn:hover {
+          background: var(--accent-gold, #a77765);
+          border-color: var(--accent-gold, #a77765);
+          color: #ffffff;
+        }
+
+        /* =========================================================
+           RESPONSIVIDADE E MOBILE (< 1080px)
+           ========================================================= */
+        @media (max-width: 1080px) {
+          .luxury-header.luxury-hidden {
+            transform: translateY(calc(-100% - 2.5rem));
+            pointer-events: none;
           }
-        }
-        .mobile-menu-close-btn {
-          position: absolute;
-          top: 1.25rem;
-          right: 1.5rem;
-          background: none;
-          border: none;
-          color: var(--text-primary);
-          font-size: 2.5rem;
-          cursor: pointer;
-          z-index: 10001;
-          line-height: 1;
-          padding: 0.5rem;
-          transition: color 0.2s ease;
-        }
-        .mobile-menu-close-btn:hover {
-          color: var(--accent-gold-dark);
-        }
-        .mobile-menu-drawer {
-          min-height: 100%;
-          width: 100%;
-          max-width: 100%;
-          min-width: 0;
-          overscroll-behavior: contain;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-sizing: border-box;
-        }
 
-        @keyframes mobileMenuFadeIn {
-          from { opacity: 0; transform: translateY(-8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (min-width: 1081px) {
-          .mobile-menu-overlay {
+          .luxury-nav-capsule,
+          .luxury-cta-island,
+          .desktop-logo {
             display: none !important;
           }
-        }
-        .mobile-nav {
-          width: 100%;
-          max-width: 420px;
-          min-width: 0;
-          margin: 0 auto;
 
+          .mobile-logo {
+            display: block;
+            height: 32px;
+          }
+
+          .luxury-header-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 9999px;
+            padding: 0.55rem 1.25rem;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+          }
+
+          .luxury-scrolled .luxury-header-wrapper {
+            background: rgba(255, 255, 255, 0.92);
+            border-color: rgba(167, 119, 101, 0.28);
+            box-shadow: 0 10px 30px rgba(28, 28, 26, 0.08);
+          }
+
+          .luxury-hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.3s ease;
+          }
+
+          .luxury-scrolled .luxury-hamburger {
+            background: rgba(31, 34, 38, 0.06);
+            border-color: rgba(167, 119, 101, 0.25);
+          }
+
+          .hamburger-bar {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+          }
+
+          .luxury-scrolled .hamburger-bar {
+            background-color: #1f2226;
+          }
+
+          .luxury-hamburger.open .hamburger-bar:nth-child(1) {
+            transform: translateY(4px) rotate(45deg);
+          }
+
+          .luxury-hamburger.open .hamburger-bar:nth-child(2) {
+            transform: translateY(-4px) rotate(-45deg);
+          }
+        }
+
+        /* =========================================================
+           DRAWER MOBILE FULLSCREEN SOFISTICADO
+           ========================================================= */
+        .luxury-mobile-overlay {
+          position: fixed;
+          inset: 0;
+          width: 100%;
+          height: 100vh;
+          height: 100dvh;
+          background: rgba(18, 20, 23, 0.96);
+          backdrop-filter: blur(28px);
+          -webkit-backdrop-filter: blur(28px);
+          z-index: 9999;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-
-          gap: 1.5rem;
-          text-align: center;
-          box-sizing: border-box;
+          animation: luxuryFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .mobile-nav-link {
-          width: 100%;
-          max-width: 340px;
-          min-width: 0;
-          margin: 0 auto;
-          padding: 0.5rem 1rem;
 
+        @keyframes luxuryFadeIn {
+          from { opacity: 0; transform: scale(0.98); }
+          to { opacity: 1; transform: scale(1); }
+        }
+
+        .luxury-mobile-topbar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1.5rem 1.75rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .luxury-mobile-logo {
+          height: 32px;
+          width: auto;
+          object-fit: contain;
+        }
+
+        .luxury-mobile-close {
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          color: #ffffff;
+          font-size: 1.8rem;
+          line-height: 1;
           display: flex;
           align-items: center;
           justify-content: center;
+          cursor: pointer;
+        }
 
-          text-align: center;
-          line-height: 1.35;
-          white-space: normal;
-          text-wrap: balance;
-          box-sizing: border-box;
+        .luxury-mobile-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 2.5rem 1.75rem 2rem 1.75rem;
+          overflow-y: auto;
+        }
 
-          text-decoration: none;
-          font-family: var(--font-sans);
+        .luxury-mobile-links {
+          display: flex;
+          flex-direction: column;
+          gap: 1.4rem;
+        }
+
+        .luxury-mobile-item {
+          color: rgba(255, 255, 255, 0.85);
+          font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
           font-size: 1.15rem;
           font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.15em;
-          color: var(--text-primary);
-          transition: var(--transition-fast);
+          letter-spacing: 0.14em;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          display: flex;
+          align-items: center;
         }
-        .mobile-nav-link.active, .mobile-nav-link:hover {
-          color: var(--accent-gold-dark);
+
+        .luxury-mobile-item.active,
+        .luxury-mobile-item:hover {
+          color: var(--accent-gold, #a77765);
+          transform: translateX(6px);
+        }
+
+        .luxury-mobile-footer {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+          padding-top: 2rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .luxury-mobile-whatsapp-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #ffffff;
+          color: #121417;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          padding: 1rem;
+          border-radius: 9999px;
+          text-decoration: none;
+          font-size: 0.88rem;
+        }
+
+        .luxury-mobile-tagline {
+          color: rgba(255, 255, 255, 0.45);
+          font-size: 0.78rem;
           text-align: center;
-        }
-        .mobile-cta-btn {
-          margin-top: 1rem;
-          width: 100%;
-          max-width: 340px;
-          min-width: 0;
-          text-align: center;
-          box-sizing: border-box;
-        }
-        @media (max-width: 1080px) {
-          .desktop-menu, .cta-area {
-            display: none;
-          }
-          .header-nav {
-            height: 4rem;
-            top: 0.75rem;
-            left: 0;
-            right: 0;
-            margin-left: auto;
-            margin-right: auto;
-            width: 94%;
-            transform: translateY(0);
-            transition:
-              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              top 0.35s ease,
-              box-shadow 0.35s ease,
-              background 0.35s ease;
-            will-change: transform;
-          }
-          .header-nav.header-hidden {
-            transform: translateY(calc(-100% - 1.5rem));
-            pointer-events: none;
-          }
-          .header-container {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            width: 100%;
-            padding: 0 1.25rem;
-            box-sizing: border-box;
-          }
-          .logo-area {
-            grid-column: 2;
-            justify-self: center;
-            margin: 0;
-          }
-          .logo-img-desktop {
-            display: none;
-          }
-          .logo-img-mobile {
-            display: block;
-            margin: 0 auto;
-          }
-          .hamburger {
-            display: flex;
-            grid-column: 3;
-            justify-self: end;
-            margin: 0;
-          }
+          margin: 0;
+          letter-spacing: 0.04em;
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .header-nav {
+          .luxury-header,
+          .luxury-nav-capsule,
+          .luxury-pill-btn,
+          .luxury-mobile-overlay {
             transition: none !important;
+            animation: none !important;
           }
         }
       `}</style>
