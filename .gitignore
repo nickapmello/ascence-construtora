@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw unoptimized photos (preserved locally, excluded from git/Vercel)
+src/assets/fotos/*.png
