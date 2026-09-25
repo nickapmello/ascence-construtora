@@ -1,5 +1,6 @@
 // Dados Institucionais - ASCENCE Construtora
 import heroBgImg from "../assets/fotos/optimized/fachada-frente.webp";
+import heroBgDesktopImg from "../assets/fotos/optimized/fachada-desktop-16-9.webp";
 import manifestoImg from "../assets/fotos/optimized/sala-cozinha-ap-2quartos.webp";
 import aboutStoryImg from "../assets/fotos/optimized/fachada-geral.webp";
 import lifestyleImg from "../assets/fotos/optimized/sala-ap-2quartos.webp";
@@ -39,8 +40,10 @@ import plantaTerreno from "../assets/fotos/optimized/planta-terreno.webp";
 
 /* IMAGENS INSTITUCIONAIS & LIFESTYLE OFICIAIS ASCENCE */
 export const IMAGES = {
-  // Fachada Principal do Empreendimento Iluminada (Hero Principal)
+  // Fachada Principal do Empreendimento Iluminada (Hero Principal Mobile e Fallback)
   heroBg: heroBgImg,
+  // Fachada Panorâmica Horizontal 16:9 (Hero Principal Desktop)
+  heroBgDesktop: heroBgDesktopImg,
   // Living Integrado & Cozinha de Alto Padrão (Manifesto)
   manifesto: manifestoImg,
   // Vista Geral da Edificação (Sobre a Empresa)

@@ -11,14 +11,17 @@ export default function Home() {
       {/* 1. HERO PRINCIPAL */}
       <section className="hero-section">
         <div className="hero-bg-wrapper">
-          {/* IMAGEM LIFESTYLE / HERO PRINCIPAL (Eager + High Fetchpriority - Primeira tela) */}
-          <img
-            src={IMAGES.heroBg}
-            alt="Arquitetura contemporânea e espaços acolhedores"
-            className="hero-bg-img"
-            loading="eager"
-            fetchpriority="high"
-          />
+          {/* Imagem contínua de ponta a ponta: horizontal no desktop e quadrada original no mobile */}
+          <picture className="hero-picture">
+            <source media="(min-width: 769px)" srcSet={IMAGES.heroBgDesktop} />
+            <img
+              src={IMAGES.heroBg}
+              alt="Fachada do edifício residencial ASCENCE em Arapongas"
+              className="hero-bg-img"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </picture>
           <div className="hero-overlay"></div>
         </div>
 
@@ -270,12 +273,25 @@ export default function Home() {
           width: 100%;
           height: 100%;
           z-index: 1;
+          overflow: hidden;
+        }
+        .hero-picture {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: block;
         }
         .hero-bg-img {
+          position: absolute;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
-          opacity: 0.55;
+          object-position: center 30%;
+          opacity: 0.9;
         }
         .hero-overlay {
           position: absolute;
@@ -284,9 +300,17 @@ export default function Home() {
           width: 100%;
           height: 100%;
           background: linear-gradient(
+            to right,
+            rgba(22, 25, 29, 0.86) 0%,
+            rgba(22, 25, 29, 0.72) 36%,
+            rgba(22, 25, 29, 0.32) 68%,
+            rgba(22, 25, 29, 0.15) 100%
+          ),
+          linear-gradient(
             to bottom,
-            rgba(31, 34, 38, 0.3) 0%,
-            rgba(31, 34, 38, 0.75) 75%,
+            rgba(22, 25, 29, 0.42) 0%,
+            transparent 35%,
+            rgba(22, 25, 29, 0.55) 75%,
             var(--bg-dark) 100%
           );
         }
@@ -307,6 +331,7 @@ export default function Home() {
           color: var(--text-light);
           line-height: 1.1;
           margin-bottom: 1.25rem;
+          text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
         }
         .serif-italic-gold {
           font-style: italic;
@@ -314,10 +339,11 @@ export default function Home() {
         }
         .hero-subtitle {
           font-size: clamp(1rem, 1.2vw, 1.2rem);
-          color: var(--text-muted);
+          color: rgba(245, 245, 247, 0.88);
           line-height: 1.65;
           margin-bottom: 2.25rem;
-          max-width: 700px;
+          max-width: 650px;
+          text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
         }
         .hero-actions {
           display: flex;
@@ -582,6 +608,22 @@ export default function Home() {
           }
           .launch-home-content {
             padding: 2.5rem 1.5rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-bg-img {
+            object-fit: cover;
+            object-position: center center;
+            opacity: 0.55;
+          }
+          .hero-overlay {
+            background: linear-gradient(
+              to bottom,
+              rgba(31, 34, 38, 0.3) 0%,
+              rgba(31, 34, 38, 0.75) 75%,
+              var(--bg-dark) 100%
+            );
           }
         }
       `}</style>

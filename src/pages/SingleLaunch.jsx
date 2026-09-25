@@ -36,13 +36,21 @@ export default function SingleLaunch() {
         {/* Expectation Teaser Banner */}
         <div className="launch-expectation-card mt-6">
           <div className="launch-hero-image-wrapper">
-            {/* IMAGEM REAL DA FACHADA ILUMINADA */}
-            <ImageWithPlaceholder
+            {/* Fundo desfocado para preenchimento harmônico das laterais */}
+            <img
               src={EXPECTATION_LAUNCH.conceptImage}
-              alt="Perspectiva ilustrada da fachada do empreendimento da ASCENCE"
-              className="launch-hero-img-wrapper"
-              aspectRatio="16 / 9"
+              alt=""
+              aria-hidden="true"
+              className="launch-hero-blur"
             />
+            {/* Imagem nítida inteira com object-fit contain sem corte */}
+            <div className="launch-hero-main-container">
+              <img
+                src={EXPECTATION_LAUNCH.conceptImage}
+                alt="Perspectiva ilustrada da fachada do empreendimento da ASCENCE"
+                className="launch-hero-main-img"
+              />
+            </div>
             <div className="launch-status-badge">
               <span>BREVE LANÇAMENTO</span>
             </div>
@@ -201,7 +209,43 @@ export default function SingleLaunch() {
         .launch-hero-image-wrapper {
           position: relative;
           width: 100%;
+          height: 540px;
+          max-height: 72vh;
+          overflow: hidden;
           background-color: var(--bg-dark);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .launch-hero-blur {
+          position: absolute;
+          top: -15%;
+          left: -15%;
+          width: 130%;
+          height: 130%;
+          object-fit: cover;
+          filter: blur(35px) brightness(0.35);
+          opacity: 0.75;
+          pointer-events: none;
+        }
+        .launch-hero-main-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1;
+          padding: 1.5rem 1rem;
+        }
+        .launch-hero-main-img {
+          width: auto;
+          height: 100%;
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+          display: block;
+          filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.45));
         }
         .launch-status-badge {
           position: absolute;
@@ -416,6 +460,9 @@ export default function SingleLaunch() {
         }
 
         @media (max-width: 900px) {
+          .launch-hero-image-wrapper {
+            height: 420px;
+          }
           .launch-content-grid {
             grid-template-columns: 1fr;
             gap: 2.5rem;
@@ -430,6 +477,12 @@ export default function SingleLaunch() {
         }
 
         @media (max-width: 640px) {
+          .launch-hero-image-wrapper {
+            height: 320px;
+          }
+          .launch-hero-main-container {
+            padding: 1rem 0.5rem;
+          }
           .gallery-category-tabs {
             justify-content: flex-start;
             overflow-x: auto;

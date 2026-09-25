@@ -39,72 +39,105 @@ export default function LightboxModal({ item, onClose }) {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background: rgba(18, 20, 23, 0.92);
-          backdrop-filter: blur(12px);
+          background: rgba(14, 16, 19, 0.94);
+          backdrop-filter: blur(14px);
           z-index: 1000;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 2rem;
+          padding: 1.5rem;
           animation: fadeIn 0.3s ease;
         }
         .lightbox-content {
           position: relative;
-          max-width: 1000px;
+          max-width: 1100px;
           width: 100%;
+          max-height: 92vh;
+          display: flex;
+          flex-direction: column;
           background-color: var(--bg-dark);
           border: 1px solid var(--border-dark);
-          border-radius: 4px;
+          border-radius: 6px;
           overflow: hidden;
-          box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65);
         }
         .lightbox-close {
           position: absolute;
           top: 1rem;
-          right: 1.5rem;
-          background: none;
-          border: none;
+          right: 1rem;
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          background: rgba(31, 34, 38, 0.85);
+          backdrop-filter: blur(8px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
           color: var(--text-light);
-          font-size: 2.5rem;
+          font-size: 2rem;
           cursor: pointer;
-          z-index: 10;
+          z-index: 25;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           line-height: 1;
+          transition: all 0.2s ease;
+        }
+        .lightbox-close:hover {
+          background: var(--accent-gold-dark);
+          border-color: var(--accent-gold-dark);
+          color: #ffffff;
+          transform: scale(1.06);
         }
         .lightbox-image-wrapper {
           width: 100%;
-          max-height: 60vh;
+          flex: 1 1 auto;
+          min-height: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #0b0d10;
+          padding: 1.25rem;
           overflow: hidden;
-          background-color: #000;
         }
         .lightbox-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+          max-width: 100%;
+          max-height: 62vh;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          display: block;
+          border-radius: 2px;
         }
         .lightbox-info {
-          padding: 2rem 2.5rem;
+          padding: 1.25rem 2rem;
           color: var(--text-light);
+          background-color: var(--bg-dark);
+          border-top: 1px solid var(--border-dark);
+          flex-shrink: 0;
+          overflow-y: auto;
+          max-height: 28vh;
         }
         .lightbox-location {
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.03em;
+          letter-spacing: 0.04em;
           color: var(--accent-gold-dark);
           display: block;
-          margin-bottom: 0.4rem;
+          margin-bottom: 0.35rem;
         }
         .lightbox-title {
           font-family: var(--font-serif);
-          font-size: 2rem;
+          font-size: 1.5rem;
           font-weight: 500;
           letter-spacing: -0.015em;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.35rem;
+          line-height: 1.3;
         }
         .lightbox-desc {
-          font-size: 0.95rem;
+          font-size: 0.88rem;
           color: var(--text-muted);
-          line-height: 1.6;
+          line-height: 1.55;
+          margin: 0;
         }
         @keyframes fadeIn {
           from { opacity: 0; transform: scale(0.98); }
@@ -112,13 +145,33 @@ export default function LightboxModal({ item, onClose }) {
         }
         @media (max-width: 768px) {
           .lightbox-overlay {
-            padding: 1rem;
+            padding: 0.75rem;
+          }
+          .lightbox-content {
+            max-height: 94vh;
+          }
+          .lightbox-image-wrapper {
+            padding: 0.75rem;
+          }
+          .lightbox-image {
+            max-height: 48vh;
           }
           .lightbox-info {
-            padding: 1.5rem;
+            padding: 1rem 1.25rem;
+            max-height: 38vh;
           }
           .lightbox-title {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
+          }
+          .lightbox-desc {
+            font-size: 0.82rem;
+          }
+          .lightbox-close {
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 36px;
+            height: 36px;
+            font-size: 1.6rem;
           }
         }
       `}</style>
