@@ -86,7 +86,7 @@ export default function ContactPage() {
                   referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
-              <div className="map-route-actions mt-4">
+              <div className="map-route-actions mt-5">
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=R.+Tucanos,+273+-+Sl+02+-+Centro,+Arapongas+-+PR"
                   target="_blank"
@@ -201,37 +201,40 @@ export default function ContactPage() {
         }
         .map-frame-wrapper {
           width: 100%;
-          height: 224px;
+          height: 240px;
           overflow: hidden;
-          border-radius: 4px;
+          border-radius: 6px;
           border: 1px solid var(--border-light);
           background-color: var(--bg-primary);
+          box-shadow: 0 1px 3px rgba(31, 34, 38, 0.03);
         }
         .map-frame-wrapper iframe {
           display: block;
           width: 100%;
           height: 100%;
+          border: 0;
+          filter: contrast(1.01) saturate(0.96);
         }
         .map-route-actions {
           display: flex;
           gap: 0.75rem;
-          margin-top: 1rem;
+          margin-top: 1.25rem;
         }
         .btn-route-action {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 0.45rem;
-          padding: 0.65rem 1.15rem;
+          gap: 0.48rem;
+          padding: 0.7rem 1.15rem;
           background-color: var(--bg-primary);
           border: 1px solid var(--border-light);
           border-radius: 9999px;
           color: var(--text-primary);
           font-family: var(--font-main);
-          font-size: 0.75rem;
+          font-size: 0.76rem;
           font-weight: 500;
           text-decoration: none;
-          letter-spacing: 0.03em;
+          letter-spacing: 0.02em;
           transition: all 0.25s ease;
           flex: 1 1 0;
           white-space: nowrap;
@@ -273,9 +276,11 @@ export default function ContactPage() {
         @media (max-width: 640px) {
           .map-route-actions {
             flex-direction: column;
+            gap: 0.65rem;
           }
           .btn-route-action {
             width: 100%;
+            padding: 0.75rem 1.25rem;
           }
         }
       `}</style>
