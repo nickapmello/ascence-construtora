@@ -84,10 +84,15 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     // Formata a mensagem com encodeURIComponent para o WhatsApp oficial
-    const message = `\nOlá, gostaria de entrar em contato com a ASCENCE.\n\nNome: ${name}\nTelefone: ${phone}\nE-mail: ${email}\nAssunto: ${subject || "Contato pelo site"}\nMensagem: ${messageText}\n`;
+    const message = `Olá! Vim pelo website da ASCENCE e gostaria de entrar em contato.\n\n` +
+      `*Nome:* ${formData.name}\n` +
+      `*Telefone:* ${formData.phone}\n` +
+      `*E-mail:* ${formData.email}\n` +
+      `*Assunto:* ${formData.subject}\n` +
+      `*Mensagem:* ${formData.message}`;
 
     const whatsappUrl = `https://wa.me/5543999323043?text=${encodeURIComponent(message)}`;
-    
+
     // Abre o WhatsApp sem resetar os dados em caso de retorno do usuário
     window.open(whatsappUrl, "_blank");
 
@@ -198,8 +203,8 @@ export default function ContactForm() {
           </label>
         </div>
 
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="btn btn-gold w-full mt-4"
           disabled={isSubmitting}
         >
@@ -301,3 +306,4 @@ export default function ContactForm() {
     </div>
   );
 }
+
