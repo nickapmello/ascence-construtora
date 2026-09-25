@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { COMPANY_INFO } from "../data/mockData";
-import symbolDark from "../assets/symbol_3_copper_charcoal.png";
+import officialLogo from "../assets/logo_1_copper_light.png";
 
 export default function Footer() {
   return (
@@ -9,9 +9,8 @@ export default function Footer() {
       <div className="container footer-grid">
         {/* Brand Column */}
         <div className="footer-col brand-col">
-          <Link to="/" className="footer-logo-link">
-            <img src={symbolDark} alt="ASCENCE Construtora" className="footer-symbol" />
-            <span className="footer-brand-name">ASCENCE</span>
+          <Link to="/" className="footer-logo-link" aria-label="ASCENCE Construtora - Página Inicial">
+            <img src={officialLogo} alt="ASCENCE Construtora" className="footer-logo-img" />
           </Link>
           <p className="footer-tagline">
             "{COMPANY_INFO.tagline}"
@@ -95,23 +94,21 @@ export default function Footer() {
           padding-bottom: 4rem;
         }
         .footer-logo-link {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
+          display: inline-block;
           text-decoration: none;
-          margin-bottom: 1.25rem;
+          margin-bottom: 1.5rem;
+          transition: opacity 0.25s ease, transform 0.25s ease;
         }
-        .footer-symbol {
-          height: 36px;
+        .footer-logo-link:hover {
+          opacity: 0.9;
+          transform: translateY(-1px);
+        }
+        .footer-logo-img {
+          display: block;
+          height: 42px;
           width: auto;
-          background: transparent !important;
-        }
-        .footer-brand-name {
-          font-family: var(--font-serif);
-          font-size: 1.5rem;
-          font-weight: 500;
-          color: var(--text-light);
-          letter-spacing: 0.04em;
+          max-width: 220px;
+          object-fit: contain;
         }
         .footer-tagline {
           font-family: var(--font-serif);
@@ -203,6 +200,9 @@ export default function Footer() {
           .footer-grid {
             grid-template-columns: 1fr;
             gap: 2.5rem;
+          }
+          .footer-logo-img {
+            height: 38px;
           }
           .bottom-bar-content {
             flex-direction: column;
