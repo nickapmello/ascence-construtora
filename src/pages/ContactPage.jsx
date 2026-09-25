@@ -68,6 +68,50 @@ export default function ContactPage() {
                 </a>
               </div>
             </div>
+
+            {/* Bloco de Localização com Mapa e Atalhos de Rota */}
+            <div className="contact-map-block mt-8">
+              <div className="map-block-header mb-3">
+                <span className="detail-label">Localização</span>
+              </div>
+              <div className="map-frame-wrapper">
+                <iframe
+                  title="Localização da ASCENCE Construtora em Arapongas"
+                  src="https://maps.google.com/maps?q=R.+Tucanos,+273+-+Sl+02+-+Centro,+Arapongas+-+PR,+86700-070&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+              <div className="map-route-actions mt-4">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=R.+Tucanos,+273+-+Sl+02+-+Centro,+Arapongas+-+PR"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-route-action"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <span>Abrir no Google Maps</span>
+                </a>
+                <a
+                  href="https://waze.com/ul?q=R.+Tucanos,+273+Arapongas+PR&navigate=yes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-route-action"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                  </svg>
+                  <span>Abrir no Waze</span>
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Form */}
@@ -146,6 +190,67 @@ export default function ContactPage() {
           font-weight: 500;
           text-decoration: underline;
         }
+
+        /* BLOCO DE LOCALIZAÇÃO & MAPA */
+        .contact-map-block {
+          border-top: 1px solid var(--border-light);
+          padding-top: 1.75rem;
+        }
+        .map-block-header {
+          margin-bottom: 0.75rem;
+        }
+        .map-frame-wrapper {
+          width: 100%;
+          height: 224px;
+          overflow: hidden;
+          border-radius: 4px;
+          border: 1px solid var(--border-light);
+          background-color: var(--bg-primary);
+        }
+        .map-frame-wrapper iframe {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        .map-route-actions {
+          display: flex;
+          gap: 0.75rem;
+          margin-top: 1rem;
+        }
+        .btn-route-action {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.45rem;
+          padding: 0.65rem 1.15rem;
+          background-color: var(--bg-primary);
+          border: 1px solid var(--border-light);
+          border-radius: 9999px;
+          color: var(--text-primary);
+          font-family: var(--font-main);
+          font-size: 0.75rem;
+          font-weight: 500;
+          text-decoration: none;
+          letter-spacing: 0.03em;
+          transition: all 0.25s ease;
+          flex: 1 1 0;
+          white-space: nowrap;
+        }
+        .btn-route-action:hover {
+          background-color: var(--bg-dark);
+          border-color: var(--bg-dark);
+          color: #ffffff;
+          transform: translateY(-2px);
+        }
+        .btn-route-action svg {
+          flex-shrink: 0;
+          color: var(--accent-gold-dark);
+          transition: color 0.25s ease;
+        }
+        .btn-route-action:hover svg {
+          color: #ffffff;
+        }
+
         @media (max-width: 900px) {
           .contact-page-grid {
             grid-template-columns: 1fr;
@@ -156,6 +261,21 @@ export default function ContactPage() {
           }
           .contact-info-card {
             padding: 2rem 1.5rem;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .map-frame-wrapper {
+            height: 192px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .map-route-actions {
+            flex-direction: column;
+          }
+          .btn-route-action {
+            width: 100%;
           }
         }
       `}</style>
