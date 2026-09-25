@@ -115,8 +115,9 @@ export default function Trajectory() {
         }
         .timeline-subtitle {
           font-size: 0.75rem;
+          font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.15em;
+          letter-spacing: 0.04em;
           color: var(--accent-gold-dark);
           margin-bottom: 0.75rem;
           display: block;
@@ -124,7 +125,8 @@ export default function Trajectory() {
         .timeline-title {
           font-family: var(--font-serif);
           font-size: 1.8rem;
-          font-weight: 300;
+          font-weight: 500;
+          letter-spacing: -0.015em;
           margin-bottom: 1rem;
         }
         .timeline-desc {
@@ -145,7 +147,8 @@ export default function Trajectory() {
         .cta-title {
           font-family: var(--font-serif);
           font-size: 2.4rem;
-          font-weight: 300;
+          font-weight: 500;
+          letter-spacing: -0.02em;
         }
         .cta-desc {
           font-size: 1.05rem;

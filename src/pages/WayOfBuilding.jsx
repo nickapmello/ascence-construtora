@@ -92,7 +92,8 @@ export default function WayOfBuilding() {
         .pillar-title {
           font-family: var(--font-serif);
           font-size: 1.6rem;
-          font-weight: 300;
+          font-weight: 500;
+          letter-spacing: -0.01em;
         }
         .pillar-desc {
           font-size: 0.95rem;
@@ -112,7 +113,8 @@ export default function WayOfBuilding() {
         .callout-title {
           font-family: var(--font-serif);
           font-size: 2.4rem;
-          font-weight: 300;
+          font-weight: 500;
+          letter-spacing: -0.02em;
           line-height: 1.2;
         }
         .callout-desc {

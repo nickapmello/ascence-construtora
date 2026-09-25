@@ -87,8 +87,9 @@ export default function LightboxModal({ item, onClose }) {
         }
         .lightbox-location {
           font-size: 0.75rem;
+          font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.15em;
+          letter-spacing: 0.03em;
           color: var(--accent-gold-dark);
           display: block;
           margin-bottom: 0.4rem;
@@ -96,7 +97,8 @@ export default function LightboxModal({ item, onClose }) {
         .lightbox-title {
           font-family: var(--font-serif);
           font-size: 2rem;
-          font-weight: 300;
+          font-weight: 500;
+          letter-spacing: -0.015em;
           margin-bottom: 0.5rem;
         }
         .lightbox-desc {

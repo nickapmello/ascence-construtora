@@ -107,7 +107,8 @@ export default function ContactPage() {
         .info-card-title {
           font-family: var(--font-serif);
           font-size: 2rem;
-          font-weight: 300;
+          font-weight: 500;
+          letter-spacing: -0.015em;
           margin-bottom: 0.75rem;
         }
         .info-card-desc {
@@ -130,9 +131,9 @@ export default function ContactPage() {
         .detail-label {
           font-size: 0.75rem;
           text-transform: uppercase;
-          letter-spacing: 0.15em;
+          letter-spacing: 0.04em;
           color: var(--accent-gold-dark);
-          font-weight: 600;
+          font-weight: 500;
         }
         .detail-value {
           font-size: 0.95rem;
@@ -142,7 +143,7 @@ export default function ContactPage() {
         .whatsapp-direct-link, .social-direct-link {
           font-size: 0.95rem;
           color: var(--accent-gold-dark);
-          font-weight: 600;
+          font-weight: 500;
           text-decoration: underline;
         }
         @media (max-width: 900px) {

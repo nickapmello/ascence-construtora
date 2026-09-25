@@ -81,7 +81,8 @@ export default function PrivacyPolicy() {
         .policy-heading {
           font-family: var(--font-serif);
           font-size: 1.6rem;
-          font-weight: 400;
+          font-weight: 500;
+          letter-spacing: -0.01em;
           color: var(--text-primary);
           margin-bottom: 1rem;
         }

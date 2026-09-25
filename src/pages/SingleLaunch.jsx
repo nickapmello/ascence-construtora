@@ -123,8 +123,8 @@ export default function SingleLaunch() {
           border: 1px solid var(--accent-gold);
           padding: 0.5rem 1.25rem;
           font-size: 0.75rem;
-          font-weight: 600;
-          letter-spacing: 0.15em;
+          font-weight: 500;
+          letter-spacing: 0.04em;
           text-transform: uppercase;
           z-index: 2;
         }
@@ -138,7 +138,7 @@ export default function SingleLaunch() {
           padding: 0.4rem 0.85rem;
           font-size: 0.7rem;
           border-radius: 2px;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.02em;
           z-index: 2;
         }
         .launch-notice-bar {
@@ -161,7 +161,7 @@ export default function SingleLaunch() {
         .notice-text {
           font-size: 0.9rem;
           color: var(--text-light);
-          letter-spacing: 0.05em;
+          letter-spacing: 0;
         }
         .launch-content-grid {
           display: grid;
@@ -178,6 +178,8 @@ export default function SingleLaunch() {
         .cta-box-title {
           font-family: var(--font-serif);
           font-size: 1.5rem;
+          font-weight: 500;
+          letter-spacing: -0.01em;
           margin-bottom: 0.5rem;
           color: var(--text-primary);
         }

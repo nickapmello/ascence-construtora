@@ -109,8 +109,9 @@ export default function Footer() {
         .footer-brand-name {
           font-family: var(--font-serif);
           font-size: 1.5rem;
+          font-weight: 500;
           color: var(--text-light);
-          letter-spacing: 0.15em;
+          letter-spacing: 0.04em;
         }
         .footer-tagline {
           font-family: var(--font-serif);
@@ -128,9 +129,9 @@ export default function Footer() {
         .footer-col-title {
           font-family: var(--font-sans);
           font-size: 0.75rem;
-          font-weight: 600;
+          font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.18em;
+          letter-spacing: 0.04em;
           color: var(--accent-gold-dark);
           margin-bottom: 1.5rem;
         }

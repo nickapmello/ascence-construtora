@@ -302,7 +302,8 @@ export default function Home() {
         .hero-title {
           font-family: var(--font-serif);
           font-size: clamp(2.6rem, 5vw, 4.4rem);
-          font-weight: 300;
+          font-weight: 500;
+          letter-spacing: -0.02em;
           color: var(--text-light);
           line-height: 1.1;
           margin-bottom: 1.25rem;
@@ -394,15 +395,17 @@ export default function Home() {
         }
         .chapter-subtitle {
           font-size: 0.7rem;
+          font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.15em;
+          letter-spacing: 0.04em;
           color: var(--text-muted);
           margin-bottom: 0.75rem;
         }
         .chapter-title {
           font-family: var(--font-serif);
           font-size: 1.35rem;
-          font-weight: 400;
+          font-weight: 500;
+          letter-spacing: -0.01em;
           color: var(--text-light);
           margin-bottom: 0.85rem;
         }
@@ -432,6 +435,8 @@ export default function Home() {
         .care-card-title {
           font-family: var(--font-serif);
           font-size: 1.5rem;
+          font-weight: 500;
+          letter-spacing: -0.01em;
           margin-bottom: 0.75rem;
         }
         .care-card-desc {
@@ -469,6 +474,8 @@ export default function Home() {
         .pilar-title {
           font-family: var(--font-serif);
           font-size: 1.35rem;
+          font-weight: 500;
+          letter-spacing: -0.01em;
           margin-bottom: 0.75rem;
         }
         .pilar-desc {
@@ -512,7 +519,8 @@ export default function Home() {
           border: 1px solid var(--accent-gold);
           color: var(--accent-gold-dark);
           font-size: 0.7rem;
-          letter-spacing: 0.12em;
+          font-weight: 500;
+          letter-spacing: 0.04em;
           text-transform: uppercase;
           width: fit-content;
         }
@@ -554,8 +562,9 @@ export default function Home() {
         }
         .mini-label {
           font-size: 0.7rem;
+          font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.15em;
+          letter-spacing: 0.04em;
           color: var(--accent-gold-dark);
         }
         .mini-val {

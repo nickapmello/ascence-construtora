@@ -292,11 +292,11 @@ export default function Header() {
 
         .luxury-nav-link {
           position: relative;
-          font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+          font-family: var(--font-main, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
           font-size: 0.78rem;
           font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.03em;
           text-decoration: none;
           padding: 0.3rem 0;
           display: inline-flex;
@@ -320,7 +320,7 @@ export default function Header() {
         }
 
         .luxury-nav-link.active {
-          font-weight: 600;
+          font-weight: 500;
         }
 
         /* --- ILHA 3: BOTÃO CTA PÍLULA (ESTRUTURA COMUM) --- */
@@ -333,11 +333,11 @@ export default function Header() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+          font-family: var(--font-main, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
           font-size: 0.76rem;
-          font-weight: 600;
+          font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.03em;
           text-decoration: none;
           padding: 0.72rem 1.65rem;
           border-radius: 9999px;
@@ -591,11 +591,11 @@ export default function Header() {
 
         .luxury-mobile-item {
           color: rgba(255, 255, 255, 0.85);
-          font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+          font-family: var(--font-main, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
           font-size: 1.15rem;
           font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.14em;
+          letter-spacing: 0.04em;
           text-decoration: none;
           transition: all 0.2s ease;
           display: flex;
@@ -622,9 +622,9 @@ export default function Header() {
           justify-content: center;
           background: #ffffff;
           color: #121417;
-          font-weight: 600;
+          font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.03em;
           padding: 1rem;
           border-radius: 9999px;
           text-decoration: none;

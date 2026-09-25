@@ -222,7 +222,8 @@ export default function ContactForm() {
         .form-heading {
           font-family: var(--font-serif);
           font-size: 2rem;
-          font-weight: 300;
+          font-weight: 500;
+          letter-spacing: -0.015em;
           color: var(--text-primary);
           margin-bottom: 0.5rem;
         }
@@ -254,9 +255,9 @@ export default function ContactForm() {
         }
         .field-label {
           font-size: 0.7rem;
-          font-weight: 600;
+          font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.03em;
           color: var(--accent-gold-dark);
         }
         .field-input, .field-textarea {

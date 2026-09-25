@@ -147,6 +147,8 @@ export default function AboutAscence() {
         .value-title {
           font-family: var(--font-serif);
           font-size: 1.5rem;
+          font-weight: 500;
+          letter-spacing: -0.01em;
           margin-bottom: 0.75rem;
         }
         .value-desc {
@@ -163,7 +165,8 @@ export default function AboutAscence() {
         .cta-title {
           font-family: var(--font-serif);
           font-size: 2.2rem;
-          font-weight: 300;
+          font-weight: 500;
+          letter-spacing: -0.015em;
         }
         .cta-btns-row {
           display: flex;
