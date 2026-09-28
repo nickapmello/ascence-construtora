@@ -77,7 +77,7 @@ export default function Home() {
       <section className="trajectory-section section-padding bg-dark-section">
         <div className="container">
           <div className="section-header text-center mx-auto mb-6">
-            <span className="overline gold-overline">Nossa Evolução</span>
+            <span className="overline gold-overline">Nossa Experiência</span>
             <h2 className="section-title text-light">Experiência que sustenta novos projetos.</h2>
             <p className="section-desc text-muted-light">
               A ASCENCE reúne a experiência de um engenheiro de obras e uma engenheira de projetos. Juntos, eles somam mais de 40 anos de atuação na construção civil e na incorporação imobiliária.

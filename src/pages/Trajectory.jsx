@@ -12,7 +12,7 @@ export default function Trajectory() {
           <span className="overline">Nossa Trajetória</span>
           <h1 className="display-title">A experiência que sustenta a ASCENCE</h1>
           <p className="body-text lead-text mx-auto mt-4">
-            A ASCENCE reúne uma sólida bagagem técnica construída ao longo de décadas na construção civil e na incorporação imobiliária. Conheça a trajetória profissional dos engenheiros que fundamentam cada um de nossos projetos em Arapongas.
+            A ASCENCE reúne uma sólida bagagem técnica construída ao longo de décadas na construção civil e na incorporação imobiliária. Conheça a trajetória profissional dos engenheiros que fundamentam nosso trabalho em Arapongas.
           </p>
         </div>
 
@@ -32,10 +32,13 @@ export default function Trajectory() {
               <div className="timeline-image-wrapper">
                 <ImageWithPlaceholder
                   src={item.image}
-                  alt={item.title}
+                  alt={item.imageAlt || item.title}
                   className="timeline-img-wrapper"
                   aspectRatio="16 / 11"
                 />
+                {item.imageCaption && (
+                  <span className="timeline-img-caption">{item.imageCaption}</span>
+                )}
               </div>
             </div>
           ))}
@@ -129,6 +132,15 @@ export default function Trajectory() {
         .timeline-img-wrapper {
           width: 100%;
           border-radius: 2px;
+        }
+        .timeline-img-caption {
+          display: block;
+          font-size: 0.76rem;
+          color: var(--text-muted);
+          margin-top: 0.65rem;
+          font-weight: 400;
+          letter-spacing: 0.01em;
+          line-height: 1.4;
         }
         .trajectory-cta-box {
           background-color: var(--bg-dark);

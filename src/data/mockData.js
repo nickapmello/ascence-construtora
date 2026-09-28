@@ -103,31 +103,39 @@ export const TRAJECTORY_CHAPTERS = [
 export const TRAJECTORY_PAGE_BLOCKS = [
   {
     chapter: "01",
-    subtitle: "Bagagem Consolidada",
+    subtitle: "Atuação Técnica",
     title: "Mais de 40 anos de atuação no setor",
-    description: "A solidez da ASCENCE tem origem na trajetória combinada de seus profissionais, que reúnem mais de quatro décadas de dedicação contínua à construção civil e à incorporação imobiliária. Uma vivência técnica aprofundada que orienta tomadas de decisão conscientes, planejamento rigoroso e compromisso absoluto com a qualidade estrutural.",
-    image: IMAGES.aboutStory
+    description: "A atuação da ASCENCE é sustentada pela trajetória profissional de sua equipe, que reúne mais de quatro décadas de atividade na construção civil e na incorporação imobiliária. Essa vivência prática contribui para um planejamento criterioso e para escolhas técnicas fundamentadas em cada etapa construtiva.",
+    image: IMAGES.aboutStory,
+    imageAlt: "Perspectiva ilustrada da fachada do empreendimento residencial ASCENCE em Arapongas",
+    imageCaption: "Perspectiva ilustrada · Projeto residencial ASCENCE em Arapongas"
   },
   {
     chapter: "02",
     subtitle: "Sinergia Técnica",
     title: "Complementaridade entre obras e projetos",
-    description: "A atuação conjunta de um engenheiro de obras e uma engenheira de projetos estabelece um equilíbrio essencial entre a concepção arquitetônica e o rigor do canteiro. Essa integração assegura inteligência espacial, eficiência construtiva e apuro no detalhamento de cada ambiente.",
-    image: IMAGES.manifesto
+    description: "O trabalho conjunto de um engenheiro de obras e uma engenheira de projetos aproxima o desenvolvimento técnico da realidade do canteiro. Essa visão multidisciplinar orienta a integração entre desenho arquitetônico e método executivo, priorizando a funcionalidade dos espaços e a atenção aos detalhes construtivos.",
+    image: IMAGES.manifesto,
+    imageAlt: "Perspectiva ilustrada da sala e cozinha integrada do projeto residencial ASCENCE",
+    imageCaption: "Perspectiva ilustrada dos interiores · Projeto ASCENCE em Arapongas"
   },
   {
     chapter: "03",
     subtitle: "Experiência Regional",
     title: "Grandes empreendimentos verticais",
-    description: "Ao longo de suas carreiras, esses profissionais participaram ativamente de empreendimentos verticais de grande porte nas principais cidades do litoral catarinense e em Curitiba. Essa bagagem técnica em obras de alta complexidade eleva o padrão de execução e confere segurança aos processos da empresa.",
-    image: IMAGES.lifestyle
+    description: "Ao longo de suas trajetórias, os profissionais que integram a ASCENCE participaram de empreendimentos verticais de grande porte nas principais cidades do litoral catarinense e em Curitiba. A convivência com obras de maior escala e complexidade técnica agrega métodos consolidados de gestão e execução ao trabalho da equipe.",
+    image: IMAGES.lifestyle,
+    imageAlt: "Perspectiva ilustrada da sala de estar do projeto residencial ASCENCE em Arapongas",
+    imageCaption: "Perspectiva ilustrada de ambiente interno · Projeto ASCENCE em Arapongas"
   },
   {
     chapter: "04",
     subtitle: "Novo Marco em Arapongas",
     title: "Um novo capítulo residencial na cidade",
-    description: "Toda essa experiência acumulada converge agora para Arapongas. A ASCENCE dedica esse conhecimento ao desenvolvimento de seu primeiro empreendimento residencial no município, unindo o padrão técnico de grandes centros ao cuidado e proximidade que tornam cada lar acolhedor.",
-    image: IMAGES.launchConcept
+    description: "Essa bagagem profissional acompanha a ASCENCE no desenvolvimento de seu primeiro empreendimento residencial em Arapongas. A proposta busca aplicar conhecimentos consolidados em grandes centros ao contexto do município, combinando rigor na execução de engenharia e cuidado com a experiência de quem vai viver no espaço.",
+    image: IMAGES.launchConcept,
+    imageAlt: "Perspectiva ilustrada da fachada lateral do empreendimento residencial ASCENCE em Arapongas",
+    imageCaption: "Perspectiva ilustrada da fachada · Projeto residencial ASCENCE em Arapongas"
   }
 ];
 
