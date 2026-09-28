@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import IntroAnimation from "./components/IntroAnimation";
 import Home from "./pages/Home";
 import AboutAscence from "./pages/AboutAscence";
 import Trajectory from "./pages/Trajectory";
@@ -99,6 +100,9 @@ export default function App() {
 
   return (
     <div className="app-root-layout">
+      {/* Abertura institucional em tela cheia na primeira visita */}
+      <IntroAnimation />
+
       {/* Scroll restoration to top on route change */}
       <ScrollToTop />
 
