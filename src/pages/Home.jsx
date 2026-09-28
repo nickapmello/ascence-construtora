@@ -19,7 +19,7 @@ export default function Home() {
               alt="Fachada do edifício residencial ASCENCE em Arapongas"
               className="hero-bg-img"
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
             />
           </picture>
           <div className="hero-overlay"></div>
