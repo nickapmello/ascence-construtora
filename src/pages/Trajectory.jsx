@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TRAJECTORY_CHAPTERS, IMAGES } from "../data/mockData";
+import { TRAJECTORY_PAGE_BLOCKS, IMAGES } from "../data/mockData";
 import ImageWithPlaceholder from "../components/ImageWithPlaceholder";
 
 export default function Trajectory() {
@@ -9,16 +9,16 @@ export default function Trajectory() {
       <div className="container">
         {/* Page Header */}
         <div className="page-header text-center mx-auto">
-          <span className="overline">Nossa Evolução</span>
-          <h1 className="display-title">Uma trajetória pautada no cuidado</h1>
+          <span className="overline">Nossa Trajetória</span>
+          <h1 className="display-title">A experiência que sustenta a ASCENCE</h1>
           <p className="body-text lead-text mx-auto mt-4">
-            A história da ASCENCE é marcada pelo aprendizado constante na construção residencial, pela busca contínua de qualidade e pela evolução natural rumo ao nosso primeiro lançamento imobiliário em Arapongas.
+            A ASCENCE reúne uma sólida bagagem técnica construída ao longo de décadas na construção civil e na incorporação imobiliária. Conheça a trajetória profissional dos engenheiros que fundamentam cada um de nossos projetos em Arapongas.
           </p>
         </div>
 
         {/* Chapters Detailed Timeline */}
         <div className="timeline-stream mt-8">
-          {TRAJECTORY_CHAPTERS.map((item, index) => (
+          {TRAJECTORY_PAGE_BLOCKS.map((item, index) => (
             <div
               key={item.chapter}
               className={`timeline-block ${index % 2 !== 0 ? "reverse" : ""}`}
@@ -31,15 +31,7 @@ export default function Trajectory() {
               </div>
               <div className="timeline-image-wrapper">
                 <ImageWithPlaceholder
-                  src={
-                    index === 0
-                      ? IMAGES.aboutStory
-                      : index === 1
-                      ? IMAGES.manifesto
-                      : index === 2
-                      ? IMAGES.lifestyle
-                      : IMAGES.launchConcept
-                  }
+                  src={item.image}
                   alt={item.title}
                   className="timeline-img-wrapper"
                   aspectRatio="16 / 11"

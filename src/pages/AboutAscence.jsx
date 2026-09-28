@@ -21,7 +21,7 @@ export default function AboutAscence() {
         <div className="about-narrative-grid mt-8">
           <div className="narrative-text-col">
             <span className="overline">Nossa História</span>
-            <h2 className="section-title">Confiança e solidez construídas com o tempo.</h2>
+            <h2 className="section-title">Confiança e solidez construídas com experiência técnica.</h2>
             <p className="body-text mt-4">
               {COMPANY_INFO.aboutFull}
             </p>
@@ -82,7 +82,7 @@ export default function AboutAscence() {
 
         {/* CTA */}
         <div className="page-cta-box text-center mt-8">
-          <h2 className="cta-title">Quer entender mais sobre a nossa evolução?</h2>
+          <h2 className="cta-title">Quer entender mais sobre nossa trajetória?</h2>
           <div className="cta-btns-row mt-4">
             <Link to="/nossa-trajetoria" className="btn btn-gold">
               <span>Conheça nossa trajetória</span>

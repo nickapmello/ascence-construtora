@@ -59,8 +59,8 @@ export const COMPANY_INFO = {
   tagline: "Da experiência de construir lares, nasce uma nova forma de viver.",
   manifestoTitle: "Construir vai além da estrutura.",
   manifestoText: "Para a ASCENCE, cada projeto começa pela forma como as pessoas desejam viver. Arquitetura, funcionalidade e cuidado se encontram para criar espaços que acolhem histórias, momentos e novos começos.",
-  aboutBrief: "Nascida da experiência na construção residencial em Curitiba, a ASCENCE chegou a Arapongas levando consigo o cuidado, a proximidade e o compromisso com a qualidade.",
-  aboutFull: "A trajetória da ASCENCE começou em Curitiba com o propósito de transformar visões arquitetônicas em residências sólidas e acolhedoras. A experiência acumulada na construção de casas nos permitiu aperfeiçoar nossos processos construtivos e valorizar cada detalhe da engenharia. Ao chegar a Arapongas, trouxemos esse aprendizado para o desenvolvimento de um novo capítulo: nosso primeiro empreendimento imobiliário pensado para quem busca viver bem.",
+  aboutBrief: "Com profissionais que somam mais de 40 anos de experiência na construção civil e na incorporação imobiliária, a ASCENCE une rigor técnico e cuidado humano em seu primeiro empreendimento residencial em Arapongas.",
+  aboutFull: "A ASCENCE fundamenta sua atuação na experiência somada de um engenheiro de obras e uma engenheira de projetos, que reúnem mais de 40 anos de carreira na construção civil e na incorporação imobiliária. Ao longo de suas trajetórias, esses profissionais participaram de empreendimentos verticais de grande porte nas principais cidades do litoral catarinense e em Curitiba. Toda essa bagagem técnica e construtiva integra hoje a essência da ASCENCE, orientando o desenvolvimento de seu primeiro empreendimento residencial em Arapongas com rigor de engenharia, atenção aos detalhes e compromisso com o bem-estar.",
   contact: {
     address: "R. Tucanos, 273 - Sl 02 - Centro, Arapongas - PR, 86700-070",
     phone: "(43) 99932-3043",
@@ -76,40 +76,71 @@ export const COMPANY_INFO = {
 export const TRAJECTORY_CHAPTERS = [
   {
     chapter: "01",
-    title: "Nossa Origem",
-    subtitle: "Início em Curitiba",
-    description: "Começamos construindo nossa base na capital paranaense, compreendendo o valor de ouvir cada família para criar lares verdadeiramente funcionais."
+    subtitle: "Construção & Incorporação",
+    title: "Mais de 40 anos",
+    description: "Experiência somada dos profissionais que integram a ASCENCE na construção civil e na incorporação imobiliária."
   },
   {
     chapter: "02",
-    title: "Experiência Construída",
-    subtitle: "Construção de Casas",
-    description: "Consolidamos nosso aprendizado prático na execução de residências, dominando o planejamento de espaços e a atenção aos detalhes."
+    subtitle: "Engenharia & Projetos",
+    title: "Obras e projetos",
+    description: "Um engenheiro de obras e uma engenheira de projetos reúnem conhecimentos técnicos complementares."
   },
   {
     chapter: "03",
-    title: "Chegada a Arapongas",
-    subtitle: "Raízes no Interior do Paraná",
-    description: "Trouxemos essa bagagem para Arapongas, estabelecendo relações próximas e transparentes com a comunidade e fornecedores locais."
+    subtitle: "Grandes Empreendimentos",
+    title: "Empreendimentos verticais",
+    description: "A trajetória desses profissionais inclui participação em empreendimentos de grande porte no litoral catarinense e em Curitiba."
   },
   {
     chapter: "04",
-    title: "Um Novo Capítulo",
-    subtitle: "Incorporação Imobiliária",
-    description: "Levamos esse mesmo cuidado para uma nova fase: o desenvolvimento do nosso primeiro empreendimento residencial em Arapongas."
+    subtitle: "Presença em Arapongas",
+    title: "Um novo capítulo em Arapongas",
+    description: "Essa experiência acompanha a ASCENCE no desenvolvimento de seu primeiro empreendimento residencial na cidade."
+  }
+];
+
+export const TRAJECTORY_PAGE_BLOCKS = [
+  {
+    chapter: "01",
+    subtitle: "Bagagem Consolidada",
+    title: "Mais de 40 anos de atuação no setor",
+    description: "A solidez da ASCENCE tem origem na trajetória combinada de seus profissionais, que reúnem mais de quatro décadas de dedicação contínua à construção civil e à incorporação imobiliária. Uma vivência técnica aprofundada que orienta tomadas de decisão conscientes, planejamento rigoroso e compromisso absoluto com a qualidade estrutural.",
+    image: IMAGES.aboutStory
+  },
+  {
+    chapter: "02",
+    subtitle: "Sinergia Técnica",
+    title: "Complementaridade entre obras e projetos",
+    description: "A atuação conjunta de um engenheiro de obras e uma engenheira de projetos estabelece um equilíbrio essencial entre a concepção arquitetônica e o rigor do canteiro. Essa integração assegura inteligência espacial, eficiência construtiva e apuro no detalhamento de cada ambiente.",
+    image: IMAGES.manifesto
+  },
+  {
+    chapter: "03",
+    subtitle: "Experiência Regional",
+    title: "Grandes empreendimentos verticais",
+    description: "Ao longo de suas carreiras, esses profissionais participaram ativamente de empreendimentos verticais de grande porte nas principais cidades do litoral catarinense e em Curitiba. Essa bagagem técnica em obras de alta complexidade eleva o padrão de execução e confere segurança aos processos da empresa.",
+    image: IMAGES.lifestyle
+  },
+  {
+    chapter: "04",
+    subtitle: "Novo Marco em Arapongas",
+    title: "Um novo capítulo residencial na cidade",
+    description: "Toda essa experiência acumulada converge agora para Arapongas. A ASCENCE dedica esse conhecimento ao desenvolvimento de seu primeiro empreendimento residencial no município, unindo o padrão técnico de grandes centros ao cuidado e proximidade que tornam cada lar acolhedor.",
+    image: IMAGES.launchConcept
   }
 ];
 
 export const CARE_EXPERIENCE_PRINCIPLES = [
   {
-    id: "experiencia-residencial",
-    title: "Experiência Residencial",
-    description: "Aprendizado prático acumulado na construção de casas, compreendendo como os ambientes são vividos no dia a dia."
+    id: "experiencia-tecnica",
+    title: "Experiência Técnica",
+    description: "Bagagem prática acumulada em grandes obras e projetos, compreendendo a fundo a engenharia e a vivência de cada espaço."
   },
   {
     id: "acompanhamento-proximo",
     title: "Acompanhamento Próximo",
-    description: "Presença direta da equipe técnica e dos diretores em cada projeto, garantindo clareza e dedicação contínua."
+    description: "Presença direta da equipe técnica em cada projeto, garantindo clareza, alinhamento e dedicação contínua."
   },
   {
     id: "cuidado-etapas",

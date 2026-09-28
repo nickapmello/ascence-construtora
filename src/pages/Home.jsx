@@ -78,9 +78,9 @@ export default function Home() {
         <div className="container">
           <div className="section-header text-center mx-auto mb-6">
             <span className="overline gold-overline">Nossa Evolução</span>
-            <h2 className="section-title text-light">Uma história construída com experiência e confiança.</h2>
+            <h2 className="section-title text-light">Experiência que sustenta novos projetos.</h2>
             <p className="section-desc text-muted-light">
-              Da bagagem adquirida na construção de casas ao desenvolvimento de um novo capítulo em Arapongas.
+              A ASCENCE reúne a experiência de um engenheiro de obras e uma engenheira de projetos. Juntos, eles somam mais de 40 anos de atuação na construção civil e na incorporação imobiliária.
             </p>
           </div>
 
@@ -110,7 +110,7 @@ export default function Home() {
             <span className="overline">Compromisso com a Qualidade</span>
             <h2 className="section-title">Experiência construída com cuidado.</h2>
             <p className="section-desc">
-              A trajetória da ASCENCE foi formada pela experiência prática na construção residencial e pelo compromisso de tratar cada projeto com atenção, responsabilidade e proximidade.
+              A atuação da ASCENCE é sustentada pela sólida bagagem de seus profissionais na construção civil e na incorporação imobiliária, unindo rigor técnico, responsabilidade e proximidade.
             </p>
           </div>
 

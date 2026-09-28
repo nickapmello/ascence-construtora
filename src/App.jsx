@@ -31,8 +31,8 @@ export default function App() {
         ogImage = IMAGES.aboutStory;
         break;
       case "/nossa-trajetoria":
-        title = "Nossa Trajetória | Da Experiência em Casas ao Primeiro Lançamento";
-        desc = "Acompanhe a evolução da ASCENCE: da fundação em Curitiba e experiência construindo lares até o primeiro empreendimento em Arapongas.";
+        title = "Nossa Trajetória | Experiência que Sustenta Novos Projetos";
+        desc = "Conheça a trajetória técnica dos engenheiros da ASCENCE: mais de 40 anos de experiência somada na construção civil e incorporação imobiliária.";
         ogImage = IMAGES.manifesto;
         break;
       case "/nosso-jeito-de-construir":
